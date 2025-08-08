@@ -2,8 +2,6 @@ import type { ActionFunctionArgs } from "@remix-run/node";
 import { Form, json, useActionData } from "@remix-run/react";
 import type { FC } from "react";
 
-// --- Fungsi Action Remix ---
-// Fungsi ini berjalan di server setiap kali formulir dikirimkan.
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
   const data = {
@@ -14,7 +12,6 @@ export async function action({ request }: ActionFunctionArgs) {
     message: formData.get("message"),
   };
 
-  // Validasi sederhana di server
   if (typeof data.fullName !== "string" || data.fullName.length < 3) {
     return json(
       { error: "Nama lengkap harus diisi (minimal 3 karakter)." },
@@ -28,10 +25,8 @@ export async function action({ request }: ActionFunctionArgs) {
     );
   }
 
-  // Di aplikasi nyata, Anda akan menyimpan ulasan ini ke database.
   console.log("Ulasan baru diterima:", data);
 
-  // Mengembalikan pesan sukses
   return json({
     success: true,
     message: "Terima kasih! Ulasan Anda telah berhasil dikirimkan.",
@@ -64,7 +59,6 @@ const FormInput: FC<FormInputProps> = ({ label, as = "input", ...props }) => {
   );
 };
 
-// --- Komponen Utama Halaman ---
 export default function CreateReviewPage() {
   const actionData = useActionData<typeof action>();
   console.log(actionData);

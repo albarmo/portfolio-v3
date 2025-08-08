@@ -13,7 +13,7 @@ const BlogCard: FC<BlogPost> = (blog) => {
       >
         <ShinyText text={blog?.title} disabled={false} speed={3} />
         <img
-          src={blog?.thumbnailUrl}
+          src={blog?.thumbnail}
           alt={blog.slug}
           className="w-full h-full object-cover rounded-md"
         />

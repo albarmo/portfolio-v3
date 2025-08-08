@@ -5,9 +5,7 @@ const ExperienceSection = () => {
     imageUrl: "/images/avatar.png",
     name: "Albar Moerhamsa",
     title: "Frontend Engineer",
-    description: "A Product Designer who focuses on simplicity & usability.",
-    followers: 312,
-    projects: 48,
+    description: "A Frontend Engineer who focuses on simplicity & usability.",
   };
 
   return (

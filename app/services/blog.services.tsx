@@ -1,3 +1,10 @@
+import qs from "~/utils/querystring";
+
+type PaginationParams = {
+  page?: number;
+  limit?: number;
+};
+
 export type BlogPost = {
   id: number;
   title: string;
@@ -5,7 +12,7 @@ export type BlogPost = {
   author: string;
   date: string;
   slug: string;
-  thumbnailUrl: string;
+  thumbnail: string;
   content: string;
 };
 
@@ -17,7 +24,7 @@ export const BACKUP_BLOG_POST:BlogPost[] = [
     author: "Jane Doe",
     date: "August 5, 2025",
     slug: "react-server-vs-client-components",
-    thumbnailUrl: "https://placehold.co/600x400/171717/999999?text=Server+vs.+Client",
+    thumbnail: "https://placehold.co/600x400/171717/999999?text=Server+vs.+Client",
     content: `
       React Server Components (RSCs) represent one of the biggest shifts in React's architecture. The primary motivation is to combat the ever-growing JavaScript bundle sizes and complex data-fetching waterfalls that can slow down our applications. By moving components to the server, we can send a much lighter, non-interactive HTML payload to the client, resulting in a significantly faster initial page load.
 
@@ -33,7 +40,7 @@ export const BACKUP_BLOG_POST:BlogPost[] = [
     author: "John Smith",
     date: "July 28, 2025",
     slug: "mastering-typescript-generics",
-    thumbnailUrl: "https://placehold.co/600x400/171717/999999?text=TypeScript+Generics",
+    thumbnail: "https://placehold.co/600x400/171717/999999?text=TypeScript+Generics",
     content: `
       If you want to write truly reusable and type-safe code in TypeScript, you need to master generics. Generics allow you to create components, functions, and classes that can work with a variety of data types while still maintaining strict type checking. Instead of writing separate components for a list of users, a list of products, and a list of posts, you can write one generic 'List' component.
 
@@ -63,7 +70,7 @@ export const BACKUP_BLOG_POST:BlogPost[] = [
     author: "Emily White",
     date: "July 15, 2025",
     slug: "2025-frontend-state-management-guide",
-    thumbnailUrl: "https://placehold.co/600x400/171717/999999?text=State+Management",
+    thumbnail: "https://placehold.co/600x400/171717/999999?text=State+Management",
     content: `
       Choosing a state management library can be one of the most critical architectural decisions for a new frontend project. For years, Redux was the undisputed king for large-scale applications, offering a predictable state container with powerful dev tools. However, its boilerplate and complexity have led developers to seek simpler alternatives.
 
@@ -79,7 +86,7 @@ export const BACKUP_BLOG_POST:BlogPost[] = [
     author: "Michael Brown",
     date: "June 30, 2025",
     slug: "practical-guide-core-web-vitals",
-    thumbnailUrl: "https://placehold.co/600x400/171717/999999?text=Optimized+LCP+and+FCP",
+    thumbnail: "https://placehold.co/600x400/171717/999999?text=Optimized+LCP+and+FCP",
     content: `
       Google's Core Web Vitals are a set of metrics that measure real-world user experience for loading performance, interactivity, and visual stability. Scoring well on these metrics is crucial not only for user satisfaction but also for SEO ranking. This guide focuses on two of the most important loading metrics: First Contentful Paint (FCP) and Largest Contentful Paint (LCP).
 
@@ -95,7 +102,7 @@ export const BACKUP_BLOG_POST:BlogPost[] = [
     author: "Sarah Green",
     date: "June 12, 2025",
     slug: "design-system-storybook-tailwind",
-    thumbnailUrl: "https://placehold.co/600x400/171717/999999?text=Design+and+System",
+    thumbnail: "https://placehold.co/600x400/171717/999999?text=Design+and+System",
     content: `
       A design system is the single source of truth for your application's UI. It ensures consistency, speeds up development, and improves collaboration between designers and developers. In this guide, we'll build one using two powerful tools: Tailwind CSS for utility-first styling and Storybook for component documentation and isolation.
 
@@ -106,12 +113,26 @@ export const BACKUP_BLOG_POST:BlogPost[] = [
   },
 ];
 
-export async function getBlogs() {
-    return {data: BACKUP_BLOG_POST, code: 200}
+export async function getBlogs({ page, limit }: PaginationParams) {
+  const queryString = qs({ page, limit });
+  try {
+    const response = await fetch(
+      "http://localhost:8081/api/v1/blogs" + queryString
+    );
+
+    return response?.json();
+  } catch (error) {
+    return {code: 200, data: BACKUP_BLOG_POST}
+  }
 }
 
 export async function getBlog(id: string) {
-    const blog = BACKUP_BLOG_POST.find((blog) => String(blog.id) === String(id));
-    console.log(blog)
-    return {data: blog, code: 200}
+  try {
+    const response = await fetch(`http://localhost:8081/api/v1/blogs/${id}`);
+
+    return response?.json();
+  } catch (error) {
+    const project = BACKUP_BLOG_POST.find((p) => String(p.id) === String(id));
+    return project;
+  }
 }

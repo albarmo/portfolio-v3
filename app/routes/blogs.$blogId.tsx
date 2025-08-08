@@ -14,7 +14,6 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
 
 export default function BlogDetail() {
   const { blog } = useLoaderData<typeof loader>();
-  console.log(blog);
 
   return (
     <PageLayout>
@@ -53,7 +52,7 @@ export default function BlogDetail() {
           {/* Main Image */}
           <div className="w-full aspect-video rounded-2xl bg-gray-100 dark:bg-neutral-800 shadow-lg">
             <img
-              src={blog?.thumbnailUrl}
+              src={blog?.thumbnail}
               alt={blog?.title}
               className="w-full h-full object-cover border rounded-lg"
             />

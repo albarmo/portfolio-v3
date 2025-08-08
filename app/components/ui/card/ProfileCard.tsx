@@ -1,5 +1,5 @@
 import { Link } from "@remix-run/react";
-import { PiIcon, VerifiedIcon } from "lucide-react";
+import { Linkedin, VerifiedIcon } from "lucide-react";
 import { FC } from "react";
 
 type ProfileCardProps = {
@@ -8,8 +8,6 @@ type ProfileCardProps = {
   name: string;
   title: string;
   description: string;
-  followers: number;
-  projects: number;
 };
 
 const ProfileCard: FC<ProfileCardProps> = ({
@@ -18,8 +16,6 @@ const ProfileCard: FC<ProfileCardProps> = ({
   name,
   title,
   description,
-  followers,
-  projects,
 }) => {
   const cardBaseClasses = `
     relative group overflow-hidden cursor-pointer
@@ -80,12 +76,7 @@ const ProfileCard: FC<ProfileCardProps> = ({
       <div className="flex items-center justify-between mt-2">
         <div className="flex items-center gap-4 text-neutral-400">
           <div className="flex items-center gap-1.5">
-            <PiIcon />
-            <span className="text-sm font-medium text-white">{followers}</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <PiIcon />
-            <span className="text-sm font-medium text-white">{projects}</span>
+            <span className="text-sm font-medium text-white">DKI Jakarta, IDN</span>
           </div>
         </div>
 
@@ -105,8 +96,8 @@ const ProfileCard: FC<ProfileCardProps> = ({
                 shadow-[0_0_0_1px_#00000022,0_8px_16px_#00000022] transition duration-300 will-change-transform hover:translate-x-1 hover:-translate-y-1 hover:shadow-[0_0_0_1px_#00000022,0_8px_16px_#00000011]
                 `}
             >
-              <PiIcon />
-              <span>Follow</span>
+              <Linkedin/>
+              <span>Profile</span>
             </button>
           </Link>
         </section>

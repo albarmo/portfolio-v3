@@ -11,8 +11,6 @@ export const loader = async () => {
 
 const ProjectsPage = () => {
   const { projects } = useLoaderData<typeof loader>();
-  console.log("projects", projects);
-
   const projectList = projects.data?.length ? projects?.data : BACKUP_PROJECTS
 
   return (

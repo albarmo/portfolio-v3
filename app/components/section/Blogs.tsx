@@ -2,9 +2,9 @@ import { Link } from "@remix-run/react";
 import BlogCard from "../ui/card/BlogCard";
 import TargetCursor from "../ui/TargetCursor";
 import ShinyText from "../ui/text/ShinyText";
-import { BACKUP_BLOG_POST } from "~/services/blog.services";
+import { BlogPost } from "~/services/blog.services";
 
-export default function Blogs() {
+export default function Blogs({ data }: { data: BlogPost[] }) {
   return (
     <div>
       <TargetCursor spinDuration={3} hideDefaultCursor={true} />
@@ -34,11 +34,8 @@ export default function Blogs() {
 
           {/* Grid untuk Kartu Fitur */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            {BACKUP_BLOG_POST.map((blog, index) => (
-              <BlogCard
-                key={index}
-                {...blog}
-              />
+            {data?.map((blog: BlogPost, index: number) => (
+              <BlogCard key={index} {...blog} />
             ))}
           </div>
         </div>

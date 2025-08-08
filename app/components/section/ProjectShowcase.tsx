@@ -1,9 +1,9 @@
 import { Link } from "@remix-run/react";
 import ProjectCard from "../ui/card/ProjectCard";
 import ShinyText from "../ui/text/ShinyText";
-import { BACKUP_PROJECTS } from "~/services/project.services";
+import { Project } from "~/services/project.services";
 
-export default function ProjectShowcase() {
+export default function ProjectShowcase({ data }: { data: Project[] }) {
   return (
     <section className="dark:text-white py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -35,7 +35,7 @@ export default function ProjectShowcase() {
 
         {/* Grid untuk Kartu Proyek */}
         <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {BACKUP_PROJECTS.map((project, index) => (
+          {data?.map((project, index) => (
             <ProjectCard
               key={index}
               imageUrl={project?.thumbnail}

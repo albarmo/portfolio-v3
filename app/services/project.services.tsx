@@ -162,7 +162,7 @@ export async function getProjects({ page, limit }: PaginationParams) {
 
     return response?.json();
   } catch (error) {
-    return error;
+    return {code: 200, data: BACKUP_PROJECTS}
   }
 }
 
