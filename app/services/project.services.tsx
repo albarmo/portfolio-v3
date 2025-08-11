@@ -27,15 +27,15 @@ export const BACKUP_PROJECTS = [
   {
     repoUrl: "https://github.com/example/delima-bri",
     responsibility:
-      '[\n                      "Developed key features for the cross-platform mobile app using React Native.",\n                      "Managed the application\'s global state for transactions and user data with Redux.",\n                      "Integrated Firebase for real-time notifications and analytics.",\n                      "Collaborated with UI/UX designers to create a user-friendly and intuitive interface for banking agents.",\n                      "Implemented secure transaction processing and data handling protocols."\n                    ]',
-    techStack: '["React Native", "Redux", "Firebase", "TypeScript"]',
+      '[\n                      "Developing the various Delima client - facing applications in alignment with agile sprint cycles.",\n                      "Maintaining high standards of code quality through reviews and best practices.",\n                      "Integrating frontend components with backend APIs to ensure seamless data flow.",\n                      "Implementing robust client-side security measures to protect user data.",\n                      "Ensuring secure transaction processing and data handling protocols were followed."\n                    ]',
+    techStack: '["Microsite", "Nextjs", "Micro-Frontend", "TypeScript"]',
     category: "Development Frontend",
     gifUrl:
       "https://i.pinimg.com/originals/2c/a0/d2/2ca0d24329355307cc9848bef965fa88.gif",
     brief:
-      "Delima is a mobile application that serves as a digital ecosystem for BRI (Bank Rakyat Indonesia) agents, enabling them to perform financial transactions, manage customers, and access various banking services on the go.",
+      "Delima is a loan product from Bank BRI, designed to empower rural entrepreneurs by providing accessible financing. The ecosystem is built on a microservice architecture and integrates as a third-party service within partner platforms. The client-side consists of four main web applications: an embeddable Microsite for loan registration and application, a Dashboard for BRI branch offices to monitor and manage loans, a Partner Dashboard for partner companies to track their customers' loan applications, and a promotional Landing Page.",
     result:
-      "The Delima app successfully empowered over 100,000 BRI agents, increasing the volume of agent-led transactions by 60%.",
+      "The Delima digital ecosystem was successfully developed and launched, delivering a comprehensive solution that exceeded the initial project requirements with additional features.",
     url: "/projects/delima",
     year: "2023",
     description: "Development Frontend",
@@ -48,15 +48,16 @@ export const BACKUP_PROJECTS = [
   {
     repoUrl: "https://github.com/example/localoka",
     responsibility:
-      '[\n                      "Led the frontend development using Remix and TypeScript to ensure type safety and scalability.",\n                      "Implemented a pixel-perfect and responsive UI based on Figma designs using Tailwind CSS.",\n                      "Integrated with the backend API to fetch and display dynamic data for listings and user profiles.",\n                      "Developed interactive map features for location discovery.",\n                      "Ensured high performance and fast load times through server-side rendering and code splitting."\n                    ]',
-    techStack: '["Remix", "TailwindCSS", "Prisma", "PostgreSQL", "TypeScript"]',
+      '[\n                      "Building the Localoka v2 application (revamp).",\n                      "Improving application performance (FCP and LCP).",\n                      "Enhancing application security.",\n                      "Improving the user experience.",\n                      "Adding a chat feature using WebSockets.",\n                      "Adding a notification feature using Server-Sent Events (SSE)."\n                    ]',
+    techStack:
+      '["Next.js", "TypeScript", "TailwindCSS", "WebSockets", "Server-Sent Events"]',
     category: "Development Frontend",
     gifUrl:
       "https://i.pinimg.com/originals/2c/a0/d2/2ca0d24329355307cc9848bef965fa88.gif",
     brief:
-      "Localoka is a web platform designed to help users discover local services, hidden gems, and unique places in their area. The project focused on creating an intuitive and visually appealing user interface for seamless exploration and booking.",
+      "Localoka is a marketplace platform distributed and used within the BRILink ecosystem (for both business owners and customers). Built with Next.js, it consists of a seller dashboard, a mobile app, and a webview. The first version of Localoka faced several challenges, including poor security and slow loading times.",
     result:
-      "Successfully launched a user-friendly platform that saw a 40% increase in user engagement within the first three months. The intuitive design received highly positive feedback from early adopters.",
+      "The Localoka application was successfully developed ahead of schedule. Application performance was significantly improved, reducing load times from nearly 2-3 seconds to under 1 second. Security vulnerabilities were successfully patched. With the remaining time, the team successfully developed an in-house chat feature, which was originally planned to use a third-party service, leading to budget efficiencies in the application's development.",
     url: "/projects/localoka",
     year: "2025",
     description: "Development Frontend",
@@ -69,15 +70,15 @@ export const BACKUP_PROJECTS = [
   {
     repoUrl: "https://github.com/example/imigrasi-sso",
     responsibility:
-      '[\n                      "Built a secure and robust authentication flow using OAuth 2.0 and JSON Web Tokens (JWT).",\n                      "Created a centralized login portal and user management dashboard with React and TypeScript.",\n                      "Collaborated with backend teams to integrate the SSO service with various existing applications.",\n                      "Implemented multi-factor authentication (MFA) to improve security.",\n                      "Wrote comprehensive documentation for other developers to adopt the SSO system."\n                    ]',
-    techStack: '["React", "Node.js", "OAuth 2.0", "JWT", "TailwindCSS"]',
-    category: "Development Frontend",
+      '[\n                      "Fixing existing bugs in the SSO application.",\n                      "Enhancing the application request module.",\n                      "Implementing the profile photo upload flow.",\n                      "Implementing application flagging for grouping purposes."\n                    ]',
+    techStack: '["React",  "Javascript",  "Pure CSS"]',
+    category: "Development & Maintenance Frontend",
     gifUrl:
       "https://i.pinimg.com/originals/2c/a0/d2/2ca0d24329355307cc9848bef965fa88.gif",
     brief:
       "Developed a centralized Single Sign-On (SSO) system for the Directorate General of Immigration to unify authentication across multiple internal applications, enhancing security and user experience for employees.",
     result:
-      "The SSO system successfully centralized user authentication for over 10 internal applications, reducing login times by 70% and significantly strengthening the overall security posture.",
+      "The features developed in the SSO resulted in high user satisfaction with the final product.",
     url: "/projects/sso",
     year: "2025",
     description: "Development Frontend",
@@ -111,15 +112,16 @@ export const BACKUP_PROJECTS = [
   {
     repoUrl: "https://github.com/example/apoa",
     responsibility:
-      '[\n                      "Implemented an interactive map interface using Mapbox GL JS for real-time tracking and data visualization.",\n                      "Developed the application as a Progressive Web App (PWA) to ensure offline capabilities for officers in the field.",\n                      "Built a responsive UI that works seamlessly on both mobile devices and desktops.",\n                      "Integrated with a secure backend to send and receive sensitive reporting data.",\n                      "Focused on performance and low data usage for mobile networks."\n                    ]',
-    techStack: '["React", "Mapbox GL JS", "PWA", "TailwindCSS", "TypeScript"]',
+      '[\n                      "Building the application from scratch using Next.js.",\n                      "Creating a mapping feature for registered hotels.",\n                      "Developing the client and integrating check-in/checkout features using OCR for passport scanning.",\n                      "Implementing a data export feature.",\n                      "Building a regional office (Kanwil) management feature."\n                    ]',
+    techStack:
+      '["Next.js", "Mapbox GL", "TailwindCSS", "TypeScript", "OCR"]',
     category: "Development Frontend",
     gifUrl:
       "https://i.pinimg.com/originals/2c/a0/d2/2ca0d24329355307cc9848bef965fa88.gif",
     brief:
-      "APOA (Aplikasi Pengawasan Orang Asing) is a mobile-first web application for immigration officers to monitor and report the activities of foreign nationals in Indonesia, featuring real-time mapping and reporting capabilities.",
+      "APOA (Foreigner Reporting Application) is used by hotels and lodgings to record data on foreign visitors, which is then managed by the Indonesian Ministry of Immigration.",
     result:
-      "The application enhanced the field monitoring capabilities of immigration officers, leading to a 50% increase in reporting efficiency.",
+      "The APOA application was successfully developed and published to hotel users, receiving a positive response.",
     url: "/projects/apoa",
     year: "2024",
     description: "Development Frontend",
@@ -132,16 +134,16 @@ export const BACKUP_PROJECTS = [
   {
     repoUrl: "https://github.com/example/sisbinkar",
     responsibility:
-      '[\n                      "Developed the main dashboard for visualizing employee career data using Next.js and Chart.js.",\n                      "Designed and implemented complex forms for performance reviews and promotion submissions.",\n                      "Built a role-based access control (RBAC) system to manage permissions for employees, managers, and HR staff.",\n                      "Ensured data integrity and a seamless user experience across the application.",\n                      "Optimized application performance for handling large datasets of employee information."\n                    ]',
+      '[\n                      "Developing and editing rank features.",\n                      "Implementing features to add and edit job positions, education, training, and awards.",\n                      "Building management features for LHKPN/LHKASN (State Official Wealth Reports).",\n                      "Implementing modules for disciplinary action (Hukdis) management.",\n                      "Developing a complex organizational structure display for web visualization."\n                    ]',
     techStack:
-      '["Next.js", "TypeScript", "Chart.js", "PostgreSQL", "TailwindCSS"]',
+      '["Next.js", "TypeScript", "Chart.js", "D3.js", "PostgreSQL", "TailwindCSS"]',
     category: "Development Frontend",
     gifUrl:
       "https://i.pinimg.com/originals/2c/a0/d2/2ca0d24329355307cc9848bef965fa88.gif",
     brief:
-      "SISBINKAR is a comprehensive career development information system for employees of the Directorate General of Immigration. The platform helps in tracking employee progression, managing promotions, and visualizing career paths.",
+      "SISBINKAR (Immigration Career Development System) is an internal employee application aimed at monitoring and managing vacant positions in immigration offices; this application also manages comprehensive employee data.",
     result:
-      "Streamlined the career management process, reducing manual paperwork by 90% and providing transparent career path data for all employees.",
+      "The required features were developed in a short and effective time with high quality, leading to great user satisfaction with the final product.",
     url: "/projects/sisbinkar",
     year: "2025",
     description: "Development Frontend",
@@ -162,7 +164,7 @@ export async function getProjects({ page, limit }: PaginationParams) {
 
     return response?.json();
   } catch (error) {
-    return {code: 200, data: BACKUP_PROJECTS}
+    return { code: 200, data: BACKUP_PROJECTS };
   }
 }
 
