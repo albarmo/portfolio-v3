@@ -25,12 +25,10 @@ export async function action({ request }: ActionFunctionArgs) {
     );
   }
 
-  console.log("Ulasan baru diterima:", data);
-
-  return json({
+  return {
     success: true,
     message: "Terima kasih! Ulasan Anda telah berhasil dikirimkan.",
-  });
+  };
 }
 
 // --- Komponen Input ---

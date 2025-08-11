@@ -27,7 +27,6 @@ export const loader = async () => {
 
 export default function Index() {
   const { reviews, blogs, projects } = useLoaderData<typeof loader>();
-  console.log({ reviews, blogs, projects });
 
   return (
     <div id="test">

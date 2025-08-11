@@ -6,7 +6,7 @@ type PaginationParams = {
 };
 
 export type BlogPost = {
-  id: number;
+  id: number| string;
   title: string;
   summary: string;
   author: string;
@@ -18,7 +18,7 @@ export type BlogPost = {
 
 export const BACKUP_BLOG_POST:BlogPost[] = [
   {
-    id: 1,
+    id: "1",
     title: "Understanding React Server Components vs. Client Components",
     summary: "A deep dive into the new paradigm introduced in React, exploring how Server Components can drastically improve performance and what it means for your application architecture.",
     author: "Jane Doe",
@@ -34,7 +34,7 @@ export const BACKUP_BLOG_POST:BlogPost[] = [
     `
   },
   {
-    id: 2,
+    id: "2",
     title: "Mastering TypeScript Generics for Reusable Components",
     summary: "Take your TypeScript skills to the next level. This guide explains how to use generics to create highly reusable and type-safe React components for any data structure.",
     author: "John Smith",
@@ -64,7 +64,7 @@ export const BACKUP_BLOG_POST:BlogPost[] = [
     `
   },
   {
-    id: 3,
+    id: "3",
     title: "The 2025 Guide to State Management in Frontend Applications",
     summary: "Redux, Zustand, Jotai, or Signals? The state management landscape is always evolving. We compare the most popular solutions to help you choose the right one for your next project.",
     author: "Emily White",
@@ -80,7 +80,7 @@ export const BACKUP_BLOG_POST:BlogPost[] = [
     `
   },
   {
-    id: 4,
+    id: "4",
     title: "Core Web Vitals: A Practical Guide to Optimizing LCP and FCP",
     summary: "Don't let a slow website hurt your user experience. This article provides actionable steps to diagnose and fix common issues affecting Largest and First Contentful Paint.",
     author: "Michael Brown",
@@ -96,7 +96,7 @@ export const BACKUP_BLOG_POST:BlogPost[] = [
     `
   },
   {
-    id: 5,
+    id: "5",
     title: "Building a Design System with Storybook and Tailwind CSS",
     summary: "Learn how to create a robust and maintainable design system from scratch. We'll cover setting up Storybook, integrating Tailwind CSS, and documenting components effectively.",
     author: "Sarah Green",
@@ -132,7 +132,7 @@ export async function getBlog(id: string) {
 
     return response?.json();
   } catch (error) {
-    const project = BACKUP_BLOG_POST.find((p) => String(p.id) === String(id));
-    return project;
+    const blog = BACKUP_BLOG_POST.find((b) => String(b?.id) === String(id));
+    return {code: 200, data:blog};
   }
 }
