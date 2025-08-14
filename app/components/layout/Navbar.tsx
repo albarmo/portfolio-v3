@@ -161,12 +161,12 @@ export default function Navbar() {
                     to="/"
                     className="text-gray-900 dark:text-white font-bold text-xl"
                   >
-                    <section className="flex justify-center items-center space-x-2.5">
+                    <section className="flex justify-center items-center space-x-1">
                       <img
-                        src="/logo.svg"
+                        src="/albarmox.png"
                         alt="Albarmo"
-                        width="16"
-                        height="16"
+                        width="42"
+                        height="42"
                         className="invert dark:invert-0"
                       />
                       <h1 className="text-lg font-bold">albarmox</h1>
@@ -484,9 +484,7 @@ export default function Navbar() {
               <NavLink to="/blogs" onClick={() => setIsMenuOpen(false)} className={mobileNavLinkClasses}>
                 Blogs
               </NavLink>
-              {/* <NavLink to="/pricing" className={mobileNavLinkClasses}>
-                Pricing
-              </NavLink> */}
+            
             </div>
           </motion.div>
         )}
