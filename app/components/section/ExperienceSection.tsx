@@ -2,7 +2,7 @@ import ProfileCard from "../ui/card/ProfileCard";
 
 const ExperienceSection = () => {
   const user = {
-    imageUrl: "/images/avatar.png",
+    imageUrl: "/images/character-2.png",
     name: "Albar Moerhamsa",
     title: "Frontend Engineer",
     description: "A Frontend Engineer who focuses on simplicity & usability.",

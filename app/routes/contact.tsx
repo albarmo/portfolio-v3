@@ -121,7 +121,7 @@ export default function ContactPage() {
           <div className="flex flex-col">
             <div className="rounded-2xl dark:bg-neutral-900 border dark:border-neutral-800 p-8">
               <img
-                src="/images/avatar.png"
+                src="/images/character.png"
                 alt="Foto profil"
                 className="w-24 h-24 rounded-full object-cover my-6"
               />
