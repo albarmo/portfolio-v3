@@ -27,16 +27,13 @@ const MoonIcon = () => (
 
 export function ThemeSwitcher() {
   // State untuk menyimpan tema saat ini: 'light' atau 'dark'
-  const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [theme, setTheme] = useState<"light" | "dark">("dark");
 
-  // Effect untuk mengatur tema awal dari localStorage atau preferensi sistem
+  // Effect untuk mengatur tema awal dari localStorage, default dark
   useEffect(() => {
-    const isDarkMode =
-      localStorage.theme === "dark" ||
-      (!("theme" in localStorage) &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches);
-    
-    const initialTheme = isDarkMode ? "dark" : "light";
+    const savedTheme = localStorage.theme;
+    const initialTheme: "light" | "dark" =
+      savedTheme === "light" ? "light" : "dark";
     setTheme(initialTheme);
     applyTheme(initialTheme);
   }, []);

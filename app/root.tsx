@@ -32,7 +32,7 @@ export const links: LinksFunction = () => [
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const cookieHeader = request.headers.get("Cookie");
-  const theme = (await themeCookie.parse(cookieHeader)) || "system";
+  const theme = (await themeCookie.parse(cookieHeader)) || "dark";
 
   return { theme };
 };
