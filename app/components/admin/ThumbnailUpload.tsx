@@ -1,0 +1,119 @@
+import { useState, useRef } from "react";
+import { UploadCloudIcon, XIcon, ImageIcon } from "lucide-react";
+
+interface ThumbnailUploadProps {
+  currentUrl?: string;
+  fieldName?: string;
+  urlFieldName?: string;
+}
+
+export default function ThumbnailUpload({
+  currentUrl = "",
+  fieldName = "thumbnailFile",
+  urlFieldName = "thumbnail",
+}: ThumbnailUploadProps) {
+  const [preview, setPreview] = useState<string>(currentUrl);
+  const [urlInput, setUrlInput] = useState<string>(currentUrl);
+  const [isDragging, setIsDragging] = useState(false);
+  const fileRef = useRef<HTMLInputElement>(null);
+
+  const handleFile = (file: File) => {
+    if (!file.type.startsWith("image/")) return;
+    const objectUrl = URL.createObjectURL(file);
+    setPreview(objectUrl);
+    setUrlInput(""); // clear manual URL when file is chosen
+  };
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragging(false);
+    const file = e.dataTransfer.files[0];
+    if (file) handleFile(file);
+  };
+
+  const clearSelection = () => {
+    setPreview("");
+    setUrlInput("");
+    if (fileRef.current) fileRef.current.value = "";
+  };
+
+  return (
+    <div className="border-b border-[var(--line)]">
+      {/* Label */}
+      <div className="border-b border-[var(--line)] bg-[var(--surface)] px-3 py-1.5 font-mono text-[0.6rem] font-bold uppercase tracking-widest text-[var(--muted)]">
+        THUMBNAIL
+      </div>
+
+      <div className="p-3 space-y-3">
+        {/* Preview */}
+        {preview && (
+          <div className="relative inline-block">
+            <img
+              src={preview}
+              alt="Thumbnail preview"
+              className="h-28 w-auto border border-[var(--line)] object-cover"
+              onError={() => setPreview("")}
+            />
+            <button
+              type="button"
+              onClick={clearSelection}
+              className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center bg-[var(--accent)] text-white"
+            >
+              <XIcon className="h-3 w-3" />
+            </button>
+          </div>
+        )}
+
+        {/* Drop zone */}
+        <div
+          onDragOver={(e) => { e.preventDefault(); setIsDragging(true); }}
+          onDragLeave={() => setIsDragging(false)}
+          onDrop={handleDrop}
+          onClick={() => fileRef.current?.click()}
+          className={`flex cursor-pointer flex-col items-center justify-center gap-2 border border-dashed py-6 transition-colors ${
+            isDragging
+              ? "border-[var(--accent)] bg-[var(--surface-muted)]"
+              : "border-[var(--line)] hover:border-[var(--muted)]"
+          }`}
+        >
+          <UploadCloudIcon className="h-6 w-6 text-[var(--muted)]" />
+          <samp className="font-mono text-[0.65rem] text-[var(--muted)]">
+            DRAG & DROP OR CLICK TO UPLOAD
+          </samp>
+          <samp className="font-mono text-[0.6rem] text-[var(--muted)] opacity-60">
+            PNG, JPG, WEBP — MAX 5MB
+          </samp>
+        </div>
+
+        <input
+          ref={fileRef}
+          type="file"
+          name={fieldName}
+          accept="image/*"
+          className="hidden"
+          onChange={(e) => {
+            const file = e.target.files?.[0];
+            if (file) handleFile(file);
+          }}
+        />
+
+        {/* Manual URL input */}
+        <div className="flex items-center gap-2">
+          <ImageIcon className="h-3.5 w-3.5 shrink-0 text-[var(--muted)]" />
+          <input
+            type="text"
+            name={urlFieldName}
+            value={urlInput}
+            onChange={(e) => {
+              setUrlInput(e.target.value);
+              setPreview(e.target.value);
+              if (fileRef.current) fileRef.current.value = ""; // clear file if URL typed
+            }}
+            placeholder="or paste image URL"
+            className="flex-1 border border-[var(--line)] bg-[var(--bg)] px-2 py-1.5 font-mono text-xs text-[var(--text)] outline-none placeholder:text-[var(--muted)] focus:border-[var(--muted)]"
+          />
+        </div>
+      </div>
+    </div>
+  );
+}

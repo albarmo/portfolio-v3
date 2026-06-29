@@ -1,40 +1,35 @@
 import { Link } from "@remix-run/react";
 import ProjectCard from "../ui/card/ProjectCard";
-import ShinyText from "../ui/text/ShinyText";
-import { Project } from "~/services/project.services";
+import type { Project } from "~/services/project.server";
 
 export default function ProjectShowcase({ data }: { data: Project[] }) {
   return (
-    <section className="dark:text-white py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Header Section */}
-        <section className="flex flex-col md:flex-row space-y-5 md:space-y-0 md:items-center justify-between w-full">
-          <div className="text-left space-y-0.5">
-            <span className="flex items-center gap-1.5 text-[#BFF163]">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#BFF163] animate-pluse"></span>
-              Workspaces
-            </span>
-            <ShinyText
-              text="Selected Projects"
-              disabled={false}
-              speed={3}
-              className="text-2xl font-bold tracking-tight sm:text-4xl"
-            />
-            <p className="text-sm leading-8 text-neutral-400 dark:text-neutral-200">
-              Here&apos;s a curated selection showcasing my expertise and the
-              achieved results.
-            </p>
+    <section className="section-pad">
+      <div className="section-shell">
+        <div className="border-b border-[var(--line)] pb-8">
+          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+            <div className="max-w-3xl">
+              <samp className="font-mono text-[0.65rem] font-bold uppercase tracking-widest text-[var(--muted)]">
+                [ PROJ.SYS / SELECTED ]
+              </samp>
+              <h2 className="mt-4 font-display text-4xl font-black uppercase leading-tight text-[var(--text)] sm:text-5xl">
+                PRODUCT INTERFACES WITH REAL CONSTRAINTS.
+              </h2>
+              <p className="mt-4 max-w-2xl font-mono text-xs leading-6 text-[var(--muted)]">
+                A focused set of frontend and full-stack work across fintech,
+                government systems, marketplaces, and data-heavy tools.
+              </p>
+            </div>
+            <Link
+              to="/projects"
+              className="premium-link premium-link-secondary w-fit"
+            >
+              {">>> SEE ALL"}
+            </Link>
           </div>
-          <Link
-            to="/projects"
-            className="cursor-target p-2 px-4 border rounded-lg w-max"
-          >
-            See all projects
-          </Link>
-        </section>
+        </div>
 
-        {/* Grid untuk Kartu Proyek */}
-        <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="mt-8 grid grid-cols-1 gap-px bg-[var(--line)] border border-[var(--line)] lg:grid-cols-2">
           {data?.map((project, index) => (
             <ProjectCard
               key={index}

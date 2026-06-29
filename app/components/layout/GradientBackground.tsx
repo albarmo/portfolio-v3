@@ -11,22 +11,9 @@ const GradienBackground: FC<GradienBackgroundProps> = ({
 }) => {
   return (
     <div
-      className={`relative w-full min-h-screen bg-white dark:bg-neutral-900 p-5 py-40 md:p-40 ${className}`}
+      className={`relative w-full overflow-hidden bg-[var(--bg)] px-5 pb-20 pt-28 sm:pt-32 md:px-10 lg:px-16 ${className ?? ""}`}
     >
-      {/* Lapisan Latar Belakang dengan dan Gradien */}
-      <div
-        className="absolute inset-0 h-full w-full bg-white dark:bg-neutral-900 
-                   bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] 
-                   bg-[size:24px_24px] 
-                   [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_60%,transparent_100%)]"
-      />
-
-      {/* Lapisan Gradien Cahaya */}
-      <div
-        className="absolute inset-0 h-full w-full 
-                   bg-[radial-gradient(circle_farthest-side_at_50%_0,rgba(124,58,237,0.15),rgba(255,255,255,0))]"
-      />
-
+      <div className="absolute inset-0 h-full w-full bg-[linear-gradient(to_right,rgba(234,234,234,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(234,234,234,0.04)_1px,transparent_1px)] bg-[size:40px_40px]" />
       <div className="relative z-10">{children}</div>
     </div>
   );

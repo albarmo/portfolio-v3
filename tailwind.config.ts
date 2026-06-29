@@ -4,7 +4,11 @@ export default {
   content: ["./app/**/{**,.client,.server}/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        display: ['"Archivo Black"', '"Inter"', "sans-serif"],
+      },
       colors: {
+        accent: "#e61919",
         primary: {
           DEFAULT: "#4F46E5",
           dark: "#050311",

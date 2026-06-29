@@ -1,8 +1,8 @@
 import { useLoaderData } from "@remix-run/react";
 import { PageLayout } from "~/components/layout/PageLayout";
-import { BACKUP_PROJECTS, getProjects, Project } from "~/services/project.services";
+import { getProjects } from "~/services/project.server";
+import type { Project } from "~/services/project.server";
 import ProjectCard from "~/components/ui/card/ProjectCard";
-import ShinyText from "~/components/ui/text/ShinyText";
 
 export const loader = async () => {
   const projects = await getProjects({ page: 1, limit: 10 });
@@ -11,32 +11,26 @@ export const loader = async () => {
 
 const ProjectsPage = () => {
   const { projects } = useLoaderData<typeof loader>();
-  const projectList = projects.data?.length ? projects?.data : BACKUP_PROJECTS
+  const projectList = projects.data ?? []
 
   return (
     <PageLayout>
-      <section className="dark:text-white py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          {/* Header Section */}
-          <div className="text-left mx-auto space-y-0.5">
-            <span className="flex items-center gap-1.5 text-[#BFF163]">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#BFF163] animate-pluse"></span>
-              Workspaces
-            </span>
-            <ShinyText
-              text="Portfolio"
-              disabled={false}
-              speed={3}
-              className="text-2xl font-bold tracking-tight sm:text-4xl"
-            />
-            <p className="text-sm leading-8 text-neutral-400 dark:text-neutral-200">
+      <section className="section-pad pt-32 sm:pt-40">
+        <div className="section-shell">
+          <div className="max-w-3xl">
+            <samp className="font-mono text-[0.65rem] font-bold uppercase tracking-widest text-[var(--muted)]">
+              [ PORTFOLIO / PROJ.SYS ]
+            </samp>
+            <h1 className="mt-4 font-display text-5xl font-black uppercase leading-tight text-[var(--text)] sm:text-6xl">
+              SELECTED WORK ACROSS PRODUCT TEAMS.
+            </h1>
+            <p className="mt-5 max-w-2xl font-mono text-xs leading-6 text-[var(--muted)]">
               Here&apos;s a curated selection showcasing my expertise and the
               achieved results.
             </p>
           </div>
 
-          {/* Grid untuk Kartu Proyek */}
-          <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="mt-12 grid grid-cols-1 gap-px bg-[var(--line)] border border-[var(--line)] lg:grid-cols-2">
             {projectList?.map((project: Project, index: number) => (
               <ProjectCard
                 key={index}

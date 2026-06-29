@@ -6,6 +6,7 @@ import {
   useMotionValue,
   useVelocity,
   useAnimationFrame,
+  useReducedMotion,
   wrap,
 } from "framer-motion";
 import { useRef } from "react";
@@ -17,6 +18,7 @@ interface ParallaxProps {
 }
 
 function ParallaxText({ children, baseVelocity = 100 }: ParallaxProps) {
+  const reduceMotion = useReducedMotion();
   const baseX = useMotionValue(0);
   const { scrollY } = useScroll();
   const scrollVelocity = useVelocity(scrollY);
@@ -37,6 +39,7 @@ function ParallaxText({ children, baseVelocity = 100 }: ParallaxProps) {
 
   const directionFactor = useRef<number>(1);
   useAnimationFrame((t, delta) => {
+    if (reduceMotion) return;
     let moveBy = directionFactor.current * baseVelocity * (delta / 1000);
 
     /**
@@ -84,11 +87,11 @@ export default function ParallaxScrollVelocity() {
     "Express",
   ];
 
-  const text = skills.join(" . ");
-  const textTechStack = techStack.join(" . ");
+  const text = skills.join(" / ");
+  const textTechStack = techStack.join(" / ");
 
   return (
-    <section className="text-4xl md:text-6xl font-black -rotate-3 opacity-15">
+    <section className="py-8 text-4xl font-black text-neutral-950/10 dark:text-white/10 md:text-6xl">
       <ParallaxText baseVelocity={-1}>{text}</ParallaxText>
       <ParallaxText baseVelocity={1}>{textTechStack}</ParallaxText>
     </section>

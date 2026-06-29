@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1a1a1a" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="#0a0a0a"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <rect width="1200" height="5" fill="#e61919"/>
+  <path d="M 30 20 L 30 50 M 20 30 L 50 30" stroke="#e61919" stroke-width="2" fill="none"/>
+  <path d="M 1170 610 L 1170 580 M 1180 600 L 1150 600" stroke="#333" stroke-width="2" fill="none"/>
+
+  <rect x="40" y="60" width="200" height="24" fill="none" stroke="#e61919" stroke-width="1"/>
+  <text x="52" y="77" font-family="'Courier New', monospace" font-size="11" fill="#e61919" font-weight="bold" letter-spacing="3">ARCHITECTURE</text>
+
+  <text x="40" y="165" font-family="'Courier New', monospace" font-size="46" fill="#f0f0f0" font-weight="bold">API SERVICE</text>
+  <text x="40" y="215" font-family="'Courier New', monospace" font-size="46" fill="#e61919" font-weight="bold">LAYERS</text>
+  <text x="40" y="262" font-family="'Courier New', monospace" font-size="22" fill="#444">separate logic from UI</text>
+
+  <line x1="40" y1="294" x2="500" y2="294" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="40" y="324" font-family="'Courier New', monospace" font-size="13" fill="#444">ALBAR MOERHAMSA · JUNE 2026</text>
+  <text x="40" y="420" font-family="'Courier New', monospace" font-size="120" fill="#1a1a1a" font-weight="bold">09</text>
+
+  <!-- RIGHT VISUAL: Layer stack architecture -->
+  <!-- Layer 1: Component (top) -->
+  <rect x="650" y="80" width="480" height="70" fill="#0f0f0f" stroke="#e61919" stroke-width="1"/>
+  <text x="660" y="108" font-family="'Courier New', monospace" font-size="13" fill="#e61919" font-weight="bold">COMPONENT LAYER</text>
+  <text x="660" y="130" font-family="'Courier New', monospace" font-size="11" fill="#444">renders UI · handles events · no fetch()</text>
+  <rect x="1090" y="86" width="30" height="18" fill="#e61919" opacity="0.2" stroke="#e61919" stroke-width="1"/>
+  <text x="1105" y="99" font-family="'Courier New', monospace" font-size="9" fill="#e61919" text-anchor="middle">UI</text>
+
+  <!-- Arrow down -->
+  <line x1="890" y1="150" x2="890" y2="178" stroke="#2a2a2a" stroke-width="1"/>
+  <polygon points="885,178 890,190 895,178" fill="#2a2a2a"/>
+
+  <!-- Layer 2: Hook -->
+  <rect x="650" y="190" width="480" height="70" fill="#0f0f0f" stroke="#333" stroke-width="1"/>
+  <text x="660" y="218" font-family="'Courier New', monospace" font-size="13" fill="#f0f0f0" font-weight="bold">QUERY HOOK LAYER</text>
+  <text x="660" y="240" font-family="'Courier New', monospace" font-size="11" fill="#444">useQuery · manages loading/error state</text>
+  <rect x="1090" y="196" width="30" height="18" fill="#333" stroke="#555" stroke-width="1"/>
+  <text x="1105" y="209" font-family="'Courier New', monospace" font-size="9" fill="#555" text-anchor="middle">HOK</text>
+
+  <!-- Arrow down -->
+  <line x1="890" y1="260" x2="890" y2="288" stroke="#2a2a2a" stroke-width="1"/>
+  <polygon points="885,288 890,300 895,288" fill="#2a2a2a"/>
+
+  <!-- Layer 3: Service -->
+  <rect x="650" y="300" width="480" height="70" fill="#0f0f0f" stroke="#555" stroke-width="1"/>
+  <text x="660" y="328" font-family="'Courier New', monospace" font-size="13" fill="#f0f0f0" font-weight="bold">SERVICE LAYER</text>
+  <text x="660" y="350" font-family="'Courier New', monospace" font-size="11" fill="#444">getUsers() · createUser() · deleteUser()</text>
+  <rect x="1090" y="306" width="30" height="18" fill="#222" stroke="#444" stroke-width="1"/>
+  <text x="1105" y="319" font-family="'Courier New', monospace" font-size="9" fill="#444" text-anchor="middle">SRV</text>
+
+  <!-- Arrow down -->
+  <line x1="890" y1="370" x2="890" y2="398" stroke="#2a2a2a" stroke-width="1"/>
+  <polygon points="885,398 890,410 895,398" fill="#2a2a2a"/>
+
+  <!-- Layer 4: API Client -->
+  <rect x="650" y="410" width="480" height="70" fill="#0f0f0f" stroke="#333" stroke-width="1"/>
+  <text x="660" y="438" font-family="'Courier New', monospace" font-size="13" fill="#555" font-weight="bold">API CLIENT LAYER</text>
+  <text x="660" y="460" font-family="'Courier New', monospace" font-size="11" fill="#333">base URL · auth token · error handling</text>
+  <rect x="1090" y="416" width="30" height="18" fill="#111" stroke="#333" stroke-width="1"/>
+  <text x="1105" y="429" font-family="'Courier New', monospace" font-size="9" fill="#333" text-anchor="middle">NET</text>
+
+  <!-- Arrow down -->
+  <line x1="890" y1="480" x2="890" y2="508" stroke="#1a1a1a" stroke-width="1"/>
+  <polygon points="885,508 890,520 895,508" fill="#1a1a1a"/>
+
+  <!-- Layer 5: API / Server -->
+  <rect x="650" y="520" width="480" height="50" fill="#0a0a0a" stroke="#1a1a1a" stroke-width="1" stroke-dasharray="4"/>
+  <text x="660" y="548" font-family="'Courier New', monospace" font-size="13" fill="#333" font-weight="bold">BACKEND API</text>
+  <text x="830" y="548" font-family="'Courier New', monospace" font-size="11" fill="#2a2a2a">GET /users · POST /users</text>
+
+  <line x1="40" y1="590" x2="1160" y2="590" stroke="#1a1a1a" stroke-width="1"/>
+  <text x="40" y="612" font-family="'Courier New', monospace" font-size="10" fill="#333">albarmoerhamsa.dev/blogs</text>
+</svg>

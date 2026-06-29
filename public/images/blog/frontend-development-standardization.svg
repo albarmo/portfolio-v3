@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1a1a1a" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="#0a0a0a"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <rect width="1200" height="5" fill="#e61919"/>
+  <path d="M 30 20 L 30 50 M 20 30 L 50 30" stroke="#e61919" stroke-width="2" fill="none"/>
+  <path d="M 1170 610 L 1170 580 M 1180 600 L 1150 600" stroke="#333" stroke-width="2" fill="none"/>
+
+  <rect x="40" y="60" width="220" height="24" fill="none" stroke="#e61919" stroke-width="1"/>
+  <text x="52" y="77" font-family="'Courier New', monospace" font-size="11" fill="#e61919" font-weight="bold" letter-spacing="3">STANDARDS / GUIDE</text>
+
+  <text x="40" y="165" font-family="'Courier New', monospace" font-size="42" fill="#f0f0f0" font-weight="bold">FRONTEND DEV</text>
+  <text x="40" y="215" font-family="'Courier New', monospace" font-size="42" fill="#e61919" font-weight="bold">STANDARDIZATION</text>
+  <text x="40" y="262" font-family="'Courier New', monospace" font-size="22" fill="#444">why consistency matters</text>
+
+  <line x1="40" y1="294" x2="500" y2="294" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="40" y="324" font-family="'Courier New', monospace" font-size="13" fill="#444">ALBAR MOERHAMSA · JUNE 2026</text>
+  <text x="40" y="420" font-family="'Courier New', monospace" font-size="120" fill="#1a1a1a" font-weight="bold">06</text>
+
+  <!-- RIGHT VISUAL: Checklist / principles -->
+  <rect x="640" y="70" width="500" height="460" fill="none" stroke="#1a1a1a" stroke-width="1"/>
+
+  <!-- Header -->
+  <rect x="640" y="70" width="500" height="36" fill="#111"/>
+  <text x="655" y="93" font-family="'Courier New', monospace" font-size="12" fill="#555" letter-spacing="2">GOLDEN RULES</text>
+
+  <!-- Checklist items -->
+  <line x1="640" y1="148" x2="1140" y2="148" stroke="#1a1a1a" stroke-width="1"/>
+  <rect x="660" y="124" width="16" height="16" fill="#e61919"/>
+  <text x="686" y="136" font-family="'Courier New', monospace" font-size="13" fill="#f0f0f0">Clean Code</text>
+  <text x="1080" y="136" font-family="'Courier New', monospace" font-size="10" fill="#e61919">✓</text>
+
+  <line x1="640" y1="186" x2="1140" y2="186" stroke="#1a1a1a" stroke-width="1"/>
+  <rect x="660" y="162" width="16" height="16" fill="#e61919"/>
+  <text x="686" y="174" font-family="'Courier New', monospace" font-size="13" fill="#f0f0f0">Consistent Structure</text>
+  <text x="1080" y="174" font-family="'Courier New', monospace" font-size="10" fill="#e61919">✓</text>
+
+  <line x1="640" y1="224" x2="1140" y2="224" stroke="#1a1a1a" stroke-width="1"/>
+  <rect x="660" y="200" width="16" height="16" fill="#e61919"/>
+  <text x="686" y="212" font-family="'Courier New', monospace" font-size="13" fill="#f0f0f0">Reusable Components</text>
+  <text x="1080" y="212" font-family="'Courier New', monospace" font-size="10" fill="#e61919">✓</text>
+
+  <line x1="640" y1="262" x2="1140" y2="262" stroke="#1a1a1a" stroke-width="1"/>
+  <rect x="660" y="238" width="16" height="16" fill="#e61919"/>
+  <text x="686" y="250" font-family="'Courier New', monospace" font-size="13" fill="#f0f0f0">Typed Data</text>
+  <text x="1080" y="250" font-family="'Courier New', monospace" font-size="10" fill="#e61919">✓</text>
+
+  <line x1="640" y1="300" x2="1140" y2="300" stroke="#1a1a1a" stroke-width="1"/>
+  <rect x="660" y="276" width="16" height="16" fill="#e61919"/>
+  <text x="686" y="288" font-family="'Courier New', monospace" font-size="13" fill="#f0f0f0">Clear Responsibility</text>
+  <text x="1080" y="288" font-family="'Courier New', monospace" font-size="10" fill="#e61919">✓</text>
+
+  <line x1="640" y1="338" x2="1140" y2="338" stroke="#1a1a1a" stroke-width="1"/>
+  <rect x="660" y="314" width="16" height="16" fill="#e61919"/>
+  <text x="686" y="326" font-family="'Courier New', monospace" font-size="13" fill="#f0f0f0">Maintainable Feature</text>
+  <text x="1080" y="326" font-family="'Courier New', monospace" font-size="10" fill="#e61919">✓</text>
+
+  <line x1="640" y1="376" x2="1140" y2="376" stroke="#1a1a1a" stroke-width="1"/>
+  <rect x="660" y="352" width="16" height="16" fill="#e61919"/>
+  <text x="686" y="364" font-family="'Courier New', monospace" font-size="13" fill="#f0f0f0">Scalable Architecture</text>
+  <text x="1080" y="364" font-family="'Courier New', monospace" font-size="10" fill="#e61919">✓</text>
+
+  <!-- Bottom quote -->
+  <rect x="640" y="398" width="500" height="2" fill="#1a1a1a"/>
+  <text x="655" y="430" font-family="'Courier New', monospace" font-size="11" fill="#333">"Write code that is clear,</text>
+  <text x="655" y="450" font-family="'Courier New', monospace" font-size="11" fill="#333">consistent, reusable, and</text>
+  <text x="655" y="470" font-family="'Courier New', monospace" font-size="11" fill="#333">maintainable."</text>
+  <text x="655" y="500" font-family="'Courier New', monospace" font-size="10" fill="#e61919">— FRONTEND GOLDEN RULE</text>
+
+  <line x1="40" y1="590" x2="1160" y2="590" stroke="#1a1a1a" stroke-width="1"/>
+  <text x="40" y="612" font-family="'Courier New', monospace" font-size="10" fill="#333">albarmoerhamsa.dev/blogs</text>
+</svg>

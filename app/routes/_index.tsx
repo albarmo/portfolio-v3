@@ -8,9 +8,9 @@ import AboutMe from "~/components/section/AboutMe";
 import Blogs from "~/components/section/Blogs";
 import ProjectShowcase from "~/components/section/ProjectShowcase";
 import ParallaxScrollVelocity from "~/components/ui/paralax/ParallaxScrollVelocity";
-import { getProjects } from "~/services/project.services";
-import { getReviews } from "~/services/review.services";
-import { getBlogs } from "~/services/blog.services";
+import { getProjects } from "~/services/project.server";
+import { getReviews } from "~/services/review.server";
+import { getBlogs } from "~/services/blog.server";
 import { useLoaderData } from "@remix-run/react";
 
 export const loader = async () => {
@@ -29,7 +29,7 @@ export default function Index() {
   const { reviews, blogs, projects } = useLoaderData<typeof loader>();
 
   return (
-    <div id="test">
+    <div>
       <PageLayout>
         <GradienBackground>
           <HeroSection />

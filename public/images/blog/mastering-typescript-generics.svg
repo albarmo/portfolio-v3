@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1a1a1a" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="#0a0a0a"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <rect width="1200" height="5" fill="#e61919"/>
+  <path d="M 30 20 L 30 50 M 20 30 L 50 30" stroke="#e61919" stroke-width="2" fill="none"/>
+  <path d="M 1170 610 L 1170 580 M 1180 600 L 1150 600" stroke="#333" stroke-width="2" fill="none"/>
+
+  <rect x="40" y="60" width="200" height="24" fill="none" stroke="#e61919" stroke-width="1"/>
+  <text x="52" y="77" font-family="'Courier New', monospace" font-size="11" fill="#e61919" font-weight="bold" letter-spacing="3">TYPESCRIPT</text>
+
+  <text x="40" y="165" font-family="'Courier New', monospace" font-size="52" fill="#f0f0f0" font-weight="bold">MASTERING</text>
+  <text x="40" y="225" font-family="'Courier New', monospace" font-size="52" fill="#e61919" font-weight="bold">GENERICS</text>
+  <text x="40" y="278" font-family="'Courier New', monospace" font-size="28" fill="#444">for reusable components</text>
+
+  <line x1="40" y1="310" x2="500" y2="310" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="40" y="340" font-family="'Courier New', monospace" font-size="13" fill="#444">ALBAR MOERHAMSA · JULY 2025</text>
+  <text x="40" y="420" font-family="'Courier New', monospace" font-size="120" fill="#1a1a1a" font-weight="bold">02</text>
+
+  <!-- RIGHT VISUAL: Generic type syntax -->
+  <!-- Big <T> -->
+  <text x="640" y="260" font-family="'Courier New', monospace" font-size="200" fill="#111" font-weight="bold">&lt;T&gt;</text>
+
+  <!-- Code snippet overlay -->
+  <rect x="660" y="300" width="480" height="160" fill="#111" stroke="#2a2a2a" stroke-width="1"/>
+  <rect x="660" y="300" width="480" height="22" fill="#1a1a1a"/>
+  <text x="672" y="317" font-family="'Courier New', monospace" font-size="11" fill="#555">generics.ts</text>
+  <text x="672" y="348" font-family="'Courier New', monospace" font-size="13" fill="#555">function <tspan fill="#e61919">List</tspan>&lt;<tspan fill="#4ec9b0">T extends ListItem</tspan>&gt;(</text>
+  <text x="672" y="370" font-family="'Courier New', monospace" font-size="13" fill="#555">  props: <tspan fill="#4ec9b0">ListProps&lt;T&gt;</tspan></text>
+  <text x="672" y="392" font-family="'Courier New', monospace" font-size="13" fill="#555">) {</text>
+  <text x="672" y="414" font-family="'Courier New', monospace" font-size="13" fill="#555">  return <tspan fill="#e61919">items</tspan>.map(item =&gt; ...)</text>
+  <text x="672" y="436" font-family="'Courier New', monospace" font-size="13" fill="#555">}</text>
+
+  <!-- Type constraint label -->
+  <rect x="660" y="478" width="300" height="24" fill="none" stroke="#333" stroke-width="1"/>
+  <text x="672" y="495" font-family="'Courier New', monospace" font-size="11" fill="#444" letter-spacing="2">WRITE ONCE · USE EVERYWHERE</text>
+
+  <line x1="40" y1="590" x2="1160" y2="590" stroke="#1a1a1a" stroke-width="1"/>
+  <text x="40" y="612" font-family="'Courier New', monospace" font-size="10" fill="#333">albarmoerhamsa.dev/blogs</text>
+</svg>

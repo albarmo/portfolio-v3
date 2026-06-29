@@ -1,110 +1,107 @@
-import ProfileCard from "../ui/card/ProfileCard";
+const companies = [
+  { name: "Feedloop", logo: "/images/company/feedloop.jpg" },
+  { name: "BRI", logo: "/images/company/bri.png" },
+  { name: "1000 Startup", logo: "/images/company/1000-startup.png" },
+  { name: "Everidea", logo: "/images/company/everidea.webp" },
+];
+
+const principles = [
+  "Performance work that users can feel",
+  "Accessible interfaces with clear interaction states",
+  "Frontend architecture that stays maintainable",
+];
 
 const ExperienceSection = () => {
-  const user = {
-    imageUrl: "/images/character-2.png",
-    name: "Albar Moerhamsa",
-    title: "Frontend Engineer",
-    description: "A Frontend Engineer who focuses on simplicity & usability.",
-  };
-
   return (
-    <div className="w-screen flex flex-col justify-between gap-12 py-12 lg:py-20 overflow-hidden">
-      <div className="relative h-screen cursor-default text-sm tracking-normal select-none">
-        <div
-          className="relative size-full"
-          style={{
-            maskImage:
-              "linear-gradient(to bottom, #000 80%, transparent 100%), linear-gradient(to right, #000 80%, transparent 100%), linear-gradient(to top, #000 80%, transparent 100%), linear-gradient(to left, #000 80%, transparent 100%)",
-            WebkitMaskComposite: "intersect",
-          }}
-        >
-          <div className="absolute -left-8 size-full -translate-y-16 rotate-[-5deg] skew-x-[10deg]">
-            <div
-              className="absolute inset-0 top-8 left-8"
-              style={{
-                backgroundSize: "32px",
-                backgroundPosition: "center center",
-                backgroundImage:
-                  "url('data:image/svg+xml,%3Csvg viewBox=%220 0 32 32%22 fill=%22none%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cg opacity=%22.4%22 fill=%22%23011E32%22 fill-opacity=%22.24%22%3E%3Cpath fill-rule=%22evenodd%22 clip-rule=%22evenodd%22 d=%22M0 .5V6h.5V.5H6V0H0v.5ZM.5 32H0v-6h.5v5.5H6v.5H.5ZM32 0v6h-.5V.5H26V0h6Zm0 31.5V26h-.5v5.5H26v.5h6v-.5Z%22/%3E%3Cpath opacity=%22.6%22 d=%22M19 0v.5h-6V0zM19 31.5v.5h-6v-.5zM32 19h-.5v-6h.5zM.5 19H0v-6h.5z%22/%3E%3C/g%3E%3C/svg%3E')",
-              }}
-              data-light
+    <section className="section-pad overflow-hidden">
+      <div className="section-shell">
+        <div className="mb-6 flex items-center justify-between border-b border-[var(--line)] pb-4">
+          <samp className="font-mono text-[0.65rem] font-bold uppercase tracking-widest text-[var(--muted)]">
+            [ EXP.LOG / CAREER.SYS ]
+          </samp>
+          <samp className="font-mono text-[0.65rem] text-[var(--muted)]">
+            REV 2.6 / 2026
+          </samp>
+        </div>
+
+        <div className="grid border border-[var(--line)] lg:grid-cols-[0.95fr_1.05fr]">
+
+          {/* Image panel */}
+          <div className="relative overflow-hidden border-b border-[var(--line)] lg:border-b-0 lg:border-r">
+            <div className="border-b border-[var(--line)] bg-[var(--surface-muted)] px-4 py-2">
+              <samp className="font-mono text-[0.65rem] font-bold uppercase tracking-widest text-[var(--muted)]">
+                PROFILE.IMG
+              </samp>
+            </div>
+            <img
+              src="/images/character-2.png"
+              alt="Albar Moerhamsa profile illustration"
+              className="h-[28rem] w-full object-cover object-top"
+              width={720}
+              height={840}
+              loading="lazy"
             />
-            <div
-              className="absolute inset-0 top-8 left-8 dark:block hidden"
-              style={{
-                backgroundSize: "32px",
-                backgroundPosition: "center center",
-                backgroundImage:
-                  "url('data:image/svg+xml,%3Csvg viewBox=%220 0 32 32%22 fill=%22none%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cg opacity=%22.4%22 fill=%22%23ffffff%22 fill-opacity=%22.10%22%3E%3Cpath fill-rule=%22evenodd%22 clip-rule=%22evenodd%22 d=%22M0 .5V6h.5V.5H6V0H0v.5ZM.5 32H0v-6h.5v5.5H6v.5H.5ZM32 0v6h-.5V.5H26V0h6Zm0 31.5V26h-.5v5.5H26v.5h6v-.5Z%22/%3E%3Cpath opacity=%22.6%22 d=%22M19 0v.5h-6V0zM19 31.5v.5h-6v-.5zM32 19h-.5v-6h.5zM.5 19H0v-6h.5z%22/%3E%3C/g%3E%3C/svg%3E')",
-              }}
-            />
+            <div className="border-t border-[var(--line)] bg-[var(--surface)] p-5">
+              <samp className="block font-mono text-[0.65rem] font-bold uppercase tracking-widest text-[var(--muted)]">
+                ALBAR MOERHAMSA
+              </samp>
+              <p className="mt-1 font-display text-2xl font-black uppercase text-[var(--text)]">
+                FRONTEND ENGINEER
+              </p>
+              <p className="mt-3 font-mono text-xs leading-5 text-[var(--muted)]">
+                Focused on simplicity, usability, and production-ready
+                interfaces for teams that care about details.
+              </p>
+            </div>
+          </div>
 
-            <div className="absolute overflow-x-scroll flex space-x-10 top-52 left-1/2 w-[744px] -translate-x-1/2 space-y-2">
-              <ProfileCard
-                variant="solid"
-                {...user}
-                description="A Product Designer focused on intuitive user experiences."
-              />
-
-              <section className="dark:text-white space-y-3.5">
-                <h2 className="text-2xl font-semibold">
-                  The offers don&apos;t lie
-                </h2>
-                <p>
-                  Front end interviews are even broader in scope than
-                  traditional software engineering interviews.
-                </p>
-                <br />
-
-                {[...Array(3)].map((_, i) => (
+          {/* Right panel */}
+          <div className="flex flex-col">
+            <div className="flex-1 border-b border-[var(--line)] p-6 lg:p-8">
+              <samp className="font-mono text-[0.65rem] font-bold uppercase tracking-widest text-[var(--muted)]">
+                EXPERIENCE
+              </samp>
+              <h2 className="mt-4 font-display text-3xl font-black uppercase leading-tight text-[var(--text)] sm:text-4xl">
+                SHIPPING USEFUL SOFTWARE ACROSS PRODUCT TEAMS AND PUBLIC-SECTOR
+                SYSTEMS.
+              </h2>
+              <div className="mt-6 grid gap-0">
+                {principles.map((principle, i) => (
                   <div
-                    key={i}
-                    className="flex h-10 w-72 items-center rounded-md space-x-2 border border-[#ff9a24] bg-[#ffe6c8] py-2 pr-1 pl-3"
-                    style={{
-                      backgroundImage:
-                        'url(\'data:image/svg+xml,%3Csvg width="5" height="5" viewBox="0 0 5 5" stroke-width="0.5" stroke="%23ff9a24" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M-1 5L5 -1M3 6L6 3"/%3E%3C/svg%3E\')',
-                    }}
-                  />
+                    key={principle}
+                    className={`flex items-start gap-3 py-3 font-mono text-xs text-[var(--text)] ${
+                      i > 0 ? "border-t border-[var(--line)]" : ""
+                    }`}
+                  >
+                    <span className="mt-0.5 shrink-0 text-[var(--accent)]">
+                      ///
+                    </span>
+                    <span className="uppercase tracking-wide">{principle}</span>
+                  </div>
                 ))}
+              </div>
+            </div>
 
-                <div className="absolute top-[100px] right-20 w-72">
-                  <ul className="grid gap-3.5">
-                    <li className="bg-white/90 cursor-pointer border hover:bg-white text-primary-dark flex h-10 w-full items-center justify-between space-x-2 rounded-md py-2 pr-1 pl-3 shadow-[0_0_0_1px_#00000022,0_8px_16px_#00000022] transition duration-300 will-change-transform hover:translate-x-1 hover:-translate-y-1 hover:shadow-[0_0_0_1px_#00000022,0_8px_16px_#00000011]">
-                      Feedloop.io
-                    </li>
-                    <li className="bg-white/90 cursor-pointer border hover:bg-white text-primary-dark flex h-10 w-full items-center justify-between space-x-2 rounded-md py-2 pr-1 pl-3 shadow-[0_0_0_1px_#00000022,0_8px_16px_#00000022] transition duration-300 will-change-transform hover:translate-x-1 hover:-translate-y-1 hover:shadow-[0_0_0_1px_#00000022,0_8px_16px_#00000011]">
-                      Bank BRI
-                    </li>
-                    <li className="bg-white/90 cursor-pointer border hover:bg-white text-primary-dark flex h-10 w-full items-center justify-between space-x-2 rounded-md py-2 pr-1 pl-3 shadow-[0_0_0_1px_#00000022,0_8px_16px_#00000022] transition duration-300 will-change-transform hover:translate-x-1 hover:-translate-y-1 hover:shadow-[0_0_0_1px_#00000022,0_8px_16px_#00000011]">
-                      Next Step...
-                    </li>
-                  </ul>
+            {/* Company logos */}
+            <div className="grid grid-cols-2 gap-px bg-[var(--line)] sm:grid-cols-4">
+              {companies.map((company) => (
+                <div
+                  key={company.name}
+                  className="flex min-h-24 items-center justify-center bg-[var(--surface)] p-4"
+                >
+                  <img
+                    src={company.logo}
+                    alt={`${company.name} logo`}
+                    className="max-h-10 max-w-full object-contain grayscale brightness-75 hover:brightness-100 transition-all duration-300"
+                    loading="lazy"
+                  />
                 </div>
-                <p>
-                  Front end interviews are even broader in scope than
-                  traditional software engineering interviews.
-                </p>
-                <section className="grid grid-cols-4 gap-5">
-                  {[...Array(4)].map((_, i) => (
-                    <img
-                      key={i}
-                      src={
-                        "https://media.licdn.com/dms/image/v2/D562DAQEUjlqk3p7vPQ/profile-treasury-image-shrink_1280_1280/profile-treasury-image-shrink_1280_1280/0/1714370158193?e=1754719200&v=beta&t=zGp9sAxMWBl_WVg5vA7pEBIlnpAPGLTXtM6xgj6z1TU"
-                      }
-                      alt={`Profile of`}
-                      className="aspect-square object-cover rounded cursor-pointer shadow-[0_0_0_1px_#00000022,0_8px_16px_#00000022] transition duration-300 will-change-transform hover:translate-x-1 hover:-translate-y-1 hover:shadow-[0_0_0_1px_#00000022,0_8px_16px_#00000011]"
-                      width={200}
-                      height={350}
-                    />
-                  ))}
-                </section>
-              </section>
+              ))}
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

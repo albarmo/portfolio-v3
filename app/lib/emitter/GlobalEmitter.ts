@@ -1,5 +1,6 @@
-import { ToasterStatus } from "../toaster";
 import { EventEmitter } from "./EventEmitter";
+
+type ToasterStatus = "success" | "error" | "warning" | "info";
 
 export type Emit_DisplayLoadingSpinner = {
   status: boolean;

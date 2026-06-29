@@ -1,7 +1,7 @@
 import { FC } from "react";
 
 const TechTag: FC<{ label: string }> = ({ label }) => (
-  <div className="rounded-full bg-neutral-800 border border-neutral-700 px-4 py-1.5 text-sm text-neutral-300">
+  <div className="border border-[var(--line)] bg-[var(--surface)] px-3 py-1 font-mono text-xs font-bold uppercase tracking-widest text-[var(--muted)]">
     {label}
   </div>
 );

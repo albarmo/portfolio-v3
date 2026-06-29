@@ -128,48 +128,48 @@ export default function SpotlightSearch() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setIsOpen(false)}
-            className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm"
+            className="fixed inset-0 z-50 bg-black/70"
           >
             <motion.div
-              initial={{ scale: 0.95, y: -20 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.95, y: -20 }}
-              transition={{ type: "spring", stiffness: 300, damping: 25 }}
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.12 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative mx-auto mt-[15vh] w-full max-w-xl rounded-3xl bg-neutral-800/80 border border-neutral-700 shadow-2xl"
+              className="surface-card relative mx-4 mt-[15vh] max-w-xl overflow-hidden sm:mx-auto"
             >
-              <div className="flex items-center p-4">
-                <SearchIcon />
+              <div className="flex items-center border-b border-[var(--line)] p-4">
+                <SearchIcon className="h-4 w-4 text-[var(--muted)]" />
                 <input
                   type="text"
-                  placeholder="Cari di halaman ini..."
+                  placeholder="SEARCH THIS PAGE"
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
-                  className="w-full bg-transparent text-white placeholder-neutral-500 text-lg ml-4 focus:outline-none"
+                  className="ml-4 w-full bg-transparent font-mono text-sm uppercase tracking-widest text-[var(--text)] placeholder:text-[var(--muted)] focus:outline-none"
                   // eslint-disable-next-line jsx-a11y/no-autofocus
                   autoFocus
                 />
               </div>
               {query.length > 1 && (
-                <div className="border-t border-neutral-700 p-2 flex items-center justify-end text-sm text-neutral-400">
-                  <span>
-                    {results.length > 0 ? `${currentIndex + 1} dari ` : ""}
-                    {results.length} hasil
-                  </span>
-                  <div className="flex items-center ml-4">
+                <div className="flex items-center justify-end border-t border-[var(--line)] p-2">
+                  <samp className="font-mono text-xs text-[var(--muted)]">
+                    {results.length > 0 ? `${currentIndex + 1} / ` : ""}
+                    {results.length} results
+                  </samp>
+                  <div className="ml-3 flex items-center gap-1">
                     <button
                       onClick={goToPrevious}
                       disabled={results.length === 0}
-                      className="p-1 rounded-md hover:bg-neutral-700 disabled:opacity-50"
+                      className="flex h-7 w-7 items-center justify-center border border-[var(--line)] text-[var(--muted)] hover:border-[var(--accent)] hover:text-[var(--accent)] disabled:opacity-40"
                     >
-                      <ChevronUpIcon />
+                      <ChevronUpIcon className="h-3 w-3" />
                     </button>
                     <button
                       onClick={goToNext}
                       disabled={results.length === 0}
-                      className="p-1 rounded-md hover:bg-neutral-700 disabled:opacity-50"
+                      className="flex h-7 w-7 items-center justify-center border border-[var(--line)] text-[var(--muted)] hover:border-[var(--accent)] hover:text-[var(--accent)] disabled:opacity-40"
                     >
-                      <ChevronDownIcon />
+                      <ChevronDownIcon className="h-3 w-3" />
                     </button>
                   </div>
                 </div>
@@ -178,7 +178,7 @@ export default function SpotlightSearch() {
           </motion.div>
         )}
       </AnimatePresence>
-      <style>{`mark.spotlight-active { background-color: #f59e0b; transition: background-color 0.2s ease-in-out; }`}</style>
+      <style>{`mark.spotlight-active { background-color: #e61919; color: #eaeaea; }`}</style>
     </Fragment>
   );
 }

@@ -2,7 +2,8 @@ import { useLoaderData, Link } from "@remix-run/react";
 import type { LoaderFunctionArgs } from "@remix-run/node";
 import { PageLayout } from "~/components/layout/PageLayout";
 import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
-import { getProject, Project } from "~/services/project.services";
+import { getProject } from "~/services/project.server";
+import type { Project } from "~/services/project.server";
 import TechTag from "~/components/ui/TechTag";
 import invariant from "tiny-invariant";
 
@@ -21,52 +22,50 @@ export default function ProjectDetail() {
 
   return (
     <PageLayout>
-      <div className="bg-white dark:bg-neutral-900 text-gray-900 dark:text-white">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
-          {/* Header Section */}
-          <header className="dark:text-white py-10">
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-              {/* Navigasi Kembali dan Tahun */}
-              <div className="flex justify-between items-center mb-12">
+      <div className="bg-[var(--bg)] text-[var(--text)]">
+        <div className="section-shell py-32 sm:py-40">
+          <header>
+            <div>
+              <div className="mb-12 flex items-center justify-between gap-4">
                 <Link
                   to="/projects"
-                  className="flex items-center gap-2 text-neutral-400 hover:text-white transition-colors"
+                  className="premium-link premium-link-secondary"
                 >
-                  <ArrowLeftIcon />
-                  <span className="text-sm font-medium">Back to Projects</span>
+                  <ArrowLeftIcon className="h-4 w-4" />
+                  <span className="text-sm">Back to Projects</span>
                 </Link>
-                <div className="border border-neutral-700 rounded-md px-3 py-1 text-sm text-neutral-400">
+                <samp className="border border-[var(--line)] px-3 py-1.5 font-mono text-xs font-bold uppercase tracking-widest text-[var(--muted)]">
                   {project?.year}
-                </div>
+                </samp>
               </div>
 
-              {/* Konten Utama */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-                {/* Kolom Kiri: Judul dan Deskripsi */}
+              <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
                 <div className="md:col-span-2">
-                  <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
+                  <samp className="font-mono text-[0.65rem] font-bold uppercase tracking-widest text-[var(--muted)]">
+                    {project?.category}
+                  </samp>
+                  <h1 className="mt-4 font-display text-5xl font-black uppercase leading-tight text-[var(--text)] sm:text-6xl">
                     {project?.title}
                   </h1>
-                  <p className="mt-6 text-lg leading-8 text-neutral-400 max-w-2xl">
+                  <p className="mt-6 max-w-2xl font-mono text-sm leading-7 text-[var(--muted)]">
                     {project?.description}
                   </p>
                 </div>
 
-                {/* Kolom Kanan: Tombol, Peran, dan Klien */}
-                <div className="flex flex-col items-start md:items-end justify-between">
-                  {/* <Link
+                <div className="flex flex-col items-start gap-4 md:items-end md:justify-end">
+                  <Link
                     to={project?.url}
                     target="_blank"
-                    rel="noopener noreferrer"
-                    className="rounded-full border border-neutral-600 px-8 py-3 text-base font-medium hover:bg-neutral-800 transition-colors"
+                    className="premium-link premium-link-primary"
+                    rel="noreferrer"
                   >
-                    Live 
-                  </Link> */}
+                    View live site
+                    <ArrowRightIcon className="h-4 w-4" />
+                  </Link>
                 </div>
               </div>
 
-              {/* Tumpukan Teknologi */}
-              <div className="mt-12 flex flex-wrap gap-3">
+              <div className="mt-10 flex flex-wrap gap-3">
                 {techStack?.map((tech:string) => (
                   <TechTag key={tech} label={tech} />
                 ))}
@@ -74,84 +73,73 @@ export default function ProjectDetail() {
             </div>
           </header>
 
-          {/* Main Image */}
-          <div className="w-full aspect-video rounded-2xl overflow-hidden bg-gray-100 dark:bg-neutral-800 shadow-lg">
+          <div className="mt-12 aspect-video w-full overflow-hidden border border-[var(--line)] bg-[var(--surface-muted)]">
             <img
               src={project?.thumbnail}
               alt={project?.title}
-              className="w-full h-full object-cover"
+              className="h-full w-full object-cover"
             />
           </div>
 
-          {/* Live Site Links */}
-          <div className="flex justify-center gap-4 mt-8">
-            <Link
-              to={project?.url}
-              target="_blank"
-              className="inline-flex items-center rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500"
-              rel="noreferrer"
-            >
-              View Live Site <ArrowRightIcon />
-            </Link>
-          </div>
-
-          {/* Content Section */}
-          <div className="mt-16 grid grid-cols-1 lg:grid-cols-4 gap-12">
-            {/* Sticky Sidebar */}
+          <div className="mt-16 grid grid-cols-1 gap-10 lg:grid-cols-4">
             <aside className="lg:col-span-1 lg:sticky top-24 h-fit">
-              <nav className="space-y-4">
+              <nav className="soft-panel space-y-2 p-3">
                 <a
                   href="#brief"
-                  className="block font-medium text-gray-500 dark:text-neutral-400 hover:text-gray-900 dark:hover:text-white"
+                  className="block border-l-2 border-transparent py-2 pl-3 font-mono text-xs font-bold uppercase tracking-widest text-[var(--muted)] transition-colors hover:border-[var(--accent)] hover:text-[var(--text)]"
                 >
                   Brief
                 </a>
                 <a
                   href="#responsibility"
-                  className="block font-medium text-gray-500 dark:text-neutral-400 hover:text-gray-900 dark:hover:text-white"
+                  className="block border-l-2 border-transparent py-2 pl-3 font-mono text-xs font-bold uppercase tracking-widest text-[var(--muted)] transition-colors hover:border-[var(--accent)] hover:text-[var(--text)]"
                 >
                   Responsibility
                 </a>
                 <a
                   href="#result"
-                  className="block font-medium text-gray-500 dark:text-neutral-400 hover:text-gray-900 dark:hover:text-white"
+                  className="block border-l-2 border-transparent py-2 pl-3 font-mono text-xs font-bold uppercase tracking-widest text-[var(--muted)] transition-colors hover:border-[var(--accent)] hover:text-[var(--text)]"
                 >
                   Result
                 </a>
               </nav>
             </aside>
 
-            {/* Main Content */}
-            <main className="lg:col-span-3 space-y-12">
-              <section id="brief">
-                <h2 className="text-2xl font-bold border-b border-gray-200 dark:border-neutral-700 pb-2 mb-4">
+            <div className="space-y-6 lg:col-span-3">
+              <section id="brief" className="soft-panel p-6 sm:p-8">
+                <h2 className="font-display text-2xl font-black uppercase text-[var(--text)]">
                   Brief
                 </h2>
-                <p className="text-lg leading-8 text-gray-600 dark:text-neutral-300">
+                <p className="mt-4 font-mono text-xs leading-7 text-[var(--muted)]">
                   {project?.brief}
                 </p>
               </section>
 
-              <section id="responsibility">
-                <h2 className="text-2xl font-bold border-b border-gray-200 dark:border-neutral-700 pb-2 mb-4">
+              <section id="responsibility" className="soft-panel p-6 sm:p-8">
+                <h2 className="font-display text-2xl font-black uppercase text-[var(--text)]">
                   Responsibility
                 </h2>
-                <ul className="list-disc pl-5 space-y-2 text-lg leading-8 text-gray-600 dark:text-neutral-300">
+                <ul className="mt-5 grid gap-3 text-base leading-7 text-[var(--muted)]">
                   {responsibilities?.map((item:string, index:number) => (
-                    <li key={index}>{item}</li>
+                    <li
+                      key={index}
+                      className="border border-[var(--line)] bg-[var(--surface)] p-4 font-mono text-xs text-[var(--muted)]"
+                    >
+                      {item}
+                    </li>
                   ))}
                 </ul>
               </section>
 
-              <section id="result">
-                <h2 className="text-2xl font-bold border-b border-gray-200 dark:border-neutral-700 pb-2 mb-4">
+              <section id="result" className="soft-panel p-6 sm:p-8">
+                <h2 className="font-display text-2xl font-black uppercase text-[var(--text)]">
                   Result
                 </h2>
-                <p className="text-lg leading-8 text-gray-600 dark:text-neutral-300">
+                <p className="mt-4 font-mono text-xs leading-7 text-[var(--muted)]">
                   {project?.result}
                 </p>
               </section>
-            </main>
+            </div>
           </div>
         </div>
       </div>

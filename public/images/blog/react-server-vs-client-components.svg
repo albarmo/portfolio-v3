@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1a1a1a" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#0a0a0a"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <!-- Accent top bar -->
+  <rect width="1200" height="5" fill="#e61919"/>
+
+  <!-- Corner marks -->
+  <path d="M 30 20 L 30 50 M 20 30 L 50 30" stroke="#e61919" stroke-width="2" fill="none"/>
+  <path d="M 1170 610 L 1170 580 M 1180 600 L 1150 600" stroke="#333" stroke-width="2" fill="none"/>
+
+  <!-- Left content area -->
+  <!-- Category tag -->
+  <rect x="40" y="60" width="160" height="24" fill="none" stroke="#e61919" stroke-width="1"/>
+  <text x="52" y="77" font-family="'Courier New', monospace" font-size="11" fill="#e61919" font-weight="bold" letter-spacing="3">REACT / SSR</text>
+
+  <!-- Main title -->
+  <text x="40" y="165" font-family="'Courier New', monospace" font-size="52" fill="#f0f0f0" font-weight="bold">REACT SERVER</text>
+  <text x="40" y="225" font-family="'Courier New', monospace" font-size="52" fill="#f0f0f0" font-weight="bold">COMPONENTS</text>
+  <text x="40" y="285" font-family="'Courier New', monospace" font-size="36" fill="#555">vs. CLIENT</text>
+
+  <!-- Divider line -->
+  <line x1="40" y1="320" x2="500" y2="320" stroke="#2a2a2a" stroke-width="1"/>
+
+  <!-- Author / meta -->
+  <text x="40" y="350" font-family="'Courier New', monospace" font-size="13" fill="#444">ALBAR MOERHAMSA · AUGUST 2025</text>
+
+  <!-- Blog number -->
+  <text x="40" y="420" font-family="'Courier New', monospace" font-size="120" fill="#1a1a1a" font-weight="bold">01</text>
+
+  <!-- RIGHT VISUAL: Server vs Client diagram -->
+  <!-- Server box -->
+  <rect x="640" y="80" width="220" height="200" fill="none" stroke="#2a2a2a" stroke-width="1"/>
+  <rect x="640" y="80" width="220" height="30" fill="#1a1a1a"/>
+  <text x="655" y="101" font-family="'Courier New', monospace" font-size="12" fill="#e61919" font-weight="bold" letter-spacing="2">SERVER</text>
+  <text x="655" y="145" font-family="'Courier New', monospace" font-size="11" fill="#555">fetch data directly</text>
+  <text x="655" y="165" font-family="'Courier New', monospace" font-size="11" fill="#555">no JS bundle</text>
+  <text x="655" y="185" font-family="'Courier New', monospace" font-size="11" fill="#555">filesystem access</text>
+  <text x="655" y="205" font-family="'Courier New', monospace" font-size="11" fill="#555">no useState/Effects</text>
+  <text x="655" y="240" font-family="'Courier New', monospace" font-size="10" fill="#333" letter-spacing="1">→ RENDER ONLY</text>
+
+  <!-- Arrow -->
+  <line x1="870" y1="180" x2="920" y2="180" stroke="#e61919" stroke-width="2"/>
+  <polygon points="920,175 932,180 920,185" fill="#e61919"/>
+  <line x1="932" y1="180" x2="970" y2="130" stroke="#333" stroke-width="1" stroke-dasharray="4"/>
+  <line x1="932" y1="180" x2="970" y2="230" stroke="#333" stroke-width="1" stroke-dasharray="4"/>
+
+  <!-- Client box -->
+  <rect x="980" y="80" width="180" height="140" fill="none" stroke="#333" stroke-width="1"/>
+  <rect x="980" y="80" width="180" height="24" fill="#141414"/>
+  <text x="992" y="97" font-family="'Courier New', monospace" font-size="11" fill="#f0f0f0" letter-spacing="2">CLIENT</text>
+  <text x="992" y="130" font-family="'Courier New', monospace" font-size="10" fill="#555">"use client"</text>
+  <text x="992" y="148" font-family="'Courier New', monospace" font-size="10" fill="#555">useState</text>
+  <text x="992" y="166" font-family="'Courier New', monospace" font-size="10" fill="#555">useEffect</text>
+  <text x="992" y="184" font-family="'Courier New', monospace" font-size="10" fill="#555">interactivity</text>
+  <text x="992" y="200" font-family="'Courier New', monospace" font-size="10" fill="#333">→ ISLAND</text>
+
+  <!-- Recommended label -->
+  <rect x="640" y="320" width="380" height="2" fill="#1a1a1a"/>
+  <text x="640" y="360" font-family="'Courier New', monospace" font-size="11" fill="#333" letter-spacing="2">// RECOMMENDED APPROACH:</text>
+  <text x="640" y="390" font-family="'Courier New', monospace" font-size="13" fill="#555">server by default +</text>
+  <text x="640" y="415" font-family="'Courier New', monospace" font-size="13" fill="#555">client islands for interactivity</text>
+
+  <!-- Horizontal rule bottom -->
+  <line x1="40" y1="590" x2="1160" y2="590" stroke="#1a1a1a" stroke-width="1"/>
+  <text x="40" y="612" font-family="'Courier New', monospace" font-size="10" fill="#333">albarmoerhamsa.dev/blogs</text>
+</svg>

@@ -1,33 +1,28 @@
 import ReviewCard from "../ui/card/ReviewCard";
-import ShinyText from "../ui/text/ShinyText";
-import { Review } from "~/services/review.services";
+import type { Review } from "~/services/review.server";
 
 export default function ReviewsGrid({ data }: { data: Review[] }) {
   return (
-    <div className="min-h-screen dark:bg-neutral-900 p-8">
-      <div className="mx-auto max-w-7xl space-y-10">
-        <div className="text-left mx-auto space-y-0.5">
-          <span className="flex items-center gap-1.5 text-[#BFF163]">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#BFF163] animate-pluse"></span>
-            REVIEWS
-          </span>
-          <ShinyText
-            text="What others say"
-            disabled={false}
-            speed={3}
-            className="text-2xl font-bold tracking-tight sm:text-4xl"
-          />
-          <p className="text-sm leading-8 text-neutral-400 dark:text-neutral-200">
-            I&apos;ve worked with some amazing people over the years, here is
-            what they have to say about me.
+    <section className="section-pad">
+      <div className="section-shell">
+        <div className="border-b border-[var(--line)] pb-8">
+          <samp className="font-mono text-[0.65rem] font-bold uppercase tracking-widest text-[var(--muted)]">
+            [ TESTIMONIALS / LOG ]
+          </samp>
+          <h2 className="mt-4 font-display text-4xl font-black uppercase leading-tight text-[var(--text)] sm:text-5xl">
+            WHAT COLLABORATORS SAY.
+          </h2>
+          <p className="mt-5 max-w-2xl font-mono text-xs leading-6 text-[var(--muted)]">
+            I&apos;ve worked with some amazing people over the years. Here is
+            what they have to say.
           </p>
         </div>
-        <div className="columns-1 md:columns-2 lg:columns-3 gap-6">
+        <div className="mt-8 columns-1 gap-4 md:columns-2 lg:columns-3">
           {data?.map((review: Review) => (
             <ReviewCard key={review.id} {...review} />
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 }

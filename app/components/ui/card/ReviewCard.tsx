@@ -1,40 +1,53 @@
 import { Link } from "@remix-run/react";
 import { Linkedin } from "lucide-react";
 import { FC } from "react";
-import { Review } from "~/services/review.services";
+import type { Review } from "~/services/review.server";
 
 const ReviewCard: FC<Review> = (review) => {
+  const initials = review?.name
+    ?.split(" ")
+    .map((part) => part[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
+  const hasLinkedIn = review?.linkedinUrl && review.linkedinUrl !== "#";
+
   return (
-    <div className="max-w-md w-full rounded-2xl bg-white dark:bg-neutral-800 p-6 flex flex-col gap-6 dark:text-white font-sans break-inside-avoid mb-6">
-      <p className="text-base leading-relaxed dark:text-neutral-300">
+    <article className="mb-4 break-inside-avoid border border-[var(--line)] bg-[var(--surface)] p-5">
+      <samp className="font-mono text-[0.65rem] font-bold uppercase tracking-widest text-[var(--accent)]">
+        /// REVIEW
+      </samp>
+      <p className="mt-3 font-mono text-xs leading-6 text-[var(--text)]">
         {review?.reviewText}
       </p>
 
-      <div className="flex items-center gap-4 mt-2">
-        <img
-          src={"https://placehold.co/48x48/60A5FA/FFFFFF?text=AN"}
-          alt={`Avatar of ${review?.name}`}
-          className="w-12 h-12 rounded-full object-cover"
-        />
-        <div className="flex flex-col">
+      <div className="mt-5 flex items-center gap-3 border-t border-[var(--line)] pt-4">
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center border border-[var(--line)] font-mono text-xs font-bold text-[var(--accent)]">
+          {initials}
+        </div>
+        <div>
           <div className="flex items-center gap-2">
-            <h3 className="font-bold dark:text-white">{review?.name}</h3>
-            <Link
-              to={review?.linkedinUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-neutral-400 hover:text-white transition-colors"
-              aria-label={`${review?.name}'s LinkedIn Profile`}
-            >
-              <Linkedin />
-            </Link>
+            <samp className="font-mono text-xs font-bold uppercase tracking-wide text-[var(--text)]">
+              {review?.name}
+            </samp>
+            {hasLinkedIn && (
+              <Link
+                to={review?.linkedinUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[var(--muted)] transition-colors hover:text-[var(--accent)]"
+                aria-label={`${review?.name}'s LinkedIn Profile`}
+              >
+                <Linkedin className="h-3 w-3" />
+              </Link>
+            )}
           </div>
-          <p className="text-sm text-neutral-400">
+          <samp className="font-mono text-[0.65rem] text-[var(--muted)]">
             {review?.jobTitle}, {review?.location}
-          </p>
+          </samp>
         </div>
       </div>
-    </div>
+    </article>
   );
 };
 

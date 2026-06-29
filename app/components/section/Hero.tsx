@@ -1,131 +1,152 @@
 import { Link } from "@remix-run/react";
+import { useEffect, useRef } from "react";
 
-const ArrowRightIcon = ({ className = "w-4 h-4" }: { className?: string }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    strokeWidth={2}
-    stroke="currentColor"
-    className={className}
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
-    />
-  </svg>
-);
-
-const WebAppIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-6 h-6">
-        <defs>
-            <linearGradient id="webAppGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#60A5FA" /> 
-                <stop offset="100%" stopColor="#3B82F6" />
-            </linearGradient>
-        </defs>
-        {/* Mengganti path dengan bentuk monitor */}
-        <path 
-            strokeLinecap="round" 
-            strokeLinejoin="round" 
-            stroke="url(#webAppGradient)"
-            strokeWidth={1.5}
-            fill="none"
-            d="M3 5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5zm15 12-4-4h-6l-4 4" 
-        />
-    </svg>
-);
-
-const MobileIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-6 h-6">
-        <defs>
-            <linearGradient id="mobileGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#F472B6" />
-                <stop offset="100%" stopColor="#EC4899" />
-            </linearGradient>
-        </defs>
-        <path 
-            strokeLinecap="round" 
-            strokeLinejoin="round" 
-            stroke="url(#mobileGradient)"
-            strokeWidth={1.5}
-            d="M10.5 1.5H8.25A2.25 2.25 0 0 0 6 3.75v16.5a2.25 2.25 0 0 0 2.25 2.25h7.5A2.25 2.25 0 0 0 18 20.25V3.75a2.25 2.25 0 0 0-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" 
-        />
-    </svg>
-);
-
-const ApiIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-6 h-6">
-        <defs>
-            <linearGradient id="apiGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#34D399" />
-                <stop offset="100%" stopColor="#10B981" />
-            </linearGradient>
-        </defs>
-        <path 
-            strokeLinecap="round" 
-            strokeLinejoin="round" 
-            stroke="url(#apiGradient)"
-            strokeWidth={1.5}
-            d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5" 
-        />
-    </svg>
-);
-
+const statusItems = [
+  { label: "UNIT", value: "A-01 / ALBARMO" },
+  { label: "SPEC", value: "FE.ARCH / FULLSTACK" },
+  { label: "STATUS", value: "● OPEN TO WORK", accent: true },
+];
 
 export default function HeroSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const glowRedRef = useRef<HTMLDivElement>(null);
+  const glowWhiteRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = section.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const tx = `calc(${x}px - 50%)`;
+      const ty = `calc(${y}px - 50%)`;
+
+      if (glowRedRef.current) {
+        glowRedRef.current.style.transform = `translate(${tx}, ${ty})`;
+      }
+      if (glowWhiteRef.current) {
+        glowWhiteRef.current.style.transform = `translate(${tx}, ${ty})`;
+      }
+    };
+
+    section.addEventListener("mousemove", handleMouseMove);
+    return () => section.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
   return (
-    <section className="">
-      <div className="mx-auto max-w-7xl">
-        <div className="flex flex-col items-center text-center">
-          {/* Banner Pengumuman */}
-          <Link
-            to="/advertise"
-            className="mb-8 inline-flex items-center justify-center rounded-full border border-neutral-200 dark:border-neutral-700 bg-white/50 dark:bg-neutral-800/50 px-2 py-1.5 text-sm transition-colors hover:border-neutral-600"
-          >
-            <span className="rounded-full bg-lime-300 dark:bg-lime-300/20 px-2 py-0.5 text-xs font-medium dark:text-lime-300">
-              New
-            </span>
-            <span className="mx-3 dark:text-neutral-300">
-              Available for work
-            </span>
-          </Link>
+    <section ref={sectionRef} className="relative overflow-hidden">
+      {/* 3D motion path scene */}
+      {/* <div className="pointer-events-none absolute inset-0 z-0 opacity-60">
+        <Suspense fallback={null}><HeroScene /></Suspense>
+      </div> */}
 
-          {/* Headline Utama */}
-          <h1 className="md:max-w-4xl text-4xl font-bold tracking-tight md:text-7xl">
-            Great ideas deserve great execution.
-          </h1>
+      {/* Red accent phosphor glow — follows cursor */}
+      <div
+        ref={glowRedRef}
+        className="pointer-events-none absolute left-[20%] top-[40%] h-[55vh] w-[55vh] rounded-full bg-[var(--accent)] opacity-0 blur-[130px] [transition:transform_0.45s_ease-out] dark:opacity-[0.07]"
+      />
+      {/* White ambient scatter — lags behind cursor */}
+      <div
+        ref={glowWhiteRef}
+        className="pointer-events-none absolute left-[20%] top-[40%] h-[40vh] w-[70vw] rounded-full bg-[var(--text)] opacity-[0.015] blur-[100px] [transition:transform_0.85s_ease-out] dark:opacity-[0.025]"
+      />
 
-          {/* Sub-headline */}
-          <p className="mt-6 max-w-3xl text-lg leading-8 text-neutral-400 sm:text-xl">
-            I believe that code is a medium for creativity. My expertise is in
-            turning great ideas into beautiful, functional, and memorable
-            digital experiences.{" "}
-            <br/>
-            <span className="text-sm mt-2 inline-flex items-center gap-1.5 font-semibold text-neutral-200">
-              <WebAppIcon /> Web App
-            </span>
-            ,{" "}
-            <span className="text-sm mt-2 inline-flex items-center gap-1.5 font-semibold text-neutral-200">
-              <MobileIcon /> Mobile
-            </span>
-            , &{" "}
-            <span className="text-sm mt-2 inline-flex items-center gap-1.5 font-semibold text-neutral-200">
-              <ApiIcon /> APIS
-            </span>
-          </p>
+      <div className="relative z-10 section-shell">
+        <div className="flex min-h-[calc(100dvh-3.5rem)] flex-col justify-center pt-14">
+          {/* System status bar */}
+          <div className="flex items-center justify-between border-b border-[var(--line)] py-2">
+            <samp className="font-mono text-[0.65rem] font-bold uppercase tracking-widest text-[var(--muted)]">
+              SYS.INIT / PORTFOLIO.v2026
+            </samp>
+            <samp className="font-mono text-[0.65rem] font-bold text-[var(--terminal-green)]">
+              ● SYS.ONLINE
+            </samp>
+          </div>
 
-          <div className="mt-10 flex flex-col items-center gap-y-8 sm:gap-y-10 lg:flex-row lg:gap-x-12">
-            <div className="flex flex-col items-center">
-              <Link
-                to="/about"
-                className="cursor-target inline-flex items-center justify-center gap-2 rounded-full bg-lime-300 px-8 py-4 text-lg font-semibold text-black shadow-sm transition-transform hover:scale-105"
-              >
-                <span>Know me more</span>
-                <ArrowRightIcon className="w-5 h-5" />
-              </Link>
+          {/* Main grid */}
+          <div className="grid flex-1 gap-0 lg:grid-cols-[1fr_0.4fr]">
+            {/* Left: Macro typography */}
+            <div className="flex flex-col justify-center border-b border-[var(--line)] py-12 lg:border-b-0 lg:border-r lg:pr-12">
+              <span className="section-kicker">[ SOFTWARE.ENG / FE.ARCH ]</span>
+              <h1 className="mt-6 font-display text-[clamp(4rem,11vw,11rem)] font-black uppercase leading-[0.88] tracking-[-0.04em] text-[var(--text)]">
+                ALBAR
+                <br />
+                <span className="text-[var(--accent)]">M</span>OER
+                <span className="text-[var(--accent)]">.</span>
+              </h1>
+              <p className="mt-6 max-w-lg font-mono text-sm leading-7 text-[var(--muted)]">
+                Building fast, accessible frontend experiences with clear
+                systems and careful execution. I turn product ideas into
+                production-ready interfaces.
+              </p>
+              <div className="mt-10 flex flex-wrap items-center gap-3">
+                <Link
+                  to="/projects"
+                  className="premium-link premium-link-primary"
+                >
+                  {">>> VIEW.WORK"}
+                </Link>
+                <Link
+                  to="/contact"
+                  className="premium-link premium-link-secondary"
+                >
+                  {"[ CONTACT ]"}
+                </Link>
+              </div>
             </div>
+
+            {/* Right: Technical profile panel */}
+            <div className="hidden flex-col lg:flex lg:pl-0">
+              <div className="flex h-full flex-col border-l-0">
+                <div className="border-b border-[var(--line)] bg-[var(--surface-muted)] px-4 py-2">
+                  <samp className="font-mono text-[0.65rem] font-bold uppercase tracking-widest text-[var(--muted)]">
+                    UNIT.PROFILE / D-01
+                  </samp>
+                </div>
+                <div className="flex-1 overflow-hidden bg-[var(--surface-muted)]">
+                  <img
+                    src="/images/character.png"
+                    alt="Portrait illustration of Albar Moerhamsa"
+                    className="h-full w-full object-cover object-top"
+                    width={520}
+                    height={680}
+                  />
+                </div>
+                <div className="border-t border-[var(--line)] bg-[var(--surface)] p-4">
+                  <samp className="block font-mono text-[0.65rem] font-bold uppercase tracking-widest text-[var(--muted)]">
+                    FOCUS.DIRECTIVE
+                  </samp>
+                  <p className="mt-2 font-display text-lg font-black uppercase leading-tight text-[var(--text)]">
+                    Crafting High-Performance Frontends
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom telemetry row */}
+          <div className="grid grid-cols-3 border-t border-[var(--line)]">
+            {statusItems.map((item, i) => (
+              <div
+                key={item.label}
+                className={`py-4 ${
+                  i > 0 ? "border-l border-[var(--line)] pl-4" : ""
+                }`}
+              >
+                <samp className="block font-mono text-[0.6rem] font-bold uppercase tracking-widest text-[var(--muted)]">
+                  {item.label}
+                </samp>
+                <samp
+                  className={`mt-1 block font-mono text-xs font-bold uppercase ${
+                    item.accent ? "text-[var(--accent)]" : "text-[var(--text)]"
+                  }`}
+                >
+                  {item.value}
+                </samp>
+              </div>
+            ))}
           </div>
         </div>
       </div>

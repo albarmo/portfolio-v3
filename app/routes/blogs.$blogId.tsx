@@ -3,7 +3,7 @@ import type { LoaderFunctionArgs } from "@remix-run/node";
 import { PageLayout } from "~/components/layout/PageLayout";
 import { ArrowLeftIcon } from "lucide-react";
 import invariant from "tiny-invariant";
-import { getBlog } from "~/services/blog.services";
+import { getBlog } from "~/services/blog.server";
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
   invariant(params.blogId, "Missing blogId param");
@@ -17,54 +17,48 @@ export default function BlogDetail() {
 
   return (
     <PageLayout>
-      <div className="bg-white dark:bg-neutral-900 text-gray-900 dark:text-white">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-16">
-          {/* Header Section */}
-          <header className="dark:text-white py-10">
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-              {/* Navigasi Kembali dan Tahun */}
-              <div className="flex justify-between items-center mb-12">
+      <div className="bg-[var(--bg)] text-[var(--text)]">
+        <article className="mx-auto w-[min(100%-2rem,56rem)] py-32 sm:py-40">
+          <header>
+            <div>
+              <div className="mb-12 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <Link
                   to="/blogs"
-                  className="flex items-center gap-2 text-neutral-400 hover:text-white transition-colors"
+                  className="premium-link premium-link-secondary w-fit"
                 >
-                  <ArrowLeftIcon />
-                  <span className="text-sm font-medium">Back to Blogs</span>
+                  <ArrowLeftIcon className="h-4 w-4" />
+                  <span className="text-sm">Back to Blogs</span>
                 </Link>
-                <div className="border border-neutral-700 rounded-md px-3 py-1 text-sm text-neutral-400">
+                <samp className="w-fit border border-[var(--line)] px-3 py-1.5 font-mono text-xs font-bold uppercase tracking-widest text-[var(--muted)]">
                   {blog?.date}
-                </div>
+                </samp>
               </div>
 
-              {/* Konten Utama */}
-                {/* Kolom Kiri: Judul dan Deskripsi */}
-                <div className="md:col-span-2">
-                  <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
+              <div>
+                  <h1 className="font-display text-5xl font-black uppercase leading-tight text-[var(--text)] sm:text-6xl">
                     {blog?.title}
                   </h1>
-                  <p className="mt-6 text-lg leading-8 text-neutral-400 max-w-2xl">
+                  <p className="mt-6 max-w-3xl font-mono text-sm leading-7 text-[var(--muted)]">
                     {blog?.summary}
                   </p>
                 </div>
             </div>
           </header>
 
-          {/* Main Image */}
-          <div className="w-full aspect-video rounded-2xl bg-gray-100 dark:bg-neutral-800 shadow-lg">
+          <div className="mt-12 aspect-video w-full overflow-hidden border border-[var(--line)] bg-[var(--surface-muted)]">
             <img
               src={blog?.thumbnail}
               alt={blog?.title}
-              className="w-full h-full object-cover border rounded-lg"
+              className="h-full w-full object-cover"
             />
           </div>
 
-          {/* Content Section */}
-          <div className="mt-16">
-            <p className="text-lg w-full leading-8 text-gray-600 dark:text-neutral-300">
+          <div className="mt-10 border border-[var(--line)] bg-[var(--surface)] p-6 sm:p-8">
+            <p className="whitespace-pre-line font-mono text-sm leading-8 text-[var(--muted)]">
               {blog?.content}
             </p>
           </div>
-        </div>
+        </article>
       </div>
     </PageLayout>
   );

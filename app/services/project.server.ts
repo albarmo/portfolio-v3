@@ -1,4 +1,4 @@
-import qs from "~/utils/querystring";
+import { getDb } from "~/lib/mongodb.server";
 
 type PaginationParams = {
   page?: number;
@@ -19,11 +19,11 @@ export type Project = {
   description: string;
   thumbnail: string;
   title: string;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: Date | string;
+  updatedAt: Date | string;
 };
 
-export const BACKUP_PROJECTS = [
+export const BACKUP_PROJECTS: Project[] = [
   {
     repoUrl: "https://github.com/example/delima-bri",
     responsibility:
@@ -42,8 +42,8 @@ export const BACKUP_PROJECTS = [
     thumbnail: "/images/project/delima-cover.png",
     title: "Delima BRI",
     id: "9e030a0c-1020-424f-96a4-910ee5317f9e",
-    createdAt: "2025-08-05T07:57:46.165Z",
-    updatedAt: "2025-08-05T07:57:46.165Z",
+    createdAt: new Date("2025-08-05T07:57:46.165Z"),
+    updatedAt: new Date("2025-08-05T07:57:46.165Z"),
   },
   {
     repoUrl: "https://github.com/example/localoka",
@@ -64,8 +64,8 @@ export const BACKUP_PROJECTS = [
     thumbnail: "/images/project/localoka-cover.png",
     title: "Localoka",
     id: "e3dfd84f-75ec-4fbf-9d84-930a1e96855f",
-    createdAt: "2025-08-05T07:57:46.165Z",
-    updatedAt: "2025-08-05T07:57:46.165Z",
+    createdAt: new Date("2025-08-05T07:57:46.165Z"),
+    updatedAt: new Date("2025-08-05T07:57:46.165Z"),
   },
   {
     repoUrl: "https://github.com/example/imigrasi-sso",
@@ -85,8 +85,8 @@ export const BACKUP_PROJECTS = [
     thumbnail: "/images/project/sso-3.png",
     title: "Imigrasi SSO",
     id: "04411d6f-9301-450d-8f4a-2b9a3108c0b0",
-    createdAt: "2025-08-05T07:57:46.165Z",
-    updatedAt: "2025-08-05T07:57:46.165Z",
+    createdAt: new Date("2025-08-05T07:57:46.165Z"),
+    updatedAt: new Date("2025-08-05T07:57:46.165Z"),
   },
   {
     repoUrl: "https://github.com/example/interactive-map",
@@ -106,15 +106,14 @@ export const BACKUP_PROJECTS = [
     thumbnail: "/images/project/ISMHousing.png",
     title: "Interactive Static Map",
     id: "fb26e7c6-6a49-45c7-b4b0-791980e44cf2",
-    createdAt: "2025-08-05T07:57:46.165Z",
-    updatedAt: "2025-08-05T07:57:46.165Z",
+    createdAt: new Date("2025-08-05T07:57:46.165Z"),
+    updatedAt: new Date("2025-08-05T07:57:46.165Z"),
   },
   {
     repoUrl: "https://github.com/example/apoa",
     responsibility:
       '[\n                      "Building the application from scratch using Next.js.",\n                      "Creating a mapping feature for registered hotels.",\n                      "Developing the client and integrating check-in/checkout features using OCR for passport scanning.",\n                      "Implementing a data export feature.",\n                      "Building a regional office (Kanwil) management feature."\n                    ]',
-    techStack:
-      '["Next.js", "Mapbox GL", "TailwindCSS", "TypeScript", "OCR"]',
+    techStack: '["Next.js", "Mapbox GL", "TailwindCSS", "TypeScript", "OCR"]',
     category: "Development Frontend",
     gifUrl:
       "https://i.pinimg.com/originals/2c/a0/d2/2ca0d24329355307cc9848bef965fa88.gif",
@@ -128,8 +127,8 @@ export const BACKUP_PROJECTS = [
     thumbnail: "/images/project/apoa-map.png",
     title: "APOA Dirjen Imigrasi",
     id: "6173c449-063a-4275-bdde-2b6e97b239d2",
-    createdAt: "2025-08-05T07:57:46.165Z",
-    updatedAt: "2025-08-05T07:57:46.165Z",
+    createdAt: new Date("2025-08-05T07:57:46.165Z"),
+    updatedAt: new Date("2025-08-05T07:57:46.165Z"),
   },
   {
     repoUrl: "https://github.com/example/sisbinkar",
@@ -150,31 +149,55 @@ export const BACKUP_PROJECTS = [
     thumbnail: "/images/project/sisbinkar-1.png",
     title: "Sistem Pembinaan Karir Imigrasi (SISBINKAR)",
     id: "3097b536-5c0e-4dc8-81a9-48ea82a86732",
-    createdAt: "2025-08-05T07:57:46.165Z",
-    updatedAt: "2025-08-05T07:57:46.165Z",
+    createdAt: new Date("2025-08-05T07:57:46.165Z"),
+    updatedAt: new Date("2025-08-05T07:57:46.165Z"),
   },
 ];
 
-export async function getProjects({ page, limit }: PaginationParams) {
-  const queryString = qs({ page, limit });
-  try {
-    const response = await fetch(
-      "http://localhost:8081/api/v1/projects" + queryString
-    );
+async function seedProjects() {
+  const db = await getDb();
+  const col = db.collection("projects");
+  const count = await col.countDocuments();
+  if (count === 0) {
+    await col.insertMany(BACKUP_PROJECTS);
+    await col.createIndex({ id: 1 }, { unique: true });
+  }
+}
 
-    return response?.json();
-  } catch (error) {
+export async function getProjects({
+  page = 1,
+  limit = 10,
+}: PaginationParams): Promise<{ code: number; data: Project[] }> {
+  try {
+    const db = await getDb();
+    await seedProjects();
+    const col = db.collection<Project>("projects");
+    const skip = (page - 1) * limit;
+    const data = await col
+      .find({}, { projection: { _id: 0 } })
+      .sort({ year: -1, createdAt: -1 })
+      .skip(skip)
+      .limit(limit)
+      .toArray();
+    return { code: 200, data: data as Project[] };
+  } catch {
     return { code: 200, data: BACKUP_PROJECTS };
   }
 }
 
-export async function getProject(id: string) {
+export async function getProject(id: string): Promise<Project> {
   try {
-    const response = await fetch(`http://localhost:8081/api/v1/projects/${id}`);
-
-    return response?.json();
-  } catch (error) {
-    const project = BACKUP_PROJECTS.find((p) => p.id === id);
-    return project;
+    const db = await getDb();
+    await seedProjects();
+    const col = db.collection("projects");
+    const data = await col.findOne(
+      { id: id },
+      { projection: { _id: 0 } }
+    );
+    return (data as unknown as Project) ?? BACKUP_PROJECTS[0];
+  } catch {
+    return (
+      BACKUP_PROJECTS.find((p) => p.id === id) ?? BACKUP_PROJECTS[0]
+    );
   }
 }

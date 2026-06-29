@@ -34,14 +34,14 @@ interface FormInputProps
 }
 const FormInput: FC<FormInputProps> = ({ label, as = "input", ...props }) => {
   const commonClasses =
-    "w-full bg-transparent border dark:border-neutral-700 rounded-lg py-3 px-4 text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-[#BFF163] focus:border-transparent transition-colors";
+    "w-full border border-[var(--line)] bg-[var(--surface)] px-4 py-3 font-mono text-sm text-[var(--text)] placeholder:text-[var(--muted)] transition-colors focus:border-[var(--accent)] focus:outline-none";
   const InputComponent = as === "textarea" ? "textarea" : "input";
 
   return (
     <div className="w-full">
       <label
         htmlFor={props.name}
-        className="block text-sm font-medium text-neutral-400 mb-2"
+        className="mb-2 block font-mono text-[0.65rem] font-bold uppercase tracking-widest text-[var(--muted)]"
       >
         {label}
       </label>
@@ -68,23 +68,22 @@ export default function ContactPage() {
   }, [actionData]);
 
   return (
-    <PageLayout className="min-h-screen py-32 sm:py-32">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center gap-2 text-sm font-medium text-[#BFF163]">
-          <span>CONNECT WITH ME</span>
-        </div>
-        <h1 className="mt-4 font-bold tracking-tight max-w-2xl text-6xl">
-          Let&apos;s start a project together
+    <PageLayout className="section-pad pt-32 sm:pt-40">
+      <div className="section-shell">
+        <samp className="font-mono text-[0.65rem] font-bold uppercase tracking-widest text-[var(--muted)]">
+          [ CONTACT / INIT.MSG ]
+        </samp>
+        <h1 className="mt-4 max-w-3xl font-display text-5xl font-black uppercase leading-tight text-[var(--text)] sm:text-6xl">
+          LET&apos;S START A PROJECT TOGETHER
         </h1>
 
-        <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
-          {/* Kolom Kiri: Formulir Kontak */}
-          <Form method="post" className="space-y-8">
+        <div className="mt-14 grid grid-cols-1 gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+          <Form method="post" className="surface-card space-y-6 p-5 sm:p-8">
             <FormInput
-              label="Full Name"
+              label="Full name"
               name="fullName"
               type="text"
-              placeholder="Enter fullname"
+              placeholder="Your full name"
               required
             />
             <FormInput
@@ -106,36 +105,35 @@ export default function ContactPage() {
               name="message"
               as="textarea"
               rows={5}
-              placeholder="Enter messages"
+              placeholder="Tell me about the project"
               required
             />
             <button
               type="submit"
-              className="rounded-full border dark:border-neutral-600 px-8 py-3 text-base font-medium hover:bg-primary-dark hover:text-white dark:hover:bg-neutral-800 transition-colors"
+              className="premium-link premium-link-primary"
             >
               Submit
             </button>
           </Form>
 
-          {/* Kolom Kanan: Kartu Info */}
           <div className="flex flex-col">
-            <div className="rounded-2xl dark:bg-neutral-900 border dark:border-neutral-800 p-8">
+            <div className="soft-panel p-6 sm:p-8">
               <img
                 src="/images/character.png"
-                alt="Foto profil"
-                className="w-24 h-24 rounded-full object-cover my-6"
+                alt="Albar Moerhamsa profile illustration"
+                className="my-2 h-28 w-28 object-cover"
               />
-              <p className="dark:text-neutral-300 leading-relaxed">
+              <p className="mt-6 leading-8 text-[var(--muted)]">
                 My inbox is always open. Whether you have a project or just want
                 to say Hi. I would love to hear from you. Feel free to contact
                 me and I&apos;ll get back to you.
               </p>
-              <div className="mt-6 flex gap-6 text-neutral-500">
+              <div className="mt-6 flex gap-4 text-[var(--muted)]">
                 <Link
                   to="https://www.linkedin.com/in/albarms/"
                   target="_blank"
                   rel="noreferrer"
-                  className="dark:hover:text-white transition-colors"
+                  className="transition-colors hover:text-[var(--accent)]"
                 >
                   <Linkedin />
                 </Link>
@@ -143,7 +141,7 @@ export default function ContactPage() {
                   to="https://github.com/albarmo"
                   target="_blank"
                   rel="noreferrer"
-                  className="dark:hover:text-white transition-colors"
+                  className="transition-colors hover:text-[var(--accent)]"
                 >
                   <Github />
                 </Link>
@@ -151,7 +149,7 @@ export default function ContactPage() {
                   to="mailto:moerhamsa@gmail.com"
                   target="_blank"
                   rel="noreferrer"
-                  className="dark:hover:text-white transition-colors"
+                  className="transition-colors hover:text-[var(--accent)]"
                 >
                   <MailIcon />
                 </Link>
@@ -159,7 +157,7 @@ export default function ContactPage() {
                   to="https://dribbble.com/albarms"
                   target="_blank"
                   rel="noreferrer"
-                  className="dark:hover:text-white transition-colors"
+                  className="transition-colors hover:text-[var(--accent)]"
                 >
                   <Dribbble />
                 </Link>

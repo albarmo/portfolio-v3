@@ -1,6 +1,7 @@
 import type { ActionFunctionArgs } from "@remix-run/node";
 import { Form, json, useActionData } from "@remix-run/react";
 import type { FC } from "react";
+import { PageLayout } from "~/components/layout/PageLayout";
 
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
@@ -14,19 +15,25 @@ export async function action({ request }: ActionFunctionArgs) {
 
   if (typeof data.fullName !== "string" || data.fullName.length < 3) {
     return json(
-      { error: "Nama lengkap harus diisi (minimal 3 karakter)." },
+      {
+        success: false as const,
+        error: "Nama lengkap harus diisi (minimal 3 karakter).",
+      },
       { status: 400 }
     );
   }
   if (typeof data.message !== "string" || data.message.length < 10) {
     return json(
-      { error: "Pesan ulasan harus diisi (minimal 10 karakter)." },
+      {
+        success: false as const,
+        error: "Pesan ulasan harus diisi (minimal 10 karakter).",
+      },
       { status: 400 }
     );
   }
 
   return {
-    success: true,
+    success: true as const,
     message: "Terima kasih! Ulasan Anda telah berhasil dikirimkan.",
   };
 }
@@ -41,14 +48,14 @@ interface FormInputProps
 }
 const FormInput: FC<FormInputProps> = ({ label, as = "input", ...props }) => {
   const commonClasses =
-    "w-full bg-neutral-800 border border-neutral-700 rounded-lg py-3 px-4 text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors";
+    "w-full border border-[var(--line)] bg-[var(--surface)] px-4 py-3 font-mono text-sm text-[var(--text)] placeholder:text-[var(--muted)] transition-colors focus:border-[var(--accent)] focus:outline-none";
   const InputComponent = as === "textarea" ? "textarea" : "input";
 
   return (
     <div className="w-full">
       <label
         htmlFor={props.name}
-        className="block text-sm font-medium text-neutral-400 mb-2"
+        className="mb-2 block font-mono text-[0.65rem] font-bold uppercase tracking-widest text-[var(--muted)]"
       >
         {label}
       </label>
@@ -59,22 +66,37 @@ const FormInput: FC<FormInputProps> = ({ label, as = "input", ...props }) => {
 
 export default function CreateReviewPage() {
   const actionData = useActionData<typeof action>();
-  console.log(actionData);
+  const successMessage =
+    actionData?.success === true ? actionData.message : undefined;
+  const errorMessage =
+    actionData?.success === false ? actionData.error : undefined;
 
   return (
-    <div className="min-h-screen flex items-center justify-center py-28 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-2xl w-full space-y-8">
+    <PageLayout className="section-pad pt-32 sm:pt-40">
+      <div className="mx-auto w-[min(100%-2rem,44rem)] space-y-8">
         <div>
-          <h1 className="text-center text-4xl font-bold tracking-tight sm:text-5xl">
-            Tulis Ulasan Anda
+          <h1 className="text-center font-display text-5xl font-black uppercase leading-tight text-[var(--text)] sm:text-6xl">
+            TULIS ULASAN ANDA
           </h1>
-          <p className="mt-4 text-center text-lg text-neutral-400">
+          <p className="mx-auto mt-5 max-w-2xl text-center font-mono text-xs leading-6 text-[var(--muted)]">
             Bagikan pengalaman Anda dan bantu orang lain membuat keputusan yang
             lebih baik.
           </p>
         </div>
 
-        <div className="dark:bg-neutral-900 border dark:border-neutral-800 rounded-2xl p-8 shadow-xl">
+        {successMessage && (
+          <div className="border border-[var(--terminal-green)]/30 bg-[var(--terminal-green)]/10 p-4 font-mono text-xs font-bold uppercase tracking-wide text-[var(--terminal-green)]">
+            {successMessage}
+          </div>
+        )}
+
+        {errorMessage && (
+          <div className="border border-[var(--accent)]/30 bg-[var(--accent)]/10 p-4 font-mono text-xs font-bold uppercase tracking-wide text-[var(--accent)]">
+            {errorMessage}
+          </div>
+        )}
+
+        <div className="surface-card p-5 sm:p-8">
           <Form method="post" className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <FormInput
@@ -111,7 +133,7 @@ export default function CreateReviewPage() {
             <div>
               <button
                 type="submit"
-                className="w-full flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-medium text-black bg-white hover:bg-neutral-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black focus:ring-white transition-colors"
+                className="premium-link premium-link-primary w-full"
               >
                 Kirim Ulasan
               </button>
@@ -119,6 +141,6 @@ export default function CreateReviewPage() {
           </Form>
         </div>
       </div>
-    </div>
+    </PageLayout>
   );
 }

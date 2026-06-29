@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1a1a1a" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="#0a0a0a"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <rect width="1200" height="5" fill="#e61919"/>
+  <path d="M 30 20 L 30 50 M 20 30 L 50 30" stroke="#e61919" stroke-width="2" fill="none"/>
+  <path d="M 1170 610 L 1170 580 M 1180 600 L 1150 600" stroke="#333" stroke-width="2" fill="none"/>
+
+  <rect x="40" y="60" width="200" height="24" fill="none" stroke="#e61919" stroke-width="1"/>
+  <text x="52" y="77" font-family="'Courier New', monospace" font-size="11" fill="#e61919" font-weight="bold" letter-spacing="3">STATE MANAGEMENT</text>
+
+  <text x="40" y="165" font-family="'Courier New', monospace" font-size="42" fill="#f0f0f0" font-weight="bold">STATE</text>
+  <text x="40" y="215" font-family="'Courier New', monospace" font-size="42" fill="#e61919" font-weight="bold">STRATEGY</text>
+  <text x="40" y="262" font-family="'Courier New', monospace" font-size="20" fill="#444">local · global · server</text>
+
+  <line x1="40" y1="292" x2="500" y2="292" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="40" y="322" font-family="'Courier New', monospace" font-size="13" fill="#444">ALBAR MOERHAMSA · MAY 2026</text>
+  <text x="40" y="418" font-family="'Courier New', monospace" font-size="120" fill="#1a1a1a" font-weight="bold">11</text>
+
+  <!-- RIGHT VISUAL: Three-column state decision -->
+  <!-- Column dividers -->
+  <line x1="810" y1="70" x2="810" y2="570" stroke="#1a1a1a" stroke-width="1"/>
+  <line x1="980" y1="70" x2="980" y2="570" stroke="#1a1a1a" stroke-width="1"/>
+
+  <!-- Header row -->
+  <rect x="640" y="70" width="500" height="36" fill="#111"/>
+  <text x="725" y="93" font-family="'Courier New', monospace" font-size="11" fill="#555" text-anchor="middle" letter-spacing="2">LOCAL</text>
+  <text x="895" y="93" font-family="'Courier New', monospace" font-size="11" fill="#555" text-anchor="middle" letter-spacing="2">GLOBAL</text>
+  <text x="1065" y="93" font-family="'Courier New', monospace" font-size="11" fill="#e61919" text-anchor="middle" letter-spacing="2">SERVER</text>
+
+  <!-- LOCAL column -->
+  <text x="660" y="135" font-family="'Courier New', monospace" font-size="13" fill="#e61919" font-weight="bold">useState</text>
+  <line x1="640" y1="148" x2="810" y2="148" stroke="#1a1a1a" stroke-width="1"/>
+  <text x="660" y="170" font-family="'Courier New', monospace" font-size="11" fill="#444">isOpen</text>
+  <text x="660" y="190" font-family="'Courier New', monospace" font-size="11" fill="#444">searchQuery</text>
+  <text x="660" y="210" font-family="'Courier New', monospace" font-size="11" fill="#444">selectedItem</text>
+  <text x="660" y="230" font-family="'Courier New', monospace" font-size="11" fill="#444">inputValue</text>
+  <line x1="640" y1="248" x2="810" y2="248" stroke="#1a1a1a" stroke-width="1"/>
+  <text x="660" y="270" font-family="'Courier New', monospace" font-size="10" fill="#333">one component</text>
+  <text x="660" y="288" font-family="'Courier New', monospace" font-size="10" fill="#333">no sharing needed</text>
+
+  <!-- Tick mark -->
+  <rect x="660" y="310" width="130" height="28" fill="none" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="725" y="329" font-family="'Courier New', monospace" font-size="11" fill="#555" text-anchor="middle">✓ USE THIS</text>
+
+  <!-- GLOBAL column -->
+  <text x="825" y="135" font-family="'Courier New', monospace" font-size="13" fill="#f0f0f0" font-weight="bold">Zustand</text>
+  <line x1="810" y1="148" x2="980" y2="148" stroke="#1a1a1a" stroke-width="1"/>
+  <text x="825" y="170" font-family="'Courier New', monospace" font-size="11" fill="#444">user session</text>
+  <text x="825" y="190" font-family="'Courier New', monospace" font-size="11" fill="#444">theme</text>
+  <text x="825" y="210" font-family="'Courier New', monospace" font-size="11" fill="#444">permissions</text>
+  <text x="825" y="230" font-family="'Courier New', monospace" font-size="11" fill="#444">notifications</text>
+  <line x1="810" y1="248" x2="980" y2="248" stroke="#1a1a1a" stroke-width="1"/>
+  <text x="825" y="270" font-family="'Courier New', monospace" font-size="10" fill="#333">cross-page</text>
+  <text x="825" y="288" font-family="'Courier New', monospace" font-size="10" fill="#333">many consumers</text>
+
+  <rect x="825" y="310" width="130" height="28" fill="none" stroke="#333" stroke-width="1"/>
+  <text x="890" y="329" font-family="'Courier New', monospace" font-size="11" fill="#444" text-anchor="middle">⚡ SPARINGLY</text>
+
+  <!-- SERVER column -->
+  <text x="995" y="135" font-family="'Courier New', monospace" font-size="13" fill="#e61919" font-weight="bold">React Query</text>
+  <line x1="980" y1="148" x2="1140" y2="148" stroke="#1a1a1a" stroke-width="1"/>
+  <text x="995" y="170" font-family="'Courier New', monospace" font-size="11" fill="#e61919">user list</text>
+  <text x="995" y="190" font-family="'Courier New', monospace" font-size="11" fill="#e61919">products</text>
+  <text x="995" y="210" font-family="'Courier New', monospace" font-size="11" fill="#e61919">reports</text>
+  <text x="995" y="230" font-family="'Courier New', monospace" font-size="11" fill="#e61919">API data</text>
+  <line x1="980" y1="248" x2="1140" y2="248" stroke="#1a1a1a" stroke-width="1"/>
+  <text x="995" y="270" font-family="'Courier New', monospace" font-size="10" fill="#555">from backend</text>
+  <text x="995" y="288" font-family="'Courier New', monospace" font-size="10" fill="#555">needs caching</text>
+
+  <rect x="995" y="310" width="130" height="28" fill="#e61919" opacity="0.15" stroke="#e61919" stroke-width="1"/>
+  <text x="1060" y="329" font-family="'Courier New', monospace" font-size="11" fill="#e61919" text-anchor="middle">★ DEFAULT</text>
+
+  <!-- Decision flow -->
+  <rect x="640" y="370" width="500" height="2" fill="#1a1a1a"/>
+
+  <text x="655" y="400" font-family="'Courier New', monospace" font-size="11" fill="#333">// the decision rule:</text>
+  <text x="655" y="422" font-family="'Courier New', monospace" font-size="11" fill="#555">one component?  → <tspan fill="#e61919">useState</tspan></text>
+  <text x="655" y="444" font-family="'Courier New', monospace" font-size="11" fill="#555">from server?    → <tspan fill="#e61919">useQuery</tspan></text>
+  <text x="655" y="466" font-family="'Courier New', monospace" font-size="11" fill="#555">truly shared?   → <tspan fill="#e61919">useStore</tspan></text>
+
+  <line x1="40" y1="590" x2="1160" y2="590" stroke="#1a1a1a" stroke-width="1"/>
+  <text x="40" y="612" font-family="'Courier New', monospace" font-size="10" fill="#333">albarmoerhamsa.dev/blogs</text>
+</svg>

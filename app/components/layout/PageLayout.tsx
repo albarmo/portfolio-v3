@@ -1,5 +1,4 @@
 import type { FC, ReactNode } from "react";
-import ClickSpark from "../ui/ClickSpark";
 
 interface LayoutProps {
   children: ReactNode;
@@ -8,10 +7,8 @@ interface LayoutProps {
 
 export const PageLayout: FC<LayoutProps> = ({ children, className }) => {
   return (
-    <main className={`flex flex-col flex-grow min-h-screen ${className}`}>
-      <ClickSpark>
-        {children}
-      </ClickSpark>
+    <main id="main-content" className={`flex flex-col flex-grow min-h-[100dvh] ${className ?? ""}`}>
+      {children}
     </main>
   );
 };

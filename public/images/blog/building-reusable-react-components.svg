@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1a1a1a" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="#0a0a0a"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <rect width="1200" height="5" fill="#e61919"/>
+  <path d="M 30 20 L 30 50 M 20 30 L 50 30" stroke="#e61919" stroke-width="2" fill="none"/>
+  <path d="M 1170 610 L 1170 580 M 1180 600 L 1150 600" stroke="#333" stroke-width="2" fill="none"/>
+
+  <rect x="40" y="60" width="200" height="24" fill="none" stroke="#e61919" stroke-width="1"/>
+  <text x="52" y="77" font-family="'Courier New', monospace" font-size="11" fill="#e61919" font-weight="bold" letter-spacing="3">REACT / COMPONENTS</text>
+
+  <text x="40" y="165" font-family="'Courier New', monospace" font-size="46" fill="#f0f0f0" font-weight="bold">BUILDING</text>
+  <text x="40" y="215" font-family="'Courier New', monospace" font-size="46" fill="#e61919" font-weight="bold">REUSABLE</text>
+  <text x="40" y="265" font-family="'Courier New', monospace" font-size="46" fill="#f0f0f0" font-weight="bold">COMPONENTS</text>
+
+  <line x1="40" y1="295" x2="500" y2="295" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="40" y="324" font-family="'Courier New', monospace" font-size="13" fill="#444">ALBAR MOERHAMSA · JUNE 2026</text>
+  <text x="40" y="420" font-family="'Courier New', monospace" font-size="120" fill="#1a1a1a" font-weight="bold">07</text>
+
+  <!-- RIGHT VISUAL: Component tree -->
+  <!-- Root: Page -->
+  <rect x="840" y="80" width="160" height="40" fill="none" stroke="#555" stroke-width="1"/>
+  <text x="920" y="104" font-family="'Courier New', monospace" font-size="12" fill="#555" text-anchor="middle">UserPage</text>
+
+  <!-- Lines down -->
+  <line x1="920" y1="120" x2="920" y2="150" stroke="#2a2a2a" stroke-width="1"/>
+  <line x1="750" y1="150" x2="1090" y2="150" stroke="#2a2a2a" stroke-width="1"/>
+
+  <!-- Left branch: UserFilter -->
+  <line x1="750" y1="150" x2="750" y2="178" stroke="#2a2a2a" stroke-width="1"/>
+  <rect x="660" y="178" width="180" height="40" fill="none" stroke="#e61919" stroke-width="1"/>
+  <text x="750" y="202" font-family="'Courier New', monospace" font-size="12" fill="#e61919" text-anchor="middle">UserFilter</text>
+
+  <!-- Mid branch: UserTable -->
+  <line x1="920" y1="150" x2="920" y2="178" stroke="#2a2a2a" stroke-width="1"/>
+  <rect x="830" y="178" width="180" height="40" fill="none" stroke="#e61919" stroke-width="1"/>
+  <text x="920" y="202" font-family="'Courier New', monospace" font-size="12" fill="#e61919" text-anchor="middle">UserTable</text>
+
+  <!-- Right branch: UserModal -->
+  <line x1="1090" y1="150" x2="1090" y2="178" stroke="#2a2a2a" stroke-width="1"/>
+  <rect x="1000" y="178" width="180" height="40" fill="none" stroke="#555" stroke-width="1"/>
+  <text x="1090" y="202" font-family="'Courier New', monospace" font-size="12" fill="#555" text-anchor="middle">UserModal</text>
+
+  <!-- UserTable children -->
+  <line x1="920" y1="218" x2="920" y2="248" stroke="#2a2a2a" stroke-width="1"/>
+  <line x1="840" y1="248" x2="1000" y2="248" stroke="#2a2a2a" stroke-width="1"/>
+  <line x1="840" y1="248" x2="840" y2="276" stroke="#2a2a2a" stroke-width="1"/>
+  <line x1="1000" y1="248" x2="1000" y2="276" stroke="#2a2a2a" stroke-width="1"/>
+
+  <!-- UI components (shared) -->
+  <rect x="760" y="276" width="160" height="36" fill="#111" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="840" y="298" font-family="'Courier New', monospace" font-size="11" fill="#444" text-anchor="middle">Table (UI)</text>
+  <rect x="930" y="276" width="160" height="36" fill="#111" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="1010" y="298" font-family="'Courier New', monospace" font-size="11" fill="#444" text-anchor="middle">Pagination (UI)</text>
+
+  <!-- Legend -->
+  <rect x="650" y="360" width="14" height="14" fill="none" stroke="#e61919" stroke-width="1"/>
+  <text x="672" y="372" font-family="'Courier New', monospace" font-size="11" fill="#555">feature component</text>
+  <rect x="650" y="386" width="14" height="14" fill="#111" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="672" y="398" font-family="'Courier New', monospace" font-size="11" fill="#555">ui/ (shared)</text>
+  <rect x="650" y="412" width="14" height="14" fill="none" stroke="#555" stroke-width="1"/>
+  <text x="672" y="424" font-family="'Courier New', monospace" font-size="11" fill="#555">page (layout)</text>
+
+  <!-- Rule callout -->
+  <rect x="650" y="460" width="480" height="50" fill="#111" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="665" y="482" font-family="'Courier New', monospace" font-size="11" fill="#444">// one component = one responsibility</text>
+  <text x="665" y="498" font-family="'Courier New', monospace" font-size="11" fill="#555">// max ~200 lines per file</text>
+
+  <line x1="40" y1="590" x2="1160" y2="590" stroke="#1a1a1a" stroke-width="1"/>
+  <text x="40" y="612" font-family="'Courier New', monospace" font-size="10" fill="#333">albarmoerhamsa.dev/blogs</text>
+</svg>

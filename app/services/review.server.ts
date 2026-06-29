@@ -1,4 +1,4 @@
-import qs from "~/utils/querystring";
+import { getDb } from "~/lib/mongodb.server";
 
 type PaginationParams = {
   page?: number;
@@ -85,26 +85,49 @@ export const BACKUP_REVIEWS: Review[] = [
   },
 ];
 
-export async function getReviews({ page, limit }: PaginationParams) {
-  const queryString = qs({ page, limit });
-  try {
-    const response = await fetch(
-      "http://localhost:8081/api/v1/reviews" + queryString
-    );
+async function seedReviews() {
+  const db = await getDb();
+  const col = db.collection("reviews");
+  const count = await col.countDocuments();
+  if (count === 0) {
+    await col.insertMany(BACKUP_REVIEWS);
+    await col.createIndex({ id: 1 }, { unique: true });
+  }
+}
 
-    return response?.json();
-  } catch (error) {
-    return {code: 200, data: BACKUP_REVIEWS}
+export async function getReviews({
+  page = 1,
+  limit = 20,
+}: PaginationParams): Promise<{ code: number; data: Review[] }> {
+  try {
+    const db = await getDb();
+    await seedReviews();
+    const col = db.collection<Review>("reviews");
+    const skip = (page - 1) * limit;
+    const data = await col
+      .find({}, { projection: { _id: 0 } })
+      .sort({ createdAt: -1 })
+      .skip(skip)
+      .limit(limit)
+      .toArray();
+    return { code: 200, data: data as Review[] };
+  } catch {
+    return { code: 200, data: BACKUP_REVIEWS };
   }
 }
 
 export async function getReview(id: string) {
   try {
-    const response = await fetch(`http://localhost:8081/api/v1/reviews/${id}`);
-
-    return response?.json();
-  } catch (error) {
-    const project = BACKUP_REVIEWS.find((review) => String(review.id) === String(id));
-    return project;
+    const db = await getDb();
+    await seedReviews();
+    const col = db.collection("reviews");
+    const data = await col.findOne(
+      { id: id },
+      { projection: { _id: 0 } }
+    );
+    return { code: 200, data };
+  } catch {
+    const review = BACKUP_REVIEWS.find((r) => String(r.id) === String(id));
+    return { code: 200, data: review };
   }
 }

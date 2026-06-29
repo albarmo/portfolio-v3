@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1a1a1a" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="#0a0a0a"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <rect width="1200" height="5" fill="#e61919"/>
+  <path d="M 30 20 L 30 50 M 20 30 L 50 30" stroke="#e61919" stroke-width="2" fill="none"/>
+  <path d="M 1170 610 L 1170 580 M 1180 600 L 1150 600" stroke="#333" stroke-width="2" fill="none"/>
+
+  <rect x="40" y="60" width="200" height="24" fill="none" stroke="#e61919" stroke-width="1"/>
+  <text x="52" y="77" font-family="'Courier New', monospace" font-size="11" fill="#e61919" font-weight="bold" letter-spacing="3">PERFORMANCE</text>
+
+  <text x="40" y="160" font-family="'Courier New', monospace" font-size="50" fill="#f0f0f0" font-weight="bold">CORE WEB</text>
+  <text x="40" y="218" font-family="'Courier New', monospace" font-size="50" fill="#e61919" font-weight="bold">VITALS</text>
+  <text x="40" y="268" font-family="'Courier New', monospace" font-size="24" fill="#444">optimize LCP and FCP</text>
+
+  <line x1="40" y1="300" x2="500" y2="300" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="40" y="330" font-family="'Courier New', monospace" font-size="13" fill="#444">ALBAR MOERHAMSA · JUNE 2025</text>
+  <text x="40" y="420" font-family="'Courier New', monospace" font-size="120" fill="#1a1a1a" font-weight="bold">04</text>
+
+  <!-- RIGHT VISUAL: Metric bars -->
+  <!-- Baseline -->
+  <line x1="650" y1="500" x2="1160" y2="500" stroke="#2a2a2a" stroke-width="1"/>
+
+  <!-- FCP bar - good (green-ish) -->
+  <rect x="680" y="340" width="80" height="160" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+  <rect x="680" y="380" width="80" height="120" fill="#2d6a4f"/>
+  <text x="720" y="335" font-family="'Courier New', monospace" font-size="11" fill="#555" text-anchor="middle">FCP</text>
+  <text x="720" y="520" font-family="'Courier New', monospace" font-size="10" fill="#2d6a4f" text-anchor="middle">1.2s</text>
+  <text x="720" y="534" font-family="'Courier New', monospace" font-size="9" fill="#333" text-anchor="middle">GOOD</text>
+
+  <!-- LCP bar - needs improvement -->
+  <rect x="810" y="260" width="80" height="240" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+  <rect x="810" y="260" width="80" height="240" fill="#e61919" opacity="0.7"/>
+  <text x="850" y="255" font-family="'Courier New', monospace" font-size="11" fill="#e61919" text-anchor="middle">LCP</text>
+  <text x="850" y="520" font-family="'Courier New', monospace" font-size="10" fill="#e61919" text-anchor="middle">4.1s</text>
+  <text x="850" y="534" font-family="'Courier New', monospace" font-size="9" fill="#555" text-anchor="middle">IMPROVE</text>
+
+  <!-- CLS bar - good -->
+  <rect x="940" y="440" width="80" height="60" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+  <rect x="940" y="440" width="80" height="60" fill="#2d6a4f" opacity="0.8"/>
+  <text x="980" y="435" font-family="'Courier New', monospace" font-size="11" fill="#555" text-anchor="middle">CLS</text>
+  <text x="980" y="520" font-family="'Courier New', monospace" font-size="10" fill="#2d6a4f" text-anchor="middle">0.05</text>
+  <text x="980" y="534" font-family="'Courier New', monospace" font-size="9" fill="#333" text-anchor="middle">GOOD</text>
+
+  <!-- INP bar - improving -->
+  <rect x="1070" y="380" width="80" height="120" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+  <rect x="1070" y="380" width="80" height="120" fill="#b57b00" opacity="0.7"/>
+  <text x="1110" y="375" font-family="'Courier New', monospace" font-size="11" fill="#555" text-anchor="middle">INP</text>
+  <text x="1110" y="520" font-family="'Courier New', monospace" font-size="10" fill="#b57b00" text-anchor="middle">180ms</text>
+  <text x="1110" y="534" font-family="'Courier New', monospace" font-size="9" fill="#444" text-anchor="middle">NEEDS</text>
+
+  <!-- Target line -->
+  <line x1="650" y1="380" x2="1160" y2="380" stroke="#e61919" stroke-width="1" stroke-dasharray="6,4" opacity="0.4"/>
+  <text x="655" y="376" font-family="'Courier New', monospace" font-size="9" fill="#e61919" opacity="0.6">TARGET</text>
+
+  <line x1="40" y1="590" x2="1160" y2="590" stroke="#1a1a1a" stroke-width="1"/>
+  <text x="40" y="612" font-family="'Courier New', monospace" font-size="10" fill="#333">albarmoerhamsa.dev/blogs</text>
+</svg>

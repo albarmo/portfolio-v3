@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1a1a1a" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="#0a0a0a"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <rect width="1200" height="5" fill="#e61919"/>
+  <path d="M 30 20 L 30 50 M 20 30 L 50 30" stroke="#e61919" stroke-width="2" fill="none"/>
+  <path d="M 1170 610 L 1170 580 M 1180 600 L 1150 600" stroke="#333" stroke-width="2" fill="none"/>
+
+  <rect x="40" y="60" width="160" height="24" fill="none" stroke="#e61919" stroke-width="1"/>
+  <text x="52" y="77" font-family="'Courier New', monospace" font-size="11" fill="#e61919" font-weight="bold" letter-spacing="3">STATE / 2025</text>
+
+  <text x="40" y="165" font-family="'Courier New', monospace" font-size="52" fill="#f0f0f0" font-weight="bold">THE 2025</text>
+  <text x="40" y="225" font-family="'Courier New', monospace" font-size="52" fill="#f0f0f0" font-weight="bold">STATE MGMT</text>
+  <text x="40" y="278" font-family="'Courier New', monospace" font-size="28" fill="#444">GUIDE</text>
+
+  <line x1="40" y1="310" x2="500" y2="310" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="40" y="340" font-family="'Courier New', monospace" font-size="13" fill="#444">ALBAR MOERHAMSA · JULY 2025</text>
+  <text x="40" y="420" font-family="'Courier New', monospace" font-size="120" fill="#1a1a1a" font-weight="bold">03</text>
+
+  <!-- RIGHT VISUAL: Node graph -->
+  <!-- Redux node -->
+  <circle cx="750" cy="180" r="55" fill="none" stroke="#2a2a2a" stroke-width="2"/>
+  <text x="750" y="173" font-family="'Courier New', monospace" font-size="14" fill="#555" text-anchor="middle" font-weight="bold">REDUX</text>
+  <text x="750" y="192" font-family="'Courier New', monospace" font-size="10" fill="#333" text-anchor="middle">boilerplate</text>
+
+  <!-- Zustand node -->
+  <circle cx="980" cy="260" r="60" fill="none" stroke="#e61919" stroke-width="2"/>
+  <text x="980" y="253" font-family="'Courier New', monospace" font-size="14" fill="#e61919" text-anchor="middle" font-weight="bold">ZUSTAND</text>
+  <text x="980" y="272" font-family="'Courier New', monospace" font-size="10" fill="#555" text-anchor="middle">recommended</text>
+
+  <!-- Jotai node -->
+  <circle cx="700" cy="380" r="45" fill="none" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="700" y="373" font-family="'Courier New', monospace" font-size="13" fill="#444" text-anchor="middle">JOTAI</text>
+  <text x="700" y="390" font-family="'Courier New', monospace" font-size="10" fill="#333" text-anchor="middle">atoms</text>
+
+  <!-- Signals node -->
+  <circle cx="1060" cy="430" r="40" fill="none" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="1060" y="424" font-family="'Courier New', monospace" font-size="12" fill="#444" text-anchor="middle">SIGNALS</text>
+  <text x="1060" y="440" font-family="'Courier New', monospace" font-size="10" fill="#333" text-anchor="middle">emerging</text>
+
+  <!-- Lines between nodes -->
+  <line x1="800" y1="210" x2="930" y2="240" stroke="#2a2a2a" stroke-width="1" stroke-dasharray="4"/>
+  <line x1="750" y1="235" x2="720" y2="335" stroke="#1a1a1a" stroke-width="1" stroke-dasharray="4"/>
+  <line x1="980" y1="320" x2="1040" y2="393" stroke="#1a1a1a" stroke-width="1" stroke-dasharray="4"/>
+  <line x1="740" y1="410" x2="1020" y2="430" stroke="#1a1a1a" stroke-width="1" stroke-dasharray="4"/>
+
+  <!-- Star marker on Zustand -->
+  <text x="1040" y="200" font-family="'Courier New', monospace" font-size="11" fill="#e61919" letter-spacing="2">★ PICK THIS</text>
+
+  <line x1="40" y1="590" x2="1160" y2="590" stroke="#1a1a1a" stroke-width="1"/>
+  <text x="40" y="612" font-family="'Courier New', monospace" font-size="10" fill="#333">albarmoerhamsa.dev/blogs</text>
+</svg>

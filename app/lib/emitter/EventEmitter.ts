@@ -1,6 +1,7 @@
-type Listener<T extends Array<any>> = (...args: T) => void;
+type EventArgs = unknown[];
+type Listener<T extends EventArgs> = (...args: T) => void;
 
-export class EventEmitter<EventMap extends Record<string, Array<any>>> {
+export class EventEmitter<EventMap extends Record<string, EventArgs>> {
     private eventListeners: {
         [K in keyof EventMap]?: Set<Listener<EventMap[K]>>;
     } = {};
@@ -13,7 +14,7 @@ export class EventEmitter<EventMap extends Record<string, Array<any>>> {
 
     emit<K extends keyof EventMap>(eventName: K, ...args: EventMap[K]) {
         const listeners = this.eventListeners[eventName] ?? new Set();
-        for (const listener of listeners as any) {
+        for (const listener of listeners) {
             listener(...args);
         }
     }
