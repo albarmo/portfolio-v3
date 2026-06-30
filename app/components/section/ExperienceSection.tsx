@@ -1,8 +1,11 @@
+import { ChevronRight } from "lucide-react";
+
 const companies = [
   { name: "Feedloop", logo: "/images/company/feedloop.jpg" },
   { name: "BRI", logo: "/images/company/bri.png" },
   { name: "1000 Startup", logo: "/images/company/1000-startup.png" },
   { name: "Everidea", logo: "/images/company/everidea.webp" },
+  { name: "Multi Bit Group Asia", logo: "/images/company/bitgroup.png" },
 ];
 
 const principles = [
@@ -25,7 +28,6 @@ const ExperienceSection = () => {
         </div>
 
         <div className="grid border border-[var(--line)] lg:grid-cols-[0.95fr_1.05fr]">
-
           {/* Image panel */}
           <div className="relative overflow-hidden border-b border-[var(--line)] lg:border-b-0 lg:border-r">
             <div className="border-b border-[var(--line)] bg-[var(--surface-muted)] px-4 py-2">
@@ -73,9 +75,7 @@ const ExperienceSection = () => {
                       i > 0 ? "border-t border-[var(--line)]" : ""
                     }`}
                   >
-                    <span className="mt-0.5 shrink-0 text-[var(--accent)]">
-                      ///
-                    </span>
+                    <ChevronRight className="mt-0.5 h-3 w-3 shrink-0 text-[var(--accent)]" />
                     <span className="uppercase tracking-wide">{principle}</span>
                   </div>
                 ))}
@@ -83,7 +83,7 @@ const ExperienceSection = () => {
             </div>
 
             {/* Company logos */}
-            <div className="grid grid-cols-2 gap-px bg-[var(--line)] sm:grid-cols-4">
+            <div className="grid grid-cols-2 gap-px bg-[var(--line)] sm:grid-cols-5">
               {companies.map((company) => (
                 <div
                   key={company.name}
@@ -92,7 +92,7 @@ const ExperienceSection = () => {
                   <img
                     src={company.logo}
                     alt={`${company.name} logo`}
-                    className="max-h-10 max-w-full object-contain grayscale brightness-75 hover:brightness-100 transition-all duration-300"
+                    className="max-h-10 max-w-full object-contain grayscale brightness-75 hover:brightness-100 hover:grayscale-0 transition-all duration-300"
                     loading="lazy"
                   />
                 </div>

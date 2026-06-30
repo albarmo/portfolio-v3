@@ -40,14 +40,16 @@ const features: Feature[] = [
 ];
 
 const FeatureCell: FC<Feature> = ({ icon, title, description, code }) => (
-  <div className="border-b border-r border-[var(--line)] p-5 transition-colors hover:bg-[var(--surface)]">
+  <div className="accent-line-hover group relative border-b border-r border-[var(--line)] p-5 transition-colors hover:bg-[var(--surface)]">
     <div className="flex items-center justify-between">
       <samp className="font-mono text-[0.65rem] font-bold uppercase tracking-widest text-[var(--muted)]">
         {code}
       </samp>
-      <span className="text-[var(--accent)]">{icon}</span>
+      <span className="text-[var(--muted)] transition-all duration-200 group-hover:text-[var(--accent)] group-hover:drop-shadow-[0_0_6px_var(--accent)]">
+        {icon}
+      </span>
     </div>
-    <h3 className="mt-4 font-display text-lg font-black uppercase text-[var(--text)]">
+    <h3 className="mt-4 font-display text-lg font-black uppercase text-[var(--text)] transition-colors group-hover:text-[var(--accent)]">
       {title}
     </h3>
     <p className="mt-2 font-mono text-xs leading-5 text-[var(--muted)]">
@@ -62,6 +64,7 @@ export default function AreaOfExpertise() {
     <section className="section-pad">
       <div className="section-shell">
         <div className="grid gap-0 lg:grid-cols-[0.9fr_1.1fr]">
+
           {/* Feature grid */}
           <div className="grid grid-cols-2 border-l border-t border-[var(--line)]">
             {features.map((feature) => (
@@ -70,7 +73,10 @@ export default function AreaOfExpertise() {
           </div>
 
           {/* Stats panel */}
-          <div className="border border-[var(--line)] lg:border-l-0">
+          <div className="relative border border-[var(--line)] lg:border-l-0">
+            {/* Accent corner top-right */}
+            <span className="pointer-events-none absolute right-0 top-0 h-5 w-5 border-r-2 border-t-2 border-[var(--accent)]" />
+
             <div className="border-b border-[var(--line)] bg-[var(--surface-muted)] px-6 py-3">
               <samp className="font-mono text-[0.65rem] font-bold uppercase tracking-widest text-[var(--muted)]">
                 [ EXPERTISE.SYS / PROFILE ]
@@ -89,57 +95,40 @@ export default function AreaOfExpertise() {
               </p>
 
               <div className="mt-8 grid grid-cols-3 border border-[var(--line)]">
-                <div className="border-r border-[var(--line)] p-4">
+                <div className="group relative overflow-hidden border-r border-[var(--line)] p-4 transition-colors hover:bg-[var(--surface-muted)]/50">
                   <span className="font-display text-3xl font-black text-[var(--text)]">
-                    <CountUp
-                      from={0}
-                      to={years}
-                      separator=","
-                      direction="up"
-                      duration={1}
-                      className="count-up-text"
-                    />
+                    <CountUp from={0} to={years} separator="," direction="up" duration={1} className="count-up-text" />
                     +
                   </span>
                   <samp className="mt-1 block font-mono text-[0.65rem] font-bold uppercase tracking-widest text-[var(--muted)]">
                     Years
                   </samp>
+                  <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-[var(--muted)] transition-all duration-300 group-hover:w-full" />
                 </div>
-                <div className="border-r border-[var(--line)] p-4">
-                  <span className="font-display text-3xl font-black text-[var(--accent)]">
-                    <CountUp
-                      from={0}
-                      to={10}
-                      separator=","
-                      direction="up"
-                      duration={1}
-                      className="count-up-text"
-                    />
+                <div className="group relative overflow-hidden border-r border-[var(--line)] p-4 transition-colors hover:bg-[var(--surface-muted)]/50">
+                  <span className="font-display text-3xl font-black text-[var(--accent)] drop-shadow-[0_0_12px_rgba(230,25,25,0.25)]">
+                    <CountUp from={0} to={10} separator="," direction="up" duration={1} className="count-up-text" />
                     +
                   </span>
                   <samp className="mt-1 block font-mono text-[0.65rem] font-bold uppercase tracking-widest text-[var(--muted)]">
                     Projects
                   </samp>
+                  <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-[var(--accent)] transition-all duration-300 group-hover:w-full" />
                 </div>
-                <div className="p-4">
+                <div className="group relative overflow-hidden p-4 transition-colors hover:bg-[var(--surface-muted)]/50">
                   <span className="font-display text-3xl font-black text-[var(--text)]">
-                    <CountUp
-                      from={0}
-                      to={3}
-                      separator=","
-                      direction="up"
-                      duration={1}
-                      className="count-up-text"
-                    />
+                    <CountUp from={0} to={3} separator="," direction="up" duration={1} className="count-up-text" />
                     +
                   </span>
                   <samp className="mt-1 block font-mono text-[0.65rem] font-bold uppercase tracking-widest text-[var(--muted)]">
                     Companies
                   </samp>
+                  <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-[var(--muted)] transition-all duration-300 group-hover:w-full" />
                 </div>
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </section>
