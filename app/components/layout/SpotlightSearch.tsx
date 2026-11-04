@@ -128,7 +128,7 @@ export default function SpotlightSearch() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setIsOpen(false)}
-            className="fixed inset-0 z-50 bg-black/70"
+            className="fixed inset-0 z-50 bg-[#111827]/65 backdrop-blur-sm"
           >
             <motion.div
               initial={{ opacity: 0, y: -10 }}
@@ -142,10 +142,10 @@ export default function SpotlightSearch() {
                 <SearchIcon className="h-4 w-4 text-[var(--muted)]" />
                 <input
                   type="text"
-                  placeholder="SEARCH THIS PAGE"
+                  placeholder="Search this page"
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
-                  className="ml-4 w-full bg-transparent font-mono text-sm uppercase tracking-widest text-[var(--text)] placeholder:text-[var(--muted)] focus:outline-none"
+                  className="ml-4 w-full bg-transparent text-sm text-[var(--text)] placeholder:text-[var(--muted)] focus:outline-none"
                   // eslint-disable-next-line jsx-a11y/no-autofocus
                   autoFocus
                 />
@@ -160,14 +160,14 @@ export default function SpotlightSearch() {
                     <button
                       onClick={goToPrevious}
                       disabled={results.length === 0}
-                      className="flex h-7 w-7 items-center justify-center border border-[var(--line)] text-[var(--muted)] hover:border-[var(--accent)] hover:text-[var(--accent)] disabled:opacity-40"
+                      className="flex h-8 w-8 items-center justify-center rounded-full border border-[var(--line)] text-[var(--muted)] hover:border-[var(--accent)] hover:text-[var(--accent)] disabled:opacity-40"
                     >
                       <ChevronUpIcon className="h-3 w-3" />
                     </button>
                     <button
                       onClick={goToNext}
                       disabled={results.length === 0}
-                      className="flex h-7 w-7 items-center justify-center border border-[var(--line)] text-[var(--muted)] hover:border-[var(--accent)] hover:text-[var(--accent)] disabled:opacity-40"
+                      className="flex h-8 w-8 items-center justify-center rounded-full border border-[var(--line)] text-[var(--muted)] hover:border-[var(--accent)] hover:text-[var(--accent)] disabled:opacity-40"
                     >
                       <ChevronDownIcon className="h-3 w-3" />
                     </button>
@@ -178,7 +178,7 @@ export default function SpotlightSearch() {
           </motion.div>
         )}
       </AnimatePresence>
-      <style>{`mark.spotlight-active { background-color: #e61919; color: #eaeaea; }`}</style>
+      <style>{`mark.spotlight-active { background-color: #F04A2D; color: #111827; }`}</style>
     </Fragment>
   );
 }

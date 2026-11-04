@@ -3,12 +3,12 @@ import { MoonIcon, SunIcon } from "lucide-react";
 import { applyTheme } from "~/utils/theme.client";
 
 export function ThemeSwitcher() {
-  const [theme, setTheme] = useState<"light" | "dark">("dark");
+  const [theme, setTheme] = useState<"light" | "dark">("light");
 
   useEffect(() => {
     const savedTheme = localStorage.theme;
     const initialTheme: "light" | "dark" =
-      savedTheme === "light" ? "light" : "dark";
+      savedTheme === "dark" ? "dark" : "light";
     setTheme(initialTheme);
     applyTheme(initialTheme);
   }, []);
@@ -24,7 +24,7 @@ export function ThemeSwitcher() {
     <button
       type="button"
       onClick={toggleTheme}
-      className="flex h-9 w-9 items-center justify-center border border-[var(--line)] text-[var(--muted)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
+      className="flex h-9 w-9 items-center justify-center rounded-full border border-[var(--line)] text-[var(--muted)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
     >
       <span className="sr-only">Toggle theme</span>
       {theme === "light" ? (

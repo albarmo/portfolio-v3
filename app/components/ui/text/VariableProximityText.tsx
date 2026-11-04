@@ -166,7 +166,7 @@ const VariableProximity = forwardRef<HTMLSpanElement, VariableProximityProps>((p
             } : undefined}
             style={{
                 display: "inline",
-                fontFamily: '"Roboto Flex", sans-serif',
+                fontFamily: '"Manrope", sans-serif',
                 ...style,
             }}
             className={className}

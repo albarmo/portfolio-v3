@@ -1,134 +1,146 @@
-import { Monitor, Network, PaintRoller, Smartphone } from "lucide-react";
-import type { FC, ReactNode } from "react";
-import CountUp from "../ui/text/CountUp";
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
+import { useRef } from "react";
 
-interface Feature {
-  icon: ReactNode;
-  title: string;
-  description: string;
-  code: string;
-}
-
-const features: Feature[] = [
+const capabilities = [
   {
-    code: "SYS.01",
-    icon: <Monitor className="h-5 w-5" />,
-    title: "Web Apps",
+    number: "01",
+    title: "Frontend engineering",
     description:
-      "Dynamic and responsive web applications that go beyond static websites.",
+      "Scalable, maintainable, and high-performance web applications built for real product teams.",
+    span: "md:col-span-7",
+    className: "bg-[#0099FF] text-[#111827]",
   },
   {
-    code: "SYS.02",
-    icon: <Smartphone className="h-5 w-5" />,
-    title: "Mobile Apps",
+    number: "02",
+    title: "Product development",
     description:
-      "Applications for iOS & Android with optimal performance and deep mobile UX.",
+      "Complex requirements shaped into clear digital products with purposeful user flows.",
+    span: "md:col-span-5",
+    className: "bg-[#111827] text-white md:translate-y-16",
   },
   {
-    code: "SYS.03",
-    icon: <PaintRoller className="h-5 w-5" />,
-    title: "UI/UX",
-    description: "Interfaces that are visually precise and effortless to use.",
+    number: "03",
+    title: "UI engineering",
+    description:
+      "Design systems and visual concepts translated into precise, resilient interfaces.",
+    span: "md:col-span-5",
+    className: "bg-[#F5F2E9] text-[#111827]",
   },
   {
-    code: "SYS.04",
-    icon: <Network className="h-5 w-5" />,
-    title: "API",
+    number: "04",
+    title: "Performance and accessibility",
     description:
-      "Reliable and secure bridge connecting frontend to backend services.",
+      "Fast, inclusive experiences with clear interaction states and measurable performance.",
+    span: "md:col-span-7",
+    className: "bg-[#F04A2D] text-[#111827] md:translate-y-16",
   },
 ];
 
-const FeatureCell: FC<Feature> = ({ icon, title, description, code }) => (
-  <div className="accent-line-hover group relative border-b border-r border-[var(--line)] p-5 transition-colors hover:bg-[var(--surface)]">
-    <div className="flex items-center justify-between">
-      <samp className="font-mono text-[0.65rem] font-bold uppercase tracking-widest text-[var(--muted)]">
-        {code}
-      </samp>
-      <span className="text-[var(--muted)] transition-all duration-200 group-hover:text-[var(--accent)] group-hover:drop-shadow-[0_0_6px_var(--accent)]">
-        {icon}
-      </span>
-    </div>
-    <h3 className="mt-4 font-display text-lg font-black uppercase text-[var(--text)] transition-colors group-hover:text-[var(--accent)]">
-      {title}
-    </h3>
-    <p className="mt-2 font-mono text-xs leading-5 text-[var(--muted)]">
-      {description}
-    </p>
-  </div>
-);
+function CapabilityCard({
+  capability,
+  index,
+  reduceMotion,
+}: {
+  capability: (typeof capabilities)[number];
+  index: number;
+  reduceMotion: boolean;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  // entrance: 0 when the card's top meets the viewport bottom, 1 at 65% of the viewport
+  const { scrollYProgress: enter } = useScroll({
+    target: ref,
+    offset: ["start end", "start 0.65"],
+  });
+  // parallax: runs for the whole time the card is on screen
+  const { scrollYProgress: pass } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const fromLeft = index % 2 === 0;
+  const x = useTransform(enter, [0, 1], [fromLeft ? -140 : 140, 0]);
+  const rotate = useTransform(enter, [0, 1], [fromLeft ? -4 : 4, 0]);
+  const scale = useTransform(enter, [0, 1], [0.9, 1]);
+  const opacity = useTransform(enter, [0, 0.5], [0, 1]);
+  const numberY = useTransform(pass, [0, 1], [90, -90]);
+
+  return (
+    <motion.div
+      ref={ref}
+      style={reduceMotion ? undefined : { x, rotate, scale, opacity }}
+      className={capability.span}
+    >
+      <article
+        className={`group relative h-full min-h-72 overflow-hidden rounded-[2rem] p-7 sm:p-9 lg:rounded-[2.5rem] ${capability.className}`}
+      >
+        <span className="font-mono text-xs font-medium tracking-[0.1em] opacity-70">
+          {capability.number}
+        </span>
+        <div className="mt-16 max-w-xl">
+          <h3 className="font-display text-5xl font-black uppercase leading-[0.88] tracking-[-0.02em] sm:text-6xl">
+            {capability.title}
+          </h3>
+          <p className="mt-5 max-w-[48ch] text-sm font-medium leading-6 opacity-80">
+            {capability.description}
+          </p>
+        </div>
+        <motion.span
+          aria-hidden="true"
+          style={reduceMotion ? undefined : { y: numberY }}
+          className="absolute -right-10 -top-12"
+        >
+          <span className="block font-display text-[13rem] font-black leading-none opacity-[0.08] transition-transform duration-500 group-hover:-translate-x-3 group-hover:translate-y-3">
+            {capability.number}
+          </span>
+        </motion.span>
+      </article>
+    </motion.div>
+  );
+}
 
 export default function AreaOfExpertise() {
-  const years = new Date().getFullYear() - 2021;
+  const reduceMotion = useReducedMotion() ?? false;
+  const headerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: headerRef,
+    offset: ["start end", "end 0.55"],
+  });
+  const headingX = useTransform(scrollYProgress, [0, 1], ["-12%", "0%"]);
+  const introY = useTransform(scrollYProgress, [0.3, 1], [40, 0]);
+  const introOpacity = useTransform(scrollYProgress, [0.3, 1], [0, 1]);
+
   return (
-    <section className="section-pad">
+    <section className="section-pad overflow-hidden bg-[var(--bg)]">
       <div className="section-shell">
-        <div className="grid gap-0 lg:grid-cols-[0.9fr_1.1fr]">
+        <div ref={headerRef}>
+          <motion.h2
+            style={reduceMotion ? undefined : { x: headingX }}
+            className="max-w-[11ch] font-display text-6xl font-black uppercase leading-[0.84] tracking-[-0.035em] sm:text-7xl lg:text-8xl"
+          >
+            Turning ideas into digital experiences.
+          </motion.h2>
+          <motion.p
+            style={reduceMotion ? undefined : { y: introY, opacity: introOpacity }}
+            className="mt-6 max-w-[58ch] text-base leading-7 text-[var(--muted)]"
+          >
+            From early product thinking to production delivery, I work across the
+            parts that make an interface useful and durable.
+          </motion.p>
+        </div>
 
-          {/* Feature grid */}
-          <div className="grid grid-cols-2 border-l border-t border-[var(--line)]">
-            {features.map((feature) => (
-              <FeatureCell key={feature.title} {...feature} />
-            ))}
-          </div>
-
-          {/* Stats panel */}
-          <div className="relative border border-[var(--line)] lg:border-l-0">
-            {/* Accent corner top-right */}
-            <span className="pointer-events-none absolute right-0 top-0 h-5 w-5 border-r-2 border-t-2 border-[var(--accent)]" />
-
-            <div className="border-b border-[var(--line)] bg-[var(--surface-muted)] px-6 py-3">
-              <samp className="font-mono text-[0.65rem] font-bold uppercase tracking-widest text-[var(--muted)]">
-                [ EXPERTISE.SYS / PROFILE ]
-              </samp>
-            </div>
-            <div className="p-6 lg:p-8">
-              <h2 className="font-display text-3xl font-black uppercase leading-tight text-[var(--text)] sm:text-4xl">
-                DESIGN SENSE, ENGINEERING DEPTH, AND PRODUCT THINKING.
-              </h2>
-              <p className="mt-5 font-mono text-xs leading-6 text-[var(--muted)]">
-                I bridge the gap between design and engineering — crafting
-                interfaces that are both visually intentional and technically
-                sound. Every product I build is shaped by a deep respect for
-                user experience, clean architecture, and long-term
-                maintainability.
-              </p>
-
-              <div className="mt-8 grid grid-cols-3 border border-[var(--line)]">
-                <div className="group relative overflow-hidden border-r border-[var(--line)] p-4 transition-colors hover:bg-[var(--surface-muted)]/50">
-                  <span className="font-display text-3xl font-black text-[var(--text)]">
-                    <CountUp from={0} to={years} separator="," direction="up" duration={1} className="count-up-text" />
-                    +
-                  </span>
-                  <samp className="mt-1 block font-mono text-[0.65rem] font-bold uppercase tracking-widest text-[var(--muted)]">
-                    Years
-                  </samp>
-                  <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-[var(--muted)] transition-all duration-300 group-hover:w-full" />
-                </div>
-                <div className="group relative overflow-hidden border-r border-[var(--line)] p-4 transition-colors hover:bg-[var(--surface-muted)]/50">
-                  <span className="font-display text-3xl font-black text-[var(--accent)] drop-shadow-[0_0_12px_rgba(230,25,25,0.25)]">
-                    <CountUp from={0} to={10} separator="," direction="up" duration={1} className="count-up-text" />
-                    +
-                  </span>
-                  <samp className="mt-1 block font-mono text-[0.65rem] font-bold uppercase tracking-widest text-[var(--muted)]">
-                    Projects
-                  </samp>
-                  <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-[var(--accent)] transition-all duration-300 group-hover:w-full" />
-                </div>
-                <div className="group relative overflow-hidden p-4 transition-colors hover:bg-[var(--surface-muted)]/50">
-                  <span className="font-display text-3xl font-black text-[var(--text)]">
-                    <CountUp from={0} to={3} separator="," direction="up" duration={1} className="count-up-text" />
-                    +
-                  </span>
-                  <samp className="mt-1 block font-mono text-[0.65rem] font-bold uppercase tracking-widest text-[var(--muted)]">
-                    Companies
-                  </samp>
-                  <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-[var(--muted)] transition-all duration-300 group-hover:w-full" />
-                </div>
-              </div>
-            </div>
-          </div>
-
+        <div className="mt-14 grid gap-5 md:grid-cols-12 md:pb-16">
+          {capabilities.map((capability, index) => (
+            <CapabilityCard
+              key={capability.number}
+              capability={capability}
+              index={index}
+              reduceMotion={reduceMotion}
+            />
+          ))}
         </div>
       </div>
     </section>

@@ -1,50 +1,68 @@
-import { useRef } from "react";
-import VariableProximity from "../ui/text/VariableProximityText";
+import { Link } from "@remix-run/react";
+import { ArrowUpRight } from "lucide-react";
 
 const CAREER_START = 2021;
 
-const AboutMe = () => {
-  const containerRef = useRef(null);
+export default function AboutMe() {
   const years = new Date().getFullYear() - CAREER_START;
 
   return (
-    <section className="section-pad">
-      <div className="section-shell">
-        <div className="mb-8 flex items-center justify-between border-b border-[var(--line)] pb-4">
-          <samp className="font-mono text-[0.65rem] font-bold uppercase tracking-widest text-[var(--muted)]">
-            [ ABOUT.SYS / IDENTITY ]
-          </samp>
-          <samp className="font-mono text-[0.65rem] text-[var(--muted)]">
-            UNIT / A-01
-          </samp>
-        </div>
-
-        <div
-          ref={containerRef}
-          className="grid gap-10 lg:grid-cols-[0.34fr_1fr] lg:items-start"
-        >
-          <div className="hidden lg:sticky lg:top-20 lg:block">
-            <samp className="block font-mono text-[0.65rem] font-bold uppercase tracking-widest text-[var(--muted)]">
-              ABOUT ALBAR
-            </samp>
-            <p className="mt-4 font-mono text-xs leading-6 text-[var(--muted)]">
-              Software Engineer and Frontend Engineer focused on interfaces that
-              feel calm, fast, and reliable in daily use.
-            </p>
-          </div>
-          <VariableProximity
-            label={`I'm Albar Moerhamsa, a Software Engineer with over ${years}+ years of experience in crafting high-quality and impactful digital experiences. I have a strong focus on turning complex problems into elegant, user-friendly interfaces.`}
-            className="max-w-6xl text-3xl font-extrabold leading-tight tracking-tight text-[var(--text)] sm:text-5xl lg:text-6xl"
-            fromFontVariationSettings="'wght' 420, 'opsz' 9"
-            toFontVariationSettings="'wght' 900, 'opsz' 40"
-            containerRef={containerRef}
-            radius={120}
-            falloff="linear"
+    <section id="about" className="section-pad paper-section scroll-mt-20">
+      <div className="section-shell grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-20">
+        <figure className="relative overflow-hidden rounded-[2rem] bg-[#0099FF] lg:rounded-[2.5rem]">
+          <img
+            src="/images/character-2.png"
+            alt="Albar Moerhamsa"
+            className="aspect-[4/5] h-full w-full object-cover object-top"
+            width={840}
+            height={1050}
+            loading="lazy"
           />
+        </figure>
+
+        <div>
+          <h2 className="max-w-[11ch] font-display text-6xl font-black uppercase leading-[0.86] tracking-[-0.035em] text-[var(--text)] sm:text-7xl lg:text-8xl">
+            Design sense. Engineering depth. Product thinking.
+          </h2>
+          <p className="mt-7 max-w-[60ch] text-base leading-8 text-[var(--muted)]">
+            I&apos;m a Software Engineer who turns complex requirements into
+            intuitive, scalable, and reliable digital products. My work sits
+            between frontend engineering, product thinking, and careful visual
+            execution.
+          </p>
+
+          <div className="mt-10 grid grid-cols-2 gap-x-6 gap-y-8 border-t border-[var(--line)] pt-8 sm:grid-cols-3">
+            <div>
+              <strong className="font-display text-5xl font-black uppercase leading-none text-[#0099FF]">
+                {years}+
+              </strong>
+              <span className="mt-2 block text-xs font-bold uppercase tracking-[0.08em] text-[var(--muted)]">
+                Years of experience
+              </span>
+            </div>
+            <div>
+              <strong className="font-display text-5xl font-black uppercase leading-none text-[var(--text)]">
+                Product
+              </strong>
+              <span className="mt-2 block text-xs font-bold uppercase tracking-[0.08em] text-[var(--muted)]">
+                Focused engineering
+              </span>
+            </div>
+            <div className="col-span-2 sm:col-span-1">
+              <strong className="font-display text-5xl font-black uppercase leading-none text-[#F04A2D]">
+                Fintech
+              </strong>
+              <span className="mt-2 block text-xs font-bold uppercase tracking-[0.08em] text-[var(--muted)]">
+                Government and digital products
+              </span>
+            </div>
+          </div>
+
+          <Link to="/about" className="premium-link premium-link-secondary mt-10">
+            More about me <ArrowUpRight className="h-4 w-4" />
+          </Link>
         </div>
       </div>
     </section>
   );
-};
-
-export default AboutMe;
+}

@@ -1,83 +1,47 @@
 import { Link } from "@remix-run/react";
-import { Github, Instagram, Linkedin } from "lucide-react";
+import { ArrowUp } from "lucide-react";
 
 const footerLinks = [
-  { to: "/", label: "Home" },
-  { to: "/about", label: "About" },
-  { to: "/projects", label: "Portfolio" },
-  { to: "/blogs", label: "Blogs" },
-  { to: "/contact", label: "Contact" },
-];
-
-const socials = [
-  {
-    to: "https://www.linkedin.com/in/albarms",
-    label: "LinkedIn",
-    icon: Linkedin,
-  },
-  {
-    to: "https://www.instagram.com/albrms_",
-    label: "Instagram",
-    icon: Instagram,
-  },
-  { to: "https://github.com/albarmo", label: "GitHub", icon: Github },
+  { to: "/#about", label: "About" },
+  { to: "/#work", label: "Work" },
+  { to: "/#experience", label: "Experience" },
+  { to: "/#notes", label: "Notes" },
+  { to: "/contact", label: "Let's talk" },
 ];
 
 export const Footer = () => {
   return (
-    <footer className="border-t border-[var(--line)] bg-[var(--bg)]">
-      <div className="section-shell py-10">
-        <div className="grid border border-[var(--line)] md:grid-cols-[1fr_auto]">
-          <div className="border-b border-[var(--line)] p-6 md:border-b-0 md:border-r">
+    <footer className="bg-[#111827] py-12 text-[#FDFDFE]">
+      <div className="section-shell">
+        <div className="grid gap-10 border-b border-white/15 pb-12 md:grid-cols-[1fr_auto] md:items-end">
+          <div>
             <Link
               to="/"
-              className="inline-flex items-center gap-2 font-mono text-sm font-bold uppercase tracking-widest text-[var(--text)] transition-colors hover:text-[var(--accent)]"
+              className="font-display text-5xl font-black uppercase tracking-[-0.03em]"
             >
-              <img src="/albarmox.png" alt="Albarmo" width="26" height="26" />
-              albarmox<span className="text-[var(--accent)]">_</span>
+              Albarmox<span className="text-[#F04A2D]">.</span>
             </Link>
-            <p className="mt-4 max-w-sm font-mono text-xs leading-6 text-[var(--muted)]">
-              Portfolio of Albar Moerhamsa. Software Engineer and Frontend
-              Engineer building production-ready digital products.
+            <p className="mt-3 max-w-sm text-sm leading-6 text-white/60">
+              Built with purpose. Designed to make an impact.
             </p>
           </div>
-
-          <div className="p-6">
-            <samp className="block font-mono text-[0.65rem] font-bold uppercase tracking-widest text-[var(--muted)]">
-              NAVIGATION
-            </samp>
-            <nav className="mt-3 grid gap-2" aria-label="Footer navigation">
-              {footerLinks.map((item) => (
-                <Link
-                  key={item.to}
-                  to={item.to}
-                  className="font-mono text-xs font-bold uppercase tracking-widest text-[var(--muted)] transition-colors hover:text-[var(--accent)]"
-                >
-                  {`>>> ${item.label}`}
-                </Link>
-              ))}
-            </nav>
-          </div>
-        </div>
-
-        <div className="flex items-center justify-between border-x border-b border-[var(--line)] px-6 py-4">
-          <samp className="font-mono text-xs text-[var(--muted)]">
-            © 2026 ALBARMOX. ALL RIGHTS RESERVED.
-          </samp>
-          <div className="flex gap-0">
-            {socials.map(({ to, label, icon: Icon }) => (
+          <nav className="flex flex-wrap gap-x-6 gap-y-3" aria-label="Footer navigation">
+            {footerLinks.map((item) => (
               <Link
-                key={label}
-                to={to}
-                target="_blank"
-                rel="noreferrer"
-                className="flex h-9 w-9 items-center justify-center border-l border-[var(--line)] text-[var(--muted)] transition-colors hover:text-[var(--accent)]"
+                key={item.to}
+                to={item.to}
+                className="text-xs font-bold uppercase tracking-[0.08em] text-white/65 transition-colors hover:text-white"
               >
-                <span className="sr-only">{label}</span>
-                <Icon className="h-4 w-4" />
+                {item.label}
               </Link>
             ))}
-          </div>
+          </nav>
+        </div>
+        <div className="flex flex-col gap-5 pt-7 text-xs text-white/50 sm:flex-row sm:items-center sm:justify-between">
+          <span>© {new Date().getFullYear()} Albarmox. All rights reserved.</span>
+          <Link to="/#top" className="inline-flex items-center gap-2 hover:text-white">
+            Back to top <ArrowUp className="h-4 w-4" />
+          </Link>
         </div>
       </div>
     </footer>

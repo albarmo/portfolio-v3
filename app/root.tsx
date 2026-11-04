@@ -16,12 +16,16 @@ import Navbar from "./components/layout/Navbar";
 import { themeCookie } from "./utils/cookie";
 import { ReactNode, useEffect } from "react";
 import { applyTheme } from "./utils/theme.client";
-import FloatingButton from "./components/ui/FloatingButton";
 import PageProgressBar from "./components/ui/PageProgressBar";
-import PageLoader from "./components/ui/PageLoader";
 import { Footer } from "./components/layout/Footer";
 import SpotlightSearch from "./components/layout/SpotlightSearch";
 import { SpotlightProvider } from "./context/SpotlightContext";
+import "@fontsource/big-shoulders-display/latin-800";
+import "@fontsource/big-shoulders-display/latin-900";
+import "@fontsource/manrope/latin-400";
+import "@fontsource/manrope/latin-500";
+import "@fontsource/manrope/latin-600";
+import "@fontsource/manrope/latin-700";
 
 export const links: LinksFunction = () => [
   { rel: "icon", href: favicon, type: "image/x-icon" },
@@ -31,7 +35,7 @@ export const links: LinksFunction = () => [
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const cookieHeader = request.headers.get("Cookie");
-  const theme = (await themeCookie.parse(cookieHeader)) || "dark";
+  const theme = (await themeCookie.parse(cookieHeader)) || "light";
 
   return { theme };
 };
@@ -85,16 +89,6 @@ export default function App() {
         />
         <Meta />
         <title>Albar Moerhamsa - Software Engineer</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin=""
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@400;500;700&display=swap"
-          rel="stylesheet"
-        />
         <Links />
       </head>
       <body>
@@ -104,12 +98,10 @@ export default function App() {
         >
           Skip to content
         </a>
-        <PageLoader />
         <PageProgressBar />
         <SpotlightProvider>
           {!isAdmin && <Navbar />}
           <Outlet />
-          {!isAdmin && <FloatingButton />}
           {!isAdmin && <SpotlightSearch />}
         </SpotlightProvider>
         {!isAdmin && <Footer />}

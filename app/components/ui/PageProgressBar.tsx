@@ -56,7 +56,6 @@ export default function PageProgressBar() {
         transition: isLoading
           ? "width 0.4s ease-out"
           : "width 0.2s ease-in",
-        boxShadow: "0 0 8px var(--accent)",
         opacity: visible ? 1 : 0,
       }}
     />

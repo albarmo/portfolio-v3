@@ -5,17 +5,19 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        display: ['"Archivo Black"', '"Inter"', "sans-serif"],
+        display: ['"Big Shoulders Display"', "sans-serif"],
+        sans: ['"Manrope"', "sans-serif"],
+        mono: ['"Manrope"', "sans-serif"],
       },
       colors: {
-        accent: "#e61919",
+        accent: "#F04A2D",
         primary: {
-          DEFAULT: "#4F46E5",
-          dark: "#050311",
-          light: "#6366F1",
+          DEFAULT: "#0099FF",
+          dark: "#0077C7",
+          light: "#66C2FF",
         },
-        "gradient-start": "#6366F1",
-        "gradient-end": "#8B5CF6",
+        "gradient-start": "#0099FF",
+        "gradient-end": "#66C2FF",
       },
       keyframes: {
         shine: {
@@ -33,6 +35,25 @@ export default {
         marquee: {
           "0%": { transform: "translateX(0%)" },
           "100%": { transform: "translateX(-50%)" },
+        },
+        "sky-drift": {
+          "0%": { transform: "scale(1.08) translate3d(-1.5%, 0, 0)" },
+          "100%": { transform: "scale(1.16) translate3d(1.5%, -1%, 0)" },
+        },
+        "ray-sway": {
+          "0%": { transform: "rotate(-4deg)", opacity: "0.55" },
+          "50%": { opacity: "1" },
+          "100%": { transform: "rotate(4deg)", opacity: "0.7" },
+        },
+        "sun-breathe": {
+          "0%": { transform: "scale(0.92)", opacity: "0.8" },
+          "100%": { transform: "scale(1.08)", opacity: "1" },
+        },
+        "shooting-star": {
+          "0%": { transform: "rotate(-30deg) translateX(0)", opacity: "0" },
+          "2%": { opacity: "1" },
+          "10%": { transform: "rotate(-30deg) translateX(-55vw)", opacity: "0" },
+          "100%": { transform: "rotate(-30deg) translateX(-55vw)", opacity: "0" },
         },
       },
       animation: {
