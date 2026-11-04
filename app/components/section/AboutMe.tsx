@@ -9,7 +9,7 @@ export default function AboutMe() {
   return (
     <section id="about" className="section-pad paper-section scroll-mt-20">
       <div className="section-shell grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-20">
-        <figure className="relative overflow-hidden rounded-[2rem] bg-[#0099FF] lg:rounded-[2.5rem]">
+        <figure className="relative overflow-hidden rounded-[2rem] bg-primary lg:rounded-[2.5rem]">
           <img
             src="/images/character-2.png"
             alt="Albar Moerhamsa"
@@ -33,7 +33,7 @@ export default function AboutMe() {
 
           <div className="mt-10 grid grid-cols-2 gap-x-6 gap-y-8 border-t border-[var(--line)] pt-8 sm:grid-cols-3">
             <div>
-              <strong className="font-display text-5xl font-black uppercase leading-none text-[#0099FF]">
+              <strong className="font-display text-5xl font-black uppercase leading-none text-primary">
                 {years}+
               </strong>
               <span className="mt-2 block text-xs font-bold uppercase tracking-[0.08em] text-[var(--muted)]">
@@ -49,7 +49,7 @@ export default function AboutMe() {
               </span>
             </div>
             <div className="col-span-2 sm:col-span-1">
-              <strong className="font-display text-5xl font-black uppercase leading-none text-[#F04A2D]">
+              <strong className="font-display text-5xl font-black uppercase leading-none text-accent">
                 Fintech
               </strong>
               <span className="mt-2 block text-xs font-bold uppercase tracking-[0.08em] text-[var(--muted)]">

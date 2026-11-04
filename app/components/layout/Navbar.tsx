@@ -40,7 +40,7 @@ export default function Navbar() {
       : navItems.find((item) => item.to === pathname)?.to ?? null;
   const highlight = hovered ?? current;
   const tone = overHero
-    ? "text-[#FDFDFE] [--nav-line:rgba(253,253,254,0.4)] [--nav-hover:rgba(253,253,254,0.1)]"
+    ? "text-cloud [--nav-line:rgba(253,253,254,0.4)] [--nav-hover:rgba(253,253,254,0.1)]"
     : "text-[var(--text)] [--nav-line:var(--line)] [--nav-hover:var(--surface-muted)]";
 
   useMotionValueEvent(scrollY, "change", (latest) => {
@@ -169,7 +169,7 @@ export default function Navbar() {
         <motion.div
           aria-hidden="true"
           style={{ scaleX: scrollYProgress }}
-          className={`absolute inset-x-0 bottom-0 h-0.5 origin-left bg-[#F04A2D] transition-opacity duration-300 ${
+          className={`absolute inset-x-0 bottom-0 h-0.5 origin-left bg-accent transition-opacity duration-300 ${
             overHero ? "opacity-0" : "opacity-100"
           }`}
         />
@@ -182,7 +182,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-x-0 top-[4.5rem] z-40 border-b border-[#FDFDFE]/15 bg-[#111827]/95 p-5 text-[#FDFDFE] shadow-[0_20px_50px_rgba(17,24,39,0.18)] backdrop-blur-md lg:hidden"
+            className="fixed inset-x-0 top-[4.5rem] z-40 border-b border-cloud/15 bg-ink/95 p-5 text-cloud shadow-[0_20px_50px_rgba(17,24,39,0.18)] backdrop-blur-md lg:hidden"
             id="mobile-menu"
           >
             <div className="section-shell grid gap-1">
@@ -191,7 +191,7 @@ export default function Navbar() {
                   key={item.to}
                   to={item.to}
                   onClick={() => setIsMenuOpen(false)}
-                  className="rounded-xl px-3 py-3 text-sm font-bold uppercase tracking-[0.08em] text-[#FDFDFE] hover:bg-[#FDFDFE]/10"
+                  className="rounded-xl px-3 py-3 text-sm font-bold uppercase tracking-[0.08em] text-cloud hover:bg-cloud/10"
                 >
                   {item.label}
                 </Link>

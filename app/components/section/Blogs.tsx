@@ -59,7 +59,7 @@ export default function Blogs({ data = [] }: { data?: BlogPost[] }) {
                     <p className="font-mono text-[0.6rem] font-medium uppercase tracking-[0.08em] text-[var(--muted)]">
                       {article.date}
                     </p>
-                    <h3 className="mt-2 font-display text-3xl font-black uppercase leading-[0.94] transition-colors group-hover:text-[#0099FF]">
+                    <h3 className="mt-2 font-display text-3xl font-black uppercase leading-[0.94] transition-colors group-hover:text-primary">
                       {article.title}
                     </h3>
                     <ArrowUpRight className="mt-4 h-5 w-5" />

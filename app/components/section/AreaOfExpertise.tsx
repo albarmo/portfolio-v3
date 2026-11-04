@@ -13,7 +13,7 @@ const capabilities = [
     description:
       "Scalable, maintainable, and high-performance web applications built for real product teams.",
     span: "md:col-span-7",
-    className: "bg-[#0099FF] text-[#111827]",
+    className: "bg-primary text-ink",
   },
   {
     number: "02",
@@ -21,7 +21,7 @@ const capabilities = [
     description:
       "Complex requirements shaped into clear digital products with purposeful user flows.",
     span: "md:col-span-5",
-    className: "bg-[#111827] text-white md:translate-y-16",
+    className: "bg-ink text-white md:translate-y-16",
   },
   {
     number: "03",
@@ -29,7 +29,7 @@ const capabilities = [
     description:
       "Design systems and visual concepts translated into precise, resilient interfaces.",
     span: "md:col-span-5",
-    className: "bg-[#F5F2E9] text-[#111827]",
+    className: "bg-paper text-ink",
   },
   {
     number: "04",
@@ -37,7 +37,7 @@ const capabilities = [
     description:
       "Fast, inclusive experiences with clear interaction states and measurable performance.",
     span: "md:col-span-7",
-    className: "bg-[#F04A2D] text-[#111827] md:translate-y-16",
+    className: "bg-accent text-ink md:translate-y-16",
   },
 ];
 

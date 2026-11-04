@@ -20,7 +20,7 @@ const experiences = [
     location: "Jakarta, Indonesia",
     logo: "/images/company/bitgroup.png",
     className:
-      "bg-[#FDFDFE] text-[#111827] md:col-span-7 md:row-span-2 md:min-h-[46rem]",
+      "bg-cloud text-ink md:col-span-7 md:row-span-2 md:min-h-[46rem]",
     roles: [
       {
         title: "Head of Group Frontend Developer",
@@ -38,7 +38,7 @@ const experiences = [
   {
     company: "PT. Entrepreneur Trust Digital",
     location: "Jakarta, Indonesia",
-    className: "bg-[#E8EDF2] text-[#111827] md:col-span-5",
+    className: "bg-soft text-ink md:col-span-5",
     roles: [
       {
         title: "Frontend Developer",
@@ -50,7 +50,7 @@ const experiences = [
   {
     company: "Feedloop",
     logo: "/images/company/feedloop.jpg",
-    className: "bg-[#111827] text-[#FDFDFE] md:col-span-5",
+    className: "bg-ink text-cloud md:col-span-5",
     roles: [
       {
         title: "Software Engineer",
@@ -62,7 +62,7 @@ const experiences = [
   {
     company: "Everidea Interactive",
     logo: "/images/company/everidea.webp",
-    className: "bg-[#FDFDFE] text-[#111827] md:col-span-6",
+    className: "bg-cloud text-ink md:col-span-6",
     roles: [
       {
         title: "Frontend Web Developer",
@@ -75,7 +75,7 @@ const experiences = [
     company: "Gerakan Nasional 1000 Startup Digital",
     location: "Jakarta, Indonesia",
     logo: "/images/company/1000-startup.png",
-    className: "bg-[#F04A2D] text-[#111827] md:col-span-6",
+    className: "bg-accent text-ink md:col-span-6",
     glow: "rgba(255,255,255,0.4)",
     roles: [
       {
@@ -201,7 +201,7 @@ export default function ExperienceSection() {
   return (
     <section
       id="experience"
-      className="section-pad scroll-mt-20 overflow-hidden bg-[#0099FF] text-[#111827]"
+      className="section-pad scroll-mt-20 overflow-hidden bg-primary text-ink"
     >
       <div className="section-shell">
         <div
@@ -216,7 +216,7 @@ export default function ExperienceSection() {
           </motion.h2>
           <motion.p
             style={reduceMotion ? undefined : { x: introX, opacity: introOpacity }}
-            className="max-w-[44ch] text-base font-medium leading-7 text-[#111827]/75 lg:justify-self-end"
+            className="max-w-[44ch] text-base font-medium leading-7 text-ink/75 lg:justify-self-end"
           >
             More than five years building digital products, growing frontend
             teams, and shipping software across finance, SaaS, and public-sector

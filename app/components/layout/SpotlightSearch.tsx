@@ -128,7 +128,7 @@ export default function SpotlightSearch() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setIsOpen(false)}
-            className="fixed inset-0 z-50 bg-[#111827]/65 backdrop-blur-sm"
+            className="fixed inset-0 z-50 bg-ink/65 backdrop-blur-sm"
           >
             <motion.div
               initial={{ opacity: 0, y: -10 }}
@@ -178,7 +178,7 @@ export default function SpotlightSearch() {
           </motion.div>
         )}
       </AnimatePresence>
-      <style>{`mark.spotlight-active { background-color: #F04A2D; color: #111827; }`}</style>
+      <style>{`mark.spotlight-active { background-color: var(--accent); color: var(--ink); }`}</style>
     </Fragment>
   );
 }

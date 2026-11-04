@@ -292,7 +292,7 @@ export default function HeroSection() {
       ref={sectionRef}
       onPointerMove={followMouse}
       onPointerLeave={sendLightHome}
-      className="relative overflow-hidden bg-[linear-gradient(180deg,#0088E4_0%,#0099FF_38%,#D7F0FF_74%,#FDFDFE_100%)] text-[#FDFDFE]"
+      className="relative overflow-hidden bg-[linear-gradient(180deg,#0088E4_0%,#0099FF_38%,#D7F0FF_74%,#FDFDFE_100%)] text-cloud"
     >
       <div aria-hidden="true" className="absolute inset-0">
         <img
@@ -465,7 +465,7 @@ export default function HeroSection() {
             initial={reduceMotion ? false : { opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
-            className="pointer-events-auto mt-5 max-w-[48ch] text-sm font-semibold leading-6 text-[#111827]/75 transition-colors duration-[900ms] dark:text-[#FDFDFE]/75 sm:text-base"
+            className="pointer-events-auto mt-5 max-w-[48ch] text-sm font-semibold leading-6 text-ink/75 transition-colors duration-[900ms] dark:text-cloud/75 sm:text-base"
           >
             I turn complex ideas into thoughtful digital products through
             frontend engineering and product thinking.
@@ -476,7 +476,7 @@ export default function HeroSection() {
             initial={reduceMotion ? false : { opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="premium-link pointer-events-auto mt-6 border-[#F04A2D] bg-[#F04A2D] text-[#111827]"
+            className="premium-link pointer-events-auto mt-6 border-accent bg-accent text-ink"
           >
             Explore work <ArrowUpRight className="h-4 w-4" />
           </motion.a>

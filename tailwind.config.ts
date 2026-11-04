@@ -10,7 +10,12 @@ export default {
         mono: ['"Manrope"', "sans-serif"],
       },
       colors: {
+        // fixed palette, mirrors :root in app/app.css (theme-switching colors stay as var(--...))
         accent: "#F04A2D",
+        ink: "#111827",
+        cloud: "#FDFDFE",
+        paper: "#F5F2E9",
+        soft: "#E8EDF2",
         primary: {
           DEFAULT: "#0099FF",
           dark: "#0077C7",

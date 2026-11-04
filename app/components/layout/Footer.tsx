@@ -11,7 +11,7 @@ const footerLinks = [
 
 export const Footer = () => {
   return (
-    <footer className="bg-[#111827] py-12 text-[#FDFDFE]">
+    <footer className="bg-ink py-12 text-cloud">
       <div className="section-shell">
         <div className="grid gap-10 border-b border-white/15 pb-12 md:grid-cols-[1fr_auto] md:items-end">
           <div>
@@ -19,7 +19,7 @@ export const Footer = () => {
               to="/"
               className="font-display text-5xl font-black uppercase tracking-[-0.03em]"
             >
-              Albarmox<span className="text-[#F04A2D]">.</span>
+              Albarmox<span className="text-accent">.</span>
             </Link>
             <p className="mt-3 max-w-sm text-sm leading-6 text-white/60">
               Built with purpose. Designed to make an impact.

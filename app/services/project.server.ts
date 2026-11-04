@@ -19,6 +19,8 @@ export type Project = {
   description: string;
   thumbnail: string;
   title: string;
+  /** one-line outcome shown on the home page card */
+  highlight?: string;
   createdAt: Date | string;
   updatedAt: Date | string;
 };
@@ -41,6 +43,7 @@ export const BACKUP_PROJECTS: Project[] = [
     description: "Development Frontend",
     thumbnail: "/images/project/delima-cover.png",
     title: "Delima BRI",
+    highlight: "4 web apps, one lending ecosystem",
     id: "9e030a0c-1020-424f-96a4-910ee5317f9e",
     createdAt: new Date("2025-08-05T07:57:46.165Z"),
     updatedAt: new Date("2025-08-05T07:57:46.165Z"),
@@ -63,6 +66,7 @@ export const BACKUP_PROJECTS: Project[] = [
     description: "Development Frontend",
     thumbnail: "/images/project/localoka-cover.png",
     title: "Localoka",
+    highlight: "Load time ~3s → under 1s",
     id: "e3dfd84f-75ec-4fbf-9d84-930a1e96855f",
     createdAt: new Date("2025-08-05T07:57:46.165Z"),
     updatedAt: new Date("2025-08-05T07:57:46.165Z"),
@@ -84,6 +88,7 @@ export const BACKUP_PROJECTS: Project[] = [
     description: "Development Frontend",
     thumbnail: "/images/project/sso-3.png",
     title: "Imigrasi SSO",
+    highlight: "One sign-in for internal apps",
     id: "04411d6f-9301-450d-8f4a-2b9a3108c0b0",
     createdAt: new Date("2025-08-05T07:57:46.165Z"),
     updatedAt: new Date("2025-08-05T07:57:46.165Z"),
@@ -105,6 +110,7 @@ export const BACKUP_PROJECTS: Project[] = [
     description: "Design & Fullstack Development",
     thumbnail: "/images/project/ISMHousing.png",
     title: "Interactive Static Map",
+    highlight: "Analysis time: days → minutes",
     id: "fb26e7c6-6a49-45c7-b4b0-791980e44cf2",
     createdAt: new Date("2025-08-05T07:57:46.165Z"),
     updatedAt: new Date("2025-08-05T07:57:46.165Z"),
@@ -126,6 +132,7 @@ export const BACKUP_PROJECTS: Project[] = [
     description: "Development Frontend",
     thumbnail: "/images/project/apoa-map.png",
     title: "APOA Dirjen Imigrasi",
+    highlight: "Launched to hotel users",
     id: "6173c449-063a-4275-bdde-2b6e97b239d2",
     createdAt: new Date("2025-08-05T07:57:46.165Z"),
     updatedAt: new Date("2025-08-05T07:57:46.165Z"),
@@ -148,6 +155,7 @@ export const BACKUP_PROJECTS: Project[] = [
     description: "Development Frontend",
     thumbnail: "/images/project/sisbinkar-1.png",
     title: "Sistem Pembinaan Karir Imigrasi (SISBINKAR)",
+    highlight: "Delivered on a tight timeline",
     id: "3097b536-5c0e-4dc8-81a9-48ea82a86732",
     createdAt: new Date("2025-08-05T07:57:46.165Z"),
     updatedAt: new Date("2025-08-05T07:57:46.165Z"),
@@ -179,7 +187,14 @@ export async function getProjects({
       .skip(skip)
       .limit(limit)
       .toArray();
-    return { code: 200, data: data as Project[] };
+    // documents seeded before `highlight` existed get it from the backup copy
+    const withHighlights = (data as Project[]).map((project) => ({
+      ...project,
+      highlight:
+        project.highlight ??
+        BACKUP_PROJECTS.find((backup) => backup.id === project.id)?.highlight,
+    }));
+    return { code: 200, data: withHighlights };
   } catch {
     return { code: 200, data: BACKUP_PROJECTS };
   }
