@@ -1,6 +1,11 @@
-import type { ActionFunctionArgs, LoaderFunctionArgs } from "@remix-run/node";
-import { redirect } from "@remix-run/node";
-import { Form, Link, useLoaderData, useNavigation } from "@remix-run/react";
+import type { ActionFunctionArgs, LoaderFunctionArgs } from "react-router";
+import {
+  redirect,
+  Form,
+  Link,
+  useLoaderData,
+  useNavigation,
+} from "react-router";
 import { PencilIcon, PlusIcon, Trash2Icon } from "lucide-react";
 import { getDb } from "~/lib/mongodb.server";
 import { requireAdmin } from "~/lib/session.server";

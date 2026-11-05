@@ -1,4 +1,4 @@
-import { Link } from "@remix-run/react";
+import { Link } from "react-router";
 import { ArrowUp } from "lucide-react";
 
 const footerLinks = [

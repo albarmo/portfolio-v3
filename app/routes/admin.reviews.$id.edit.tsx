@@ -1,11 +1,11 @@
-import type { ActionFunctionArgs, LoaderFunctionArgs } from "@remix-run/node";
-import { redirect } from "@remix-run/node";
+import type { ActionFunctionArgs, LoaderFunctionArgs } from "react-router";
 import {
+  redirect,
   Form,
   useActionData,
   useLoaderData,
   useNavigation,
-} from "@remix-run/react";
+} from "react-router";
 import invariant from "tiny-invariant";
 import { getDb } from "~/lib/mongodb.server";
 import { requireAdmin } from "~/lib/session.server";

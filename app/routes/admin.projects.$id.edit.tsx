@@ -1,15 +1,12 @@
-import type { ActionFunctionArgs, LoaderFunctionArgs } from "@remix-run/node";
+import type { ActionFunctionArgs, LoaderFunctionArgs } from "react-router";
+import { parseFormData } from "@remix-run/form-data-parser";
 import {
   redirect,
-  unstable_createMemoryUploadHandler,
-  unstable_parseMultipartFormData,
-} from "@remix-run/node";
-import {
   Form,
   useActionData,
   useLoaderData,
   useNavigation,
-} from "@remix-run/react";
+} from "react-router";
 import invariant from "tiny-invariant";
 import { getDb } from "~/lib/mongodb.server";
 import { uploadToImageKit } from "~/lib/imagekit.server";
@@ -32,8 +29,7 @@ export async function action({ request, params }: ActionFunctionArgs) {
   await requireAdmin(request);
   invariant(params.id, "Missing project id");
 
-  const uploadHandler = unstable_createMemoryUploadHandler({ maxPartSize: 5_000_000 });
-  const form = await unstable_parseMultipartFormData(request, uploadHandler);
+  const form = await parseFormData(request, { maxFileSize: 5_000_000 });
 
   const title = (form.get("title") as string)?.trim();
   const category = (form.get("category") as string)?.trim();

@@ -1,5 +1,5 @@
-import { useLoaderData, Link } from "@remix-run/react";
-import type { LoaderFunctionArgs } from "@remix-run/node";
+import { useLoaderData, Link } from "react-router";
+import type { LoaderFunctionArgs } from "react-router";
 import { PageLayout } from "~/components/layout/PageLayout";
 import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
 import { getProject } from "~/services/project.server";

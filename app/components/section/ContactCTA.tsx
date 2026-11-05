@@ -1,4 +1,4 @@
-import { Link } from "@remix-run/react";
+import { Link } from "react-router";
 import { ArrowUpRight, Github, Linkedin, Mail } from "lucide-react";
 
 const links = [

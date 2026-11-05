@@ -1,4 +1,4 @@
-import { Link } from "@remix-run/react";
+import { Link } from "react-router";
 import { ArrowUpRight } from "lucide-react";
 import type { BlogPost } from "~/services/blog.server";
 

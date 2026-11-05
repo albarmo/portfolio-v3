@@ -1,4 +1,4 @@
-import type { LinksFunction, LoaderFunctionArgs } from "@remix-run/node";
+import type { LinksFunction, LoaderFunctionArgs } from "react-router";
 import {
   Links,
   Meta,
@@ -7,7 +7,7 @@ import {
   ScrollRestoration,
   useLoaderData,
   useLocation,
-} from "@remix-run/react";
+} from "react-router";
 
 import appStylesHref from "./app.css?url";
 import tailwindStylesHref from "./tailwind.css?url";

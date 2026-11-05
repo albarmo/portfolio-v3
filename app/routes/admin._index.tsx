@@ -1,5 +1,5 @@
-import type { LoaderFunctionArgs } from "@remix-run/node";
-import { Link, useLoaderData } from "@remix-run/react";
+import type { LoaderFunctionArgs } from "react-router";
+import { Link, useLoaderData } from "react-router";
 import { FileTextIcon, FolderIcon, PlusIcon, StarIcon } from "lucide-react";
 import { getDb } from "~/lib/mongodb.server";
 import { requireAdmin } from "~/lib/session.server";

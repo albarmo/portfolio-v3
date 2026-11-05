@@ -1,5 +1,5 @@
-import { Link, NavLink, Outlet, useLoaderData } from "@remix-run/react";
-import type { LoaderFunctionArgs } from "@remix-run/node";
+import { Link, NavLink, Outlet, useLoaderData } from "react-router";
+import type { LoaderFunctionArgs } from "react-router";
 import { getSession } from "~/lib/session.server";
 import {
   LayoutDashboardIcon,

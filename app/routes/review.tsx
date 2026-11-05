@@ -1,11 +1,11 @@
-import type { ActionFunctionArgs } from "@remix-run/node";
-import { Form, json, useActionData } from "@remix-run/react";
+import type { ActionFunctionArgs } from "react-router";
+import { data, Form, useActionData } from "react-router";
 import type { FC } from "react";
 import { PageLayout } from "~/components/layout/PageLayout";
 
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
-  const data = {
+  const review = {
     fullName: formData.get("fullName"),
     jobTitle: formData.get("jobTitle"),
     company: formData.get("company"),
@@ -13,8 +13,8 @@ export async function action({ request }: ActionFunctionArgs) {
     message: formData.get("message"),
   };
 
-  if (typeof data.fullName !== "string" || data.fullName.length < 3) {
-    return json(
+  if (typeof review.fullName !== "string" || review.fullName.length < 3) {
+    return data(
       {
         success: false as const,
         error: "Nama lengkap harus diisi (minimal 3 karakter).",
@@ -22,8 +22,8 @@ export async function action({ request }: ActionFunctionArgs) {
       { status: 400 }
     );
   }
-  if (typeof data.message !== "string" || data.message.length < 10) {
-    return json(
+  if (typeof review.message !== "string" || review.message.length < 10) {
+    return data(
       {
         success: false as const,
         error: "Pesan ulasan harus diisi (minimal 10 karakter).",

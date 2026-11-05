@@ -1,4 +1,4 @@
-import { useLoaderData } from "@remix-run/react";
+import { useLoaderData } from "react-router";
 import { PageLayout } from "~/components/layout/PageLayout";
 import AboutMe from "~/components/section/AboutMe";
 import AreaOfExpertise from "~/components/section/AreaOfExpertise";

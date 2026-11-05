@@ -1,10 +1,6 @@
-import type { ActionFunctionArgs, LoaderFunctionArgs } from "@remix-run/node";
-import {
-  redirect,
-  unstable_createMemoryUploadHandler,
-  unstable_parseMultipartFormData,
-} from "@remix-run/node";
-import { Form, useActionData, useNavigation } from "@remix-run/react";
+import type { ActionFunctionArgs, LoaderFunctionArgs } from "react-router";
+import { parseFormData } from "@remix-run/form-data-parser";
+import { redirect, Form, useActionData, useNavigation } from "react-router";
 import ThumbnailUpload from "~/components/admin/ThumbnailUpload";
 import { uploadToImageKit } from "~/lib/imagekit.server";
 import { getDb } from "~/lib/mongodb.server";
@@ -26,10 +22,7 @@ function slugify(text: string) {
 export async function action({ request }: ActionFunctionArgs) {
   await requireAdmin(request);
 
-  const uploadHandler = unstable_createMemoryUploadHandler({
-    maxPartSize: 5_000_000,
-  });
-  const form = await unstable_parseMultipartFormData(request, uploadHandler);
+  const form = await parseFormData(request, { maxFileSize: 5_000_000 });
 
   const title = (form.get("title") as string)?.trim();
   const summary = (form.get("summary") as string)?.trim();

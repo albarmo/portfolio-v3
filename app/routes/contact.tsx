@@ -1,6 +1,6 @@
 import { useEffect, type FC } from "react";
-import { type ActionFunctionArgs } from "@remix-run/node";
-import { Form, Link, useActionData } from "@remix-run/react";
+import { type ActionFunctionArgs } from "react-router";
+import { Form, Link, useActionData } from "react-router";
 import { Dribbble, Github, Linkedin, MailIcon } from "lucide-react";
 import { PageLayout } from "~/components/layout/PageLayout";
 

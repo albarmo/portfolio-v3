@@ -1,11 +1,6 @@
-import type { ActionFunctionArgs, LoaderFunctionArgs } from "@remix-run/node";
-import {
-  json,
-  redirect,
-  unstable_createMemoryUploadHandler,
-  unstable_parseMultipartFormData,
-} from "@remix-run/node";
-import { Form, useLoaderData, useNavigation } from "@remix-run/react";
+import type { ActionFunctionArgs, LoaderFunctionArgs } from "react-router";
+import { parseFormData } from "@remix-run/form-data-parser";
+import { redirect, Form, useLoaderData, useNavigation } from "react-router";
 import { CopyIcon, ImageIcon, Trash2Icon, UploadCloudIcon } from "lucide-react";
 import { deleteFile, listFiles, uploadToImageKit } from "~/lib/imagekit.server";
 import { requireAdmin } from "~/lib/session.server";
@@ -24,22 +19,19 @@ export async function loader({ request }: LoaderFunctionArgs) {
   await requireAdmin(request);
   try {
     const files = (await listFiles("/portfolio")) as IKFile[];
-    return json({ files, error: null });
+    return { files, error: null };
   } catch {
-    return json({
+    return {
       files: [] as IKFile[],
       error: "Failed to load files from ImageKit.",
-    });
+    };
   }
 }
 
 export async function action({ request }: ActionFunctionArgs) {
   await requireAdmin(request);
 
-  const uploadHandler = unstable_createMemoryUploadHandler({
-    maxPartSize: 5_000_000,
-  });
-  const form = await unstable_parseMultipartFormData(request, uploadHandler);
+  const form = await parseFormData(request, { maxFileSize: 5_000_000 });
   const intent = form.get("intent") as string;
 
   if (intent === "delete") {
