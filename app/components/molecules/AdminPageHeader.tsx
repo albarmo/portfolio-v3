@@ -1,13 +1,17 @@
+import type { ReactNode } from "react";
 import { Link } from "react-router";
 import { PlusIcon } from "lucide-react";
 
 interface AdminPageHeaderProps {
   breadcrumb: string;
   title: string;
+  subtitle?: string;
   createLink?: { href: string; label: string };
+  /** Extra header actions, rendered on the right */
+  children?: ReactNode;
 }
 
-export function AdminPageHeader({ breadcrumb, title, createLink }: AdminPageHeaderProps) {
+export function AdminPageHeader({ breadcrumb, title, subtitle, createLink, children }: AdminPageHeaderProps) {
   return (
     <div className="mb-8 flex items-center justify-between border-b border-[var(--line)] pb-6">
       <div>
@@ -17,7 +21,11 @@ export function AdminPageHeader({ breadcrumb, title, createLink }: AdminPageHead
         <h1 className="mt-1 line-clamp-1 font-display text-3xl font-black uppercase text-[var(--text)]">
           {title}
         </h1>
+        {subtitle ? (
+          <samp className="mt-1 block font-mono text-[0.6rem] text-[var(--muted)]">{subtitle}</samp>
+        ) : null}
       </div>
+      {children}
       {createLink ? (
         <Link
           to={createLink.href}

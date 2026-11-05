@@ -19,8 +19,8 @@ export default [
   route("admin/login", "pages/auth/LoginPage.tsx"),
   route("admin/logout", "pages/auth/LogoutPage.tsx"),
 
-  route("admin", "routes/admin.tsx", [
-    index("routes/admin._index.tsx"),
+  route("admin", "pages/admin/AdminLayout.tsx", [
+    index("pages/admin/AdminDashboardPage.tsx"),
     ...prefix("blogs", [
       index("pages/admin/blogs/AdminBlogListPage.tsx"),
       route("new", "pages/admin/blogs/AdminBlogCreatePage.tsx"),
@@ -36,6 +36,6 @@ export default [
       route("new", "pages/admin/reviews/AdminReviewCreatePage.tsx"),
       route(":id/edit", "pages/admin/reviews/AdminReviewEditPage.tsx"),
     ]),
-    route("media", "routes/admin.media.tsx"),
+    route("media", "pages/admin/AdminMediaPage.tsx"),
   ]),
 ] satisfies RouteConfig;

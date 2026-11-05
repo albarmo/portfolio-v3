@@ -1,10 +1,11 @@
 import { data } from "react-router";
+import { COLLECTIONS } from "@/constants/collections";
 import { REVIEW_SEED } from "@/features/reviews/api/reviewSeed";
 import type { Review, ReviewPayload, ReviewSubmissionResult } from "@/features/reviews/types";
 import { getDb } from "@/services/db.server";
 import { getFormString } from "@/utils/formData";
 
-const COLLECTION = "reviews";
+const COLLECTION = COLLECTIONS.reviews;
 const DEFAULT_LOCATION = "Jakarta, Indonesia";
 const NO_LINKEDIN_URL = "#";
 const MIN_NAME_LENGTH = 3;

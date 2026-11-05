@@ -1,4 +1,5 @@
 import { data } from "react-router";
+import { COLLECTIONS } from "@/constants/collections";
 import { DEFAULT_PAGE_SIZE } from "@/constants/pagination";
 import { PROJECT_SEED } from "@/features/projects/api/projectSeed";
 import type { Project, ProjectDocument, ProjectPayload } from "@/features/projects/types";
@@ -7,7 +8,7 @@ import { uploadToImageKit } from "@/services/imagekit.server";
 import { getFormFile, getFormString, splitList } from "@/utils/formData";
 import { parseStringList } from "@/utils/stringList";
 
-const COLLECTION = "projects";
+const COLLECTION = COLLECTIONS.projects;
 const THUMBNAIL_FOLDER = "/portfolio/projects";
 
 function toProject({ techStack, responsibility, ...rest }: ProjectDocument): Project {

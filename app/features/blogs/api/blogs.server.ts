@@ -1,4 +1,5 @@
 import { data } from "react-router";
+import { COLLECTIONS } from "@/constants/collections";
 import { DEFAULT_PAGE_SIZE } from "@/constants/pagination";
 import { SITE_NAME } from "@/constants/site";
 import { BLOG_SEED } from "@/features/blogs/api/blogSeed";
@@ -7,7 +8,7 @@ import { getDb } from "@/services/db.server";
 import { uploadToImageKit } from "@/services/imagekit.server";
 import { getFormFile, getFormString } from "@/utils/formData";
 
-const COLLECTION = "blogs";
+const COLLECTION = COLLECTIONS.blogs;
 const THUMBNAIL_FOLDER = "/portfolio/blogs";
 
 async function getCollection() {

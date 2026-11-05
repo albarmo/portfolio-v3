@@ -1,0 +1,8 @@
+const KILOBYTE = 1024;
+const MEGABYTE = KILOBYTE * 1024;
+
+export function formatBytes(bytes: number): string {
+  if (bytes < KILOBYTE) return `${bytes} B`;
+  if (bytes < MEGABYTE) return `${(bytes / KILOBYTE).toFixed(1)} KB`;
+  return `${(bytes / MEGABYTE).toFixed(1)} MB`;
+}

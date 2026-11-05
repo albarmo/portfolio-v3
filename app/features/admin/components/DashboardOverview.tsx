@@ -1,28 +1,19 @@
-import { Link, useLoaderData } from "react-router";
+import { Link } from "react-router";
 import { FileTextIcon, FolderIcon, PlusIcon, StarIcon } from "lucide-react";
-import { getDb } from "@/services/db.server";
+import type { DashboardCounts } from "@/features/admin/types";
 
-export async function loader() {
-  const db = await getDb();
-
-  const [blogCount, projectCount, reviewCount] = await Promise.all([
-    db.collection("blogs").countDocuments(),
-    db.collection("projects").countDocuments(),
-    db.collection("reviews").countDocuments(),
-  ]);
-
-  return { blogCount, projectCount, reviewCount };
-}
-
-const quickActions = [
+const QUICK_ACTIONS = [
   { to: "/admin/blogs/new", label: "NEW BLOG POST", icon: FileTextIcon },
   { to: "/admin/projects/new", label: "NEW PROJECT", icon: FolderIcon },
   { to: "/admin/reviews/new", label: "NEW REVIEW", icon: StarIcon },
 ];
 
-export default function AdminDashboard() {
-  const { blogCount, projectCount, reviewCount } =
-    useLoaderData<typeof loader>();
+interface DashboardOverviewProps {
+  counts: DashboardCounts;
+}
+
+export function DashboardOverview({ counts }: DashboardOverviewProps) {
+  const { blogCount, projectCount, reviewCount } = counts;
 
   const stats = [
     {
@@ -46,17 +37,7 @@ export default function AdminDashboard() {
   ];
 
   return (
-    <div className="p-20">
-      {/* Header */}
-      <div className="mb-8 border-b border-[var(--line)] pb-6">
-        <samp className="font-mono text-[0.65rem] font-bold uppercase tracking-widest text-[var(--muted)]">
-          CMS / DASHBOARD
-        </samp>
-        <h1 className="mt-1 font-display text-3xl font-black uppercase text-[var(--text)]">
-          OVERVIEW
-        </h1>
-      </div>
-
+    <>
       {/* Stats */}
       <div className="grid gap-px bg-[var(--line)] border border-[var(--line)] grid-cols-3 mb-8">
         {stats.map(({ label, value, to, icon: Icon }) => (
@@ -69,7 +50,7 @@ export default function AdminDashboard() {
               <samp className="font-mono text-[0.6rem] font-bold uppercase tracking-widest text-[var(--muted)]">
                 {label}
               </samp>
-              <Icon className="h-4 w-4 text-[var(--muted)] group-hover:text-[var(--accent)] transition-colors" />
+              <Icon className="h-4 w-4 text-[var(--muted)] group-hover:text-[var(--accent)] transition-colors" aria-hidden="true" />
             </div>
             <span className="font-display text-4xl font-black text-[var(--text)]">
               {value}
@@ -85,17 +66,17 @@ export default function AdminDashboard() {
         </samp>
       </div>
       <div className="grid gap-px bg-[var(--line)] border border-[var(--line)] grid-cols-3">
-        {quickActions.map(({ to, label }) => (
+        {QUICK_ACTIONS.map(({ to, label }) => (
           <Link
             key={to}
             to={to}
             className="flex items-center gap-3 bg-[var(--bg)] p-4 font-mono text-xs font-bold uppercase tracking-widest text-[var(--muted)] transition-colors hover:bg-[var(--surface)] hover:text-[var(--accent)]"
           >
-            <PlusIcon className="h-3.5 w-3.5 shrink-0" />
+            <PlusIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
             {label}
           </Link>
         ))}
       </div>
-    </div>
+    </>
   );
 }
