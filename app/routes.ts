@@ -3,7 +3,7 @@ import { type RouteConfig, index, layout, prefix, route } from "@react-router/de
 export default [
   index("routes/_index.tsx"),
   route("about", "routes/about.tsx"),
-  route("contact", "routes/contact.tsx"),
+  route("contact", "pages/ContactPage.tsx"),
   route("review", "pages/ReviewPage.tsx"),
 
   ...prefix("projects", [
@@ -16,8 +16,8 @@ export default [
   ]),
 
   // Outside the admin layout so its auth middleware never guards them
-  route("admin/login", "routes/admin_.login.tsx"),
-  route("admin/logout", "routes/admin_.logout.tsx"),
+  route("admin/login", "pages/auth/LoginPage.tsx"),
+  route("admin/logout", "pages/auth/LogoutPage.tsx"),
 
   route("admin", "routes/admin.tsx", [
     index("routes/admin._index.tsx"),

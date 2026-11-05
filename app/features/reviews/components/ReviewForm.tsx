@@ -1,30 +1,6 @@
-import type { InputHTMLAttributes } from "react";
 import { Form } from "react-router";
+import { TextField } from "@/components/molecules/TextField";
 import type { ReviewSubmissionResult } from "@/features/reviews/types";
-
-interface FormInputProps extends InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement> {
-  label: string;
-  name: string;
-  as?: "input" | "textarea";
-  rows?: number;
-}
-function FormInput({ label, as = "input", ...props }: FormInputProps) {
-  const commonClasses =
-    "w-full border border-[var(--line)] bg-[var(--surface)] px-4 py-3 font-mono text-sm text-[var(--text)] placeholder:text-[var(--muted)] transition-colors focus:border-[var(--accent)] focus:outline-none";
-  const InputComponent = as === "textarea" ? "textarea" : "input";
-
-  return (
-    <div className="w-full">
-      <label
-        htmlFor={props.name}
-        className="mb-2 block font-mono text-[0.65rem] font-bold uppercase tracking-widest text-[var(--muted)]"
-      >
-        {label}
-      </label>
-      <InputComponent id={props.name} className={commonClasses} {...props} />
-    </div>
-  );
-}
 
 interface ReviewFormProps {
   result?: ReviewSubmissionResult | undefined;
@@ -63,30 +39,30 @@ export function ReviewForm({ result: actionData }: ReviewFormProps) {
         <div className="surface-card p-5 sm:p-8">
           <Form method="post" className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <FormInput
+              <TextField
                 label="Nama Lengkap"
                 name="fullName"
                 type="text"
                 required
               />
-              <FormInput
+              <TextField
                 label="Jabatan (Job Title)"
                 name="jobTitle"
                 type="text"
               />
             </div>
-            <FormInput
+            <TextField
               label="Perusahaan (Company)"
               name="company"
               type="text"
             />
-            <FormInput
+            <TextField
               label="URL Profil LinkedIn"
               name="linkedinUrl"
               type="url"
               placeholder="https://linkedin.com/in/..."
             />
-            <FormInput
+            <TextField
               label="Pesan Ulasan Anda"
               name="message"
               as="textarea"

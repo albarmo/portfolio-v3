@@ -1,78 +1,24 @@
-import { useEffect, type FC } from "react";
-import { Form, Link, useActionData } from "react-router";
+import { useEffect } from "react";
+import { Form, Link } from "react-router";
 import { Dribbble, Github, Linkedin, MailIcon } from "lucide-react";
-import { PageLayout } from "@/components/templates/PageLayout";
-import { pageMeta } from "@/utils/pageMeta";
-import type { Route } from "./+types/contact";
+import { TextField } from "@/components/molecules/TextField";
+import { CONTACT_EMAIL } from "@/constants/site";
+import type { ContactMailDraft } from "@/features/contact/types";
 
-export const meta = () => pageMeta({ title: "Contact" });
-
-export async function action({ request }: Route.ActionArgs) {
-  const formData = await request.formData();
-
-  const fullName = formData.get("fullName");
-  const email = formData.get("email");
-  const subject = formData.get("subject");
-  const message = formData.get("message");
-
-  const emailBody = `
-From: ${fullName} (${email})
-
-${message}
-  `;
-
-  return {
-    mailto: {
-      subject: subject,
-      message: emailBody.trim(),
-    },
-  };
+interface ContactFormProps {
+  mailDraft?: ContactMailDraft | undefined;
 }
 
-interface FormInputProps
-  extends React.InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement> {
-  label: string;
-  as?: "input" | "textarea";
-  rows?: number;
-}
-const FormInput: FC<FormInputProps> = ({ label, as = "input", ...props }) => {
-  const commonClasses =
-    "w-full border border-[var(--line)] bg-[var(--surface)] px-4 py-3 font-mono text-sm text-[var(--text)] placeholder:text-[var(--muted)] transition-colors focus:border-[var(--accent)] focus:outline-none";
-  const InputComponent = as === "textarea" ? "textarea" : "input";
-
-  return (
-    <div className="w-full">
-      <label
-        htmlFor={props.name}
-        className="mb-2 block font-mono text-[0.65rem] font-bold uppercase tracking-widest text-[var(--muted)]"
-      >
-        {label}
-      </label>
-      <InputComponent id={props.name} className={commonClasses} {...props} />
-    </div>
-  );
-};
-
-export default function ContactPage() {
-  const actionData = useActionData<typeof action>();
+export function ContactForm({ mailDraft }: ContactFormProps) {
   useEffect(() => {
-    if (actionData?.mailto) {
-      const { subject, message } = actionData.mailto;
-
-      const recipientEmail = "moerhamsa@gmail.com";
-
-      const encodedSubject = encodeURIComponent(subject as string);
-      const encodedMessage = encodeURIComponent(message);
-
-      const mailtoUrl = `mailto:${recipientEmail}?subject=${encodedSubject}&body=${encodedMessage}`;
-
-      window.location.href = mailtoUrl;
-    }
-  }, [actionData]);
+    if (!mailDraft) return;
+    const subject = encodeURIComponent(mailDraft.subject);
+    const body = encodeURIComponent(mailDraft.message);
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+  }, [mailDraft]);
 
   return (
-    <PageLayout className="section-pad pt-32 sm:pt-40">
-      <div className="section-shell">
+    <div className="section-shell">
         <samp className="font-mono text-[0.65rem] font-bold uppercase tracking-widest text-[var(--muted)]">
           [ CONTACT / INIT.MSG ]
         </samp>
@@ -82,28 +28,28 @@ export default function ContactPage() {
 
         <div className="mt-14 grid grid-cols-1 gap-8 lg:grid-cols-[1.1fr_0.9fr]">
           <Form method="post" className="surface-card space-y-6 p-5 sm:p-8">
-            <FormInput
+            <TextField
               label="Full name"
               name="fullName"
               type="text"
               placeholder="Your full name"
               required
             />
-            <FormInput
+            <TextField
               label="Email"
               name="email"
               type="email"
               placeholder="*****@mail.com"
               required
             />
-            <FormInput
+            <TextField
               label="Subject"
               name="subject"
               type="text"
               placeholder="What is this about?"
               required
             />
-            <FormInput
+            <TextField
               label="Message"
               name="message"
               as="textarea"
@@ -137,38 +83,37 @@ export default function ContactPage() {
                   target="_blank"
                   rel="noreferrer"
                   className="transition-colors hover:text-[var(--accent)]"
-                >
-                  <Linkedin />
+                 aria-label="LinkedIn">
+                  <Linkedin aria-hidden="true" />
                 </Link>
                 <Link
                   to="https://github.com/albarmo"
                   target="_blank"
                   rel="noreferrer"
                   className="transition-colors hover:text-[var(--accent)]"
-                >
-                  <Github />
+                 aria-label="GitHub">
+                  <Github aria-hidden="true" />
                 </Link>
                 <Link
-                  to="mailto:moerhamsa@gmail.com"
+                  to={`mailto:${CONTACT_EMAIL}`}
                   target="_blank"
                   rel="noreferrer"
                   className="transition-colors hover:text-[var(--accent)]"
-                >
-                  <MailIcon />
+                 aria-label="Email">
+                  <MailIcon aria-hidden="true" />
                 </Link>
                 <Link
                   to="https://dribbble.com/albarms"
                   target="_blank"
                   rel="noreferrer"
                   className="transition-colors hover:text-[var(--accent)]"
-                >
-                  <Dribbble />
+                 aria-label="Dribbble">
+                  <Dribbble aria-hidden="true" />
                 </Link>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </PageLayout>
+    </div>
   );
 }
