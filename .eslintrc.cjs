@@ -4,6 +4,11 @@
  * and should modify this configuration to best suit your team's needs.
  */
 
+const path = require("path");
+
+// Absolute, so the @/ alias resolves the same in the CLI and in editor ESLint servers
+const tsconfigPath = path.join(__dirname, "tsconfig.json");
+
 /** @type {import('eslint').Linter.Config} */
 module.exports = {
   root: true,
@@ -45,7 +50,7 @@ module.exports = {
           { name: "NavLink", linkAttribute: "to" },
         ],
         "import/resolver": {
-          typescript: {},
+          typescript: { project: tsconfigPath },
         },
       },
     },
@@ -56,13 +61,14 @@ module.exports = {
       plugins: ["@typescript-eslint", "import"],
       parser: "@typescript-eslint/parser",
       settings: {
-        "import/internal-regex": "^~/",
+        "import/internal-regex": "^@/",
         "import/resolver": {
           node: {
             extensions: [".ts", ".tsx"],
           },
           typescript: {
             alwaysTryTypes: true,
+            project: tsconfigPath,
           },
         },
       },
