@@ -1,22 +1,7 @@
-import { getDb } from "@/services/db.server";
+import type { Review } from "@/features/reviews/types";
 
-type PaginationParams = {
-  page?: number;
-  limit?: number;
-};
-
-export type Review = {
-  id: string;
-  reviewText: string;
-  name: string;
-  jobTitle: string;
-  location: string;
-  linkedinUrl: string;
-  createdAt: Date | string;
-  updatedAt: Date | string;
-};
-
-export const BACKUP_REVIEWS: Review[] = [
+// Inserted on first run when the collection is empty
+export const REVIEW_SEED: Review[] = [
   {
     id: "d4ba1c26-27c1-419f-9108-f4b61e5e0e89",
     linkedinUrl: "#",
@@ -84,50 +69,3 @@ export const BACKUP_REVIEWS: Review[] = [
     updatedAt: "2025-08-07T09:00:20.299Z",
   },
 ];
-
-async function seedReviews() {
-  const db = await getDb();
-  const col = db.collection("reviews");
-  const count = await col.countDocuments();
-  if (count === 0) {
-    await col.insertMany(BACKUP_REVIEWS);
-    await col.createIndex({ id: 1 }, { unique: true });
-  }
-}
-
-export async function getReviews({
-  page = 1,
-  limit = 20,
-}: PaginationParams): Promise<{ code: number; data: Review[] }> {
-  try {
-    const db = await getDb();
-    await seedReviews();
-    const col = db.collection<Review>("reviews");
-    const skip = (page - 1) * limit;
-    const data = await col
-      .find({}, { projection: { _id: 0 } })
-      .sort({ createdAt: -1 })
-      .skip(skip)
-      .limit(limit)
-      .toArray();
-    return { code: 200, data: data as Review[] };
-  } catch {
-    return { code: 200, data: BACKUP_REVIEWS };
-  }
-}
-
-export async function getReview(id: string) {
-  try {
-    const db = await getDb();
-    await seedReviews();
-    const col = db.collection("reviews");
-    const data = await col.findOne(
-      { id: id },
-      { projection: { _id: 0 } }
-    );
-    return { code: 200, data };
-  } catch {
-    const review = BACKUP_REVIEWS.find((r) => String(r.id) === String(id));
-    return { code: 200, data: review };
-  }
-}

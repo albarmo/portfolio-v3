@@ -1,55 +1,14 @@
-import { data, Form, useActionData } from "react-router";
-import type { FC } from "react";
-import { PageLayout } from "@/components/templates/PageLayout";
-import { pageMeta } from "@/utils/pageMeta";
-import type { Route } from "./+types/review";
+import type { InputHTMLAttributes } from "react";
+import { Form } from "react-router";
+import type { ReviewSubmissionResult } from "@/features/reviews/types";
 
-export const meta = () => pageMeta({ title: "Leave a Review" });
-
-export async function action({ request }: Route.ActionArgs) {
-  const formData = await request.formData();
-  const review = {
-    fullName: formData.get("fullName"),
-    jobTitle: formData.get("jobTitle"),
-    company: formData.get("company"),
-    linkedinUrl: formData.get("linkedinUrl"),
-    message: formData.get("message"),
-  };
-
-  if (typeof review.fullName !== "string" || review.fullName.length < 3) {
-    return data(
-      {
-        success: false as const,
-        error: "Nama lengkap harus diisi (minimal 3 karakter).",
-      },
-      { status: 400 }
-    );
-  }
-  if (typeof review.message !== "string" || review.message.length < 10) {
-    return data(
-      {
-        success: false as const,
-        error: "Pesan ulasan harus diisi (minimal 10 karakter).",
-      },
-      { status: 400 }
-    );
-  }
-
-  return {
-    success: true as const,
-    message: "Terima kasih! Ulasan Anda telah berhasil dikirimkan.",
-  };
-}
-
-// --- Komponen Input ---
-interface FormInputProps
-  extends React.InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement> {
+interface FormInputProps extends InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement> {
   label: string;
   name: string;
   as?: "input" | "textarea";
   rows?: number;
 }
-const FormInput: FC<FormInputProps> = ({ label, as = "input", ...props }) => {
+function FormInput({ label, as = "input", ...props }: FormInputProps) {
   const commonClasses =
     "w-full border border-[var(--line)] bg-[var(--surface)] px-4 py-3 font-mono text-sm text-[var(--text)] placeholder:text-[var(--muted)] transition-colors focus:border-[var(--accent)] focus:outline-none";
   const InputComponent = as === "textarea" ? "textarea" : "input";
@@ -65,18 +24,20 @@ const FormInput: FC<FormInputProps> = ({ label, as = "input", ...props }) => {
       <InputComponent id={props.name} className={commonClasses} {...props} />
     </div>
   );
-};
+}
 
-export default function CreateReviewPage() {
-  const actionData = useActionData<typeof action>();
+interface ReviewFormProps {
+  result?: ReviewSubmissionResult | undefined;
+}
+
+export function ReviewForm({ result: actionData }: ReviewFormProps) {
   const successMessage =
     actionData?.success === true ? actionData.message : undefined;
   const errorMessage =
     actionData?.success === false ? actionData.error : undefined;
 
   return (
-    <PageLayout className="section-pad pt-32 sm:pt-40">
-      <div className="mx-auto w-[min(100%-2rem,44rem)] space-y-8">
+    <div className="mx-auto w-[min(100%-2rem,44rem)] space-y-8">
         <div>
           <h1 className="text-center font-display text-5xl font-black uppercase leading-tight text-[var(--text)] sm:text-6xl">
             TULIS ULASAN ANDA
@@ -88,13 +49,13 @@ export default function CreateReviewPage() {
         </div>
 
         {successMessage && (
-          <div className="border border-[var(--terminal-green)]/30 bg-[var(--terminal-green)]/10 p-4 font-mono text-xs font-bold uppercase tracking-wide text-[var(--terminal-green)]">
+          <div role="status" className="border border-[var(--terminal-green)]/30 bg-[var(--terminal-green)]/10 p-4 font-mono text-xs font-bold uppercase tracking-wide text-[var(--terminal-green)]">
             {successMessage}
           </div>
         )}
 
         {errorMessage && (
-          <div className="border border-[var(--accent)]/30 bg-[var(--accent)]/10 p-4 font-mono text-xs font-bold uppercase tracking-wide text-[var(--accent)]">
+          <div role="alert" className="border border-[var(--accent)]/30 bg-[var(--accent)]/10 p-4 font-mono text-xs font-bold uppercase tracking-wide text-[var(--accent)]">
             {errorMessage}
           </div>
         )}
@@ -143,7 +104,6 @@ export default function CreateReviewPage() {
             </div>
           </Form>
         </div>
-      </div>
-    </PageLayout>
+    </div>
   );
 }

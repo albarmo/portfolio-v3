@@ -4,7 +4,7 @@ export default [
   index("routes/_index.tsx"),
   route("about", "routes/about.tsx"),
   route("contact", "routes/contact.tsx"),
-  route("review", "routes/review.tsx"),
+  route("review", "pages/ReviewPage.tsx"),
 
   ...prefix("projects", [
     index("pages/projects/ProjectListPage.tsx"),
@@ -32,9 +32,9 @@ export default [
       route(":id/edit", "pages/admin/projects/AdminProjectEditPage.tsx"),
     ]),
     ...prefix("reviews", [
-      index("routes/admin.reviews._index.tsx"),
-      route("new", "routes/admin.reviews.new.tsx"),
-      route(":id/edit", "routes/admin.reviews.$id.edit.tsx"),
+      index("pages/admin/reviews/AdminReviewListPage.tsx"),
+      route("new", "pages/admin/reviews/AdminReviewCreatePage.tsx"),
+      route(":id/edit", "pages/admin/reviews/AdminReviewEditPage.tsx"),
     ]),
     route("media", "routes/admin.media.tsx"),
   ]),
