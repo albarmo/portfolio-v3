@@ -1,22 +1,7 @@
-import { getDb } from "@/services/db.server";
+import type { BlogPost } from "@/features/blogs/types";
 
-export type BlogPost = {
-  id: number | string;
-  title: string;
-  summary: string;
-  author: string;
-  date: string;
-  slug: string;
-  thumbnail: string;
-  content: string;
-};
-
-type PaginationParams = {
-  page?: number;
-  limit?: number;
-};
-
-export const BACKUP_BLOG_POST: BlogPost[] = [
+// Upserted on every read so new seed posts reach the database; served when MongoDB is unreachable
+export const BLOG_SEED: BlogPost[] = [
   {
     id: "6",
     title: "Frontend Development Standardization: Why Consistency Matters",
@@ -730,59 +715,3 @@ This checklist transforms code review from a bug hunt into a quality gate. When 
     `,
   },
 ];
-
-async function seedBlogs() {
-  const db = await getDb();
-  const col = db.collection<BlogPost>("blogs");
-  await col.createIndex({ id: 1 }, { unique: true });
-  await col.createIndex({ slug: 1 }, { unique: true });
-  const ops = BACKUP_BLOG_POST.map((blog) => ({
-    updateOne: {
-      filter: { id: blog.id },
-      update: { $setOnInsert: blog },
-      upsert: true,
-    },
-  }));
-  await col.bulkWrite(ops, { ordered: false });
-}
-
-export async function getBlogs({
-  page = 1,
-  limit = 10,
-}: PaginationParams): Promise<{ code: number; data: BlogPost[] }> {
-  try {
-    const db = await getDb();
-    await seedBlogs();
-    const col = db.collection<BlogPost>("blogs");
-    const skip = (page - 1) * limit;
-    const data = await col
-      .find({}, { projection: { _id: 0 } })
-      .sort({ date: -1 })
-      .skip(skip)
-      .limit(limit)
-      .toArray();
-    return { code: 200, data: data as BlogPost[] };
-  } catch {
-    return { code: 200, data: BACKUP_BLOG_POST };
-  }
-}
-
-export async function getBlog(
-  id: string
-): Promise<{ code: number; data: BlogPost | null | undefined }> {
-  try {
-    const db = await getDb();
-    await seedBlogs();
-    const col = db.collection<BlogPost>("blogs");
-    const data = await col.findOne(
-      { $or: [{ id: id }, { slug: id }] } as Parameters<typeof col.findOne>[0],
-      { projection: { _id: 0 } }
-    );
-    return { code: 200, data: data as BlogPost | null };
-  } catch {
-    const blog = BACKUP_BLOG_POST.find(
-      (b) => String(b.id) === String(id) || b.slug === id
-    );
-    return { code: 200, data: blog };
-  }
-}

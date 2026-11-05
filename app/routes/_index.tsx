@@ -2,13 +2,13 @@ import { useLoaderData } from "react-router";
 import { PageLayout } from "@/components/templates/PageLayout";
 import AboutMe from "@/components/section/AboutMe";
 import AreaOfExpertise from "@/components/section/AreaOfExpertise";
-import Blogs from "@/components/section/Blogs";
 import ContactCTA from "@/components/section/ContactCTA";
 import ExperienceSection from "@/components/section/ExperienceSection";
 import HeroSection from "@/components/section/Hero";
 import ReviewsGrid from "@/components/section/ReviewGrid";
 import { ScrollReveal } from "@/components/atoms/ScrollReveal";
-import { getBlogs } from "@/services/blog.server";
+import { BlogsSection } from "@/features/blogs/components";
+import { getBlogs } from "@/features/blogs/api/blogs.server";
 import { ProjectShowcase } from "@/features/projects/components";
 import { getProjects } from "@/features/projects/api/projects.server";
 import { DEFAULT_PAGE_SIZE } from "@/constants/pagination";
@@ -16,7 +16,7 @@ import { DEFAULT_PAGE_SIZE } from "@/constants/pagination";
 export const loader = async () => {
   const [projects, blogs] = await Promise.all([
     getProjects(),
-    getBlogs({ limit: DEFAULT_PAGE_SIZE, page: 1 }),
+    getBlogs(),
   ]);
 
   return {
@@ -47,7 +47,7 @@ export default function Index() {
         <ReviewsGrid />
       </ScrollReveal>
       <ScrollReveal>
-        <Blogs data={blogs?.data} />
+        <BlogsSection blogs={blogs} />
       </ScrollReveal>
       <ScrollReveal>
         <ContactCTA />

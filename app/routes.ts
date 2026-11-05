@@ -11,8 +11,8 @@ export default [
     route(":projectId", "pages/projects/ProjectDetailPage.tsx"),
   ]),
   ...prefix("blogs", [
-    index("routes/blogs._index.tsx"),
-    route(":blogId", "routes/blogs.$blogId.tsx"),
+    index("pages/blogs/BlogListPage.tsx"),
+    route(":blogId", "pages/blogs/BlogDetailPage.tsx"),
   ]),
 
   // Outside the admin layout so its auth middleware never guards them
@@ -22,9 +22,9 @@ export default [
   route("admin", "routes/admin.tsx", [
     index("routes/admin._index.tsx"),
     ...prefix("blogs", [
-      index("routes/admin.blogs._index.tsx"),
-      route("new", "routes/admin.blogs.new.tsx"),
-      route(":id/edit", "routes/admin.blogs.$id.edit.tsx"),
+      index("pages/admin/blogs/AdminBlogListPage.tsx"),
+      route("new", "pages/admin/blogs/AdminBlogCreatePage.tsx"),
+      route(":id/edit", "pages/admin/blogs/AdminBlogEditPage.tsx"),
     ]),
     ...prefix("projects", [
       index("pages/admin/projects/AdminProjectListPage.tsx"),

@@ -1,8 +1,12 @@
 import { Link } from "react-router";
 import { ArrowUpRight } from "lucide-react";
-import type { BlogPost } from "@/services/blog.server";
+import type { BlogPost } from "@/features/blogs/types";
 
-export default function Blogs({ data = [] }: { data?: BlogPost[] }) {
+interface BlogsSectionProps {
+  blogs: BlogPost[];
+}
+
+export function BlogsSection({ blogs: data }: BlogsSectionProps) {
   const articles = data.slice(0, 3);
   const [featured, ...more] = articles;
 
