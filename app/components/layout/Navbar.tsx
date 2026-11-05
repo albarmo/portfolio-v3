@@ -24,7 +24,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const lastY = useRef(0);
-  const idleTimer = useRef<ReturnType<typeof setTimeout>>();
+  const idleTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
   const [hovered, setHovered] = useState<string | null>(null);
   const [activeSection, setActiveSection] = useState<string | null>(null);
   const { setIsOpen } = useSpotlight();

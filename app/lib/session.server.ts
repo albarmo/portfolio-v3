@@ -19,8 +19,9 @@ export async function getSession(request: Request) {
 export async function requireAdmin(request: Request) {
   const session = await getSession(request);
   if (!session.get("admin")) {
-    const url = new URL(request.url);
-    throw redirect(`/admin/login?from=${encodeURIComponent(url.pathname)}`);
+    // v8 passes the raw request, so client navigations arrive as `/path.data`
+    const pathname = new URL(request.url).pathname.replace(/\.data$/, "");
+    throw redirect(`/admin/login?from=${encodeURIComponent(pathname)}`);
   }
 }
 
