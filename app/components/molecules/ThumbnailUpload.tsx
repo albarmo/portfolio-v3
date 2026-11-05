@@ -7,7 +7,7 @@ interface ThumbnailUploadProps {
   urlFieldName?: string;
 }
 
-export default function ThumbnailUpload({
+export function ThumbnailUpload({
   currentUrl = "",
   fieldName = "thumbnailFile",
   urlFieldName = "thumbnail",

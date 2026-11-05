@@ -1,6 +1,6 @@
 import { data, Form, useActionData } from "react-router";
 import type { FC } from "react";
-import { PageLayout } from "@/components/layout/PageLayout";
+import { PageLayout } from "@/components/templates/PageLayout";
 import { pageMeta } from "@/utils/pageMeta";
 import type { Route } from "./+types/review";
 

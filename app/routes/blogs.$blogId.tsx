@@ -1,5 +1,5 @@
 import { useLoaderData, Link } from "react-router";
-import { PageLayout } from "@/components/layout/PageLayout";
+import { PageLayout } from "@/components/templates/PageLayout";
 import { ArrowLeftIcon } from "lucide-react";
 import { getBlog } from "@/services/blog.server";
 import { pageMeta } from "@/utils/pageMeta";

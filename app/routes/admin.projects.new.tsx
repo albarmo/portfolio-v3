@@ -3,7 +3,7 @@ import { MAX_UPLOAD_BYTES } from "@/constants/upload";
 import { redirect, Form, useActionData, useNavigation } from "react-router";
 import { getDb } from "@/services/db.server";
 import { uploadToImageKit } from "@/services/imagekit.server";
-import ThumbnailUpload from "@/components/admin/ThumbnailUpload";
+import { ThumbnailUpload } from "@/components/molecules/ThumbnailUpload";
 import type { Route } from "./+types/admin.projects.new";
 
 // Server loader so client navigations still pass through the admin middleware

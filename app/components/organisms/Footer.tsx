@@ -9,7 +9,7 @@ const footerLinks = [
   { to: "/contact", label: "Let's talk" },
 ];
 
-export const Footer = () => {
+export function Footer() {
   return (
     <footer className="bg-ink py-12 text-cloud">
       <div className="section-shell">
@@ -46,4 +46,4 @@ export const Footer = () => {
       </div>
     </footer>
   );
-};
+}

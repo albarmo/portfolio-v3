@@ -1,7 +1,7 @@
 import { Link, useLoaderData } from "react-router";
 import { motion } from "framer-motion";
 import { ArrowUpRightIcon } from "lucide-react";
-import { PageLayout } from "@/components/layout/PageLayout";
+import { PageLayout } from "@/components/templates/PageLayout";
 import { getBlogs } from "@/services/blog.server";
 import type { BlogPost } from "@/services/blog.server";
 import { pageMeta } from "@/utils/pageMeta";

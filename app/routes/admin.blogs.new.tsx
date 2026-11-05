@@ -1,7 +1,7 @@
 import { parseFormData } from "@remix-run/form-data-parser";
 import { MAX_UPLOAD_BYTES } from "@/constants/upload";
 import { redirect, Form, useActionData, useNavigation } from "react-router";
-import ThumbnailUpload from "@/components/admin/ThumbnailUpload";
+import { ThumbnailUpload } from "@/components/molecules/ThumbnailUpload";
 import { uploadToImageKit } from "@/services/imagekit.server";
 import { getDb } from "@/services/db.server";
 import type { Route } from "./+types/admin.blogs.new";

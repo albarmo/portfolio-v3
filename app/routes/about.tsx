@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import { PageLayout } from "@/components/layout/PageLayout";
+import { PageLayout } from "@/components/templates/PageLayout";
 import AreaOfExpertise from "@/components/section/AreaOfExpertise";
 import { pageMeta } from "@/utils/pageMeta";
 

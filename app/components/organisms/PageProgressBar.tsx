@@ -1,7 +1,7 @@
 import { useNavigation } from "react-router";
 import { useEffect, useRef, useState } from "react";
 
-export default function PageProgressBar() {
+export function PageProgressBar() {
   const navigation = useNavigation();
   const isLoading = navigation.state !== "idle";
 

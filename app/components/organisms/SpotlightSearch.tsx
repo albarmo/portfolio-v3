@@ -1,9 +1,9 @@
 import { useEffect, useCallback, Fragment, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useSpotlight } from "@/context/SpotlightContext";
+import { useSpotlight } from "@/components/providers/SpotlightProvider";
 import { ChevronDownIcon, ChevronUpIcon, SearchIcon } from "lucide-react";
 
-export default function SpotlightSearch() {
+export function SpotlightSearch() {
   const { isOpen, setIsOpen } = useSpotlight();
 
   const [query, setQuery] = useState("");

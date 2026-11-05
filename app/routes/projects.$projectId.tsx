@@ -1,9 +1,9 @@
 import { useLoaderData, Link } from "react-router";
-import { PageLayout } from "@/components/layout/PageLayout";
+import { PageLayout } from "@/components/templates/PageLayout";
 import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
 import { getProject } from "@/services/project.server";
 import type { Project } from "@/services/project.server";
-import TechTag from "@/components/ui/TechTag";
+import { TechTag } from "@/components/atoms/TechTag";
 import { pageMeta } from "@/utils/pageMeta";
 import type { Route } from "./+types/projects.$projectId";
 

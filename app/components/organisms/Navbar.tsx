@@ -8,8 +8,8 @@ import {
 } from "framer-motion";
 import { ArrowUpRight, Menu, Search, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { useSpotlight } from "@/context/SpotlightContext";
-import { ThemeSwitcher } from "../ui/ThemeSwitcher";
+import { useSpotlight } from "@/components/providers/SpotlightProvider";
+import { ThemeSwitcher } from "@/components/molecules/ThemeSwitcher";
 
 const navItems = [
   { to: "/#about", label: "About" },
@@ -19,7 +19,7 @@ const navItems = [
   { to: "/contact", label: "Let's talk" },
 ];
 
-export default function Navbar() {
+export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);

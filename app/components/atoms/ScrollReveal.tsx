@@ -7,7 +7,7 @@ interface ScrollRevealProps {
   className?: string;
 }
 
-export default function ScrollReveal({
+export function ScrollReveal({
   children,
   delay = 0,
   className,

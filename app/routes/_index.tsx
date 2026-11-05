@@ -1,5 +1,5 @@
 import { useLoaderData } from "react-router";
-import { PageLayout } from "@/components/layout/PageLayout";
+import { PageLayout } from "@/components/templates/PageLayout";
 import AboutMe from "@/components/section/AboutMe";
 import AreaOfExpertise from "@/components/section/AreaOfExpertise";
 import Blogs from "@/components/section/Blogs";
@@ -8,7 +8,7 @@ import ExperienceSection from "@/components/section/ExperienceSection";
 import HeroSection from "@/components/section/Hero";
 import ProjectShowcase from "@/components/section/ProjectShowcase";
 import ReviewsGrid from "@/components/section/ReviewGrid";
-import ScrollReveal from "@/components/ui/ScrollReveal";
+import { ScrollReveal } from "@/components/atoms/ScrollReveal";
 import { getBlogs } from "@/services/blog.server";
 import { getProjects } from "@/services/project.server";
 import { DEFAULT_PAGE_SIZE } from "@/constants/pagination";
