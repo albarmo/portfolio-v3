@@ -1,31 +1,7 @@
-import { getDb } from "@/services/db.server";
+import type { ProjectDocument } from "@/features/projects/types";
 
-type PaginationParams = {
-  page?: number;
-  limit?: number;
-};
-
-export type Project = {
-  id: string;
-  repoUrl: string;
-  responsibility: string;
-  techStack: string;
-  category: string;
-  gifUrl: string;
-  brief: string;
-  result: string;
-  url: string;
-  year: string;
-  description: string;
-  thumbnail: string;
-  title: string;
-  /** one-line outcome shown on the home page card */
-  highlight?: string;
-  createdAt: Date | string;
-  updatedAt: Date | string;
-};
-
-export const BACKUP_PROJECTS: Project[] = [
+// Inserted on first run and served when MongoDB is unreachable
+export const PROJECT_SEED: ProjectDocument[] = [
   {
     repoUrl: "https://github.com/example/delima-bri",
     responsibility:
@@ -161,58 +137,3 @@ export const BACKUP_PROJECTS: Project[] = [
     updatedAt: new Date("2025-08-05T07:57:46.165Z"),
   },
 ];
-
-async function seedProjects() {
-  const db = await getDb();
-  const col = db.collection("projects");
-  const count = await col.countDocuments();
-  if (count === 0) {
-    await col.insertMany(BACKUP_PROJECTS);
-    await col.createIndex({ id: 1 }, { unique: true });
-  }
-}
-
-export async function getProjects({
-  page = 1,
-  limit = 10,
-}: PaginationParams): Promise<{ code: number; data: Project[] }> {
-  try {
-    const db = await getDb();
-    await seedProjects();
-    const col = db.collection<Project>("projects");
-    const skip = (page - 1) * limit;
-    const data = await col
-      .find({}, { projection: { _id: 0 } })
-      .sort({ year: -1, createdAt: -1 })
-      .skip(skip)
-      .limit(limit)
-      .toArray();
-    // documents seeded before `highlight` existed get it from the backup copy
-    const withHighlights = (data as Project[]).map((project) => ({
-      ...project,
-      highlight:
-        project.highlight ??
-        BACKUP_PROJECTS.find((backup) => backup.id === project.id)?.highlight,
-    }));
-    return { code: 200, data: withHighlights };
-  } catch {
-    return { code: 200, data: BACKUP_PROJECTS };
-  }
-}
-
-export async function getProject(id: string): Promise<Project> {
-  try {
-    const db = await getDb();
-    await seedProjects();
-    const col = db.collection("projects");
-    const data = await col.findOne(
-      { id: id },
-      { projection: { _id: 0 } }
-    );
-    return (data as unknown as Project) ?? BACKUP_PROJECTS[0];
-  } catch {
-    return (
-      BACKUP_PROJECTS.find((p) => p.id === id) ?? BACKUP_PROJECTS[0]
-    );
-  }
-}

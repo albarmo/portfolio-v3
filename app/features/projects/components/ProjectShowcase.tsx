@@ -7,13 +7,19 @@ import {
 } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { useRef, useState } from "react";
-import type { Project } from "@/services/project.server";
-import ProjectCard from "../ui/card/ProjectCard";
+import type { Project } from "@/features/projects/types";
+import { ProjectCard } from "./ProjectCard";
 
 const pad = (value: number) => String(value).padStart(2, "0");
 
-export default function ProjectShowcase({ data = [] }: { data?: Project[] }) {
-  const projects = data.slice(0, 4);
+const SHOWCASE_SIZE = 4;
+
+interface ProjectShowcaseProps {
+  projects: Project[];
+}
+
+export function ProjectShowcase({ projects: allProjects }: ProjectShowcaseProps) {
+  const projects = allProjects.slice(0, SHOWCASE_SIZE);
   const reduceMotion = useReducedMotion() ?? false;
   const stackRef = useRef<HTMLDivElement>(null);
   const windowRef = useRef<HTMLDivElement>(null);

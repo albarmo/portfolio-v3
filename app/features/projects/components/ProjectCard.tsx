@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import { ArrowUpRight } from "lucide-react";
-import type { FC } from "react";
+
+const MAX_VISIBLE_TECHNOLOGIES = 3;
 
 interface ProjectCardProps {
   title: string;
@@ -8,34 +9,12 @@ interface ProjectCardProps {
   year: string;
   imageUrl: string;
   href: string;
-  techStack: string;
-  highlight?: string;
+  techStack: string[];
+  highlight?: string | undefined;
 }
 
-// techStack is stored as a JSON array string; fall back to stripping brackets for malformed values
-const parseTechStack = (raw: string) => {
-  try {
-    const parsed: unknown = JSON.parse(raw);
-    if (Array.isArray(parsed)) return parsed.map(String);
-  } catch {
-    // not JSON, handled below
-  }
-  return raw.replace(/[[\]"]/g, "").split(",");
-};
-
-const ProjectCard: FC<ProjectCardProps> = ({
-  title,
-  category,
-  year,
-  imageUrl,
-  href,
-  techStack,
-  highlight,
-}) => {
-  const technologies = parseTechStack(techStack)
-    .map((technology) => technology.trim())
-    .filter(Boolean)
-    .slice(0, 3);
+export function ProjectCard({ title, category, year, imageUrl, href, techStack, highlight }: ProjectCardProps) {
+  const technologies = techStack.slice(0, MAX_VISIBLE_TECHNOLOGIES);
 
   return (
     <Link to={href} className="group block">
@@ -97,6 +76,4 @@ const ProjectCard: FC<ProjectCardProps> = ({
       </article>
     </Link>
   );
-};
-
-export default ProjectCard;
+}

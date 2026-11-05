@@ -6,16 +6,16 @@ import Blogs from "@/components/section/Blogs";
 import ContactCTA from "@/components/section/ContactCTA";
 import ExperienceSection from "@/components/section/ExperienceSection";
 import HeroSection from "@/components/section/Hero";
-import ProjectShowcase from "@/components/section/ProjectShowcase";
 import ReviewsGrid from "@/components/section/ReviewGrid";
 import { ScrollReveal } from "@/components/atoms/ScrollReveal";
 import { getBlogs } from "@/services/blog.server";
-import { getProjects } from "@/services/project.server";
+import { ProjectShowcase } from "@/features/projects/components";
+import { getProjects } from "@/features/projects/api/projects.server";
 import { DEFAULT_PAGE_SIZE } from "@/constants/pagination";
 
 export const loader = async () => {
   const [projects, blogs] = await Promise.all([
-    getProjects({ limit: DEFAULT_PAGE_SIZE, page: 1 }),
+    getProjects(),
     getBlogs({ limit: DEFAULT_PAGE_SIZE, page: 1 }),
   ]);
 
@@ -32,7 +32,7 @@ export default function Index() {
     <PageLayout>
       <HeroSection />
       <ScrollReveal>
-        <ProjectShowcase data={projects?.data} />
+        <ProjectShowcase projects={projects} />
       </ScrollReveal>
       <ScrollReveal>
         <AboutMe />
