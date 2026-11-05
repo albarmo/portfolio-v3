@@ -1,8 +1,9 @@
 import { parseFormData } from "@remix-run/form-data-parser";
+import { MAX_UPLOAD_BYTES } from "@/constants/upload";
 import { redirect, Form, useActionData, useNavigation } from "react-router";
-import ThumbnailUpload from "~/components/admin/ThumbnailUpload";
-import { uploadToImageKit } from "~/lib/imagekit.server";
-import { getDb } from "~/lib/mongodb.server";
+import ThumbnailUpload from "@/components/admin/ThumbnailUpload";
+import { uploadToImageKit } from "@/services/imagekit.server";
+import { getDb } from "@/services/db.server";
 import type { Route } from "./+types/admin.blogs.new";
 
 // Server loader so client navigations still pass through the admin middleware
@@ -19,7 +20,7 @@ function slugify(text: string) {
 }
 
 export async function action({ request }: Route.ActionArgs) {
-  const form = await parseFormData(request, { maxFileSize: 5_000_000 });
+  const form = await parseFormData(request, { maxFileSize: MAX_UPLOAD_BYTES });
 
   const title = (form.get("title") as string)?.trim();
   const summary = (form.get("summary") as string)?.trim();

@@ -1,15 +1,16 @@
 import { Link, useLoaderData } from "react-router";
 import { motion } from "framer-motion";
 import { ArrowUpRightIcon } from "lucide-react";
-import { PageLayout } from "~/components/layout/PageLayout";
-import { getProjects } from "~/services/project.server";
-import type { Project } from "~/services/project.server";
-import { pageMeta } from "~/utils/meta";
+import { PageLayout } from "@/components/layout/PageLayout";
+import { getProjects } from "@/services/project.server";
+import type { Project } from "@/services/project.server";
+import { pageMeta } from "@/utils/pageMeta";
+import { DEFAULT_PAGE_SIZE } from "@/constants/pagination";
 
 export const meta = () => pageMeta({ title: "Projects" });
 
 export const loader = async () => {
-  const projects = await getProjects({ page: 1, limit: 10 });
+  const projects = await getProjects({ page: 1, limit: DEFAULT_PAGE_SIZE });
   return { projects };
 };
 

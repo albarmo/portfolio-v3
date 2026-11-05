@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 import { ArrowUpRight } from "lucide-react";
-import type { BlogPost } from "~/services/blog.server";
+import type { BlogPost } from "@/services/blog.server";
 
 export default function Blogs({ data = [] }: { data?: BlogPost[] }) {
   const articles = data.slice(0, 3);

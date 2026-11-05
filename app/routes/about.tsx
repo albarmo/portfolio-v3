@@ -1,7 +1,7 @@
 import type { FC } from "react";
-import { PageLayout } from "~/components/layout/PageLayout";
-import AreaOfExpertise from "~/components/section/AreaOfExpertise";
-import { pageMeta } from "~/utils/meta";
+import { PageLayout } from "@/components/layout/PageLayout";
+import AreaOfExpertise from "@/components/section/AreaOfExpertise";
+import { pageMeta } from "@/utils/pageMeta";
 
 export const meta = () => pageMeta({ title: "About" });
 

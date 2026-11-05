@@ -10,10 +10,10 @@ import {
 
 import appStylesHref from "./app.css?url";
 import tailwindStylesHref from "./tailwind.css?url";
-import favicon from "~/../public/favicon.ico";
+import favicon from "@/../public/favicon.ico";
 import Navbar from "./components/layout/Navbar";
-import { themeCookie } from "./utils/cookie";
-import { pageMeta } from "./utils/meta";
+import { themeCookie } from "./utils/themeCookie";
+import { pageMeta } from "./utils/pageMeta";
 import { ReactNode, useEffect } from "react";
 import { applyTheme } from "./utils/theme.client";
 import PageProgressBar from "./components/ui/PageProgressBar";

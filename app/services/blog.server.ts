@@ -1,4 +1,4 @@
-import { getDb } from "~/lib/mongodb.server";
+import { getDb } from "@/services/db.server";
 
 export type BlogPost = {
   id: number | string;

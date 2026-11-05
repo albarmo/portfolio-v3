@@ -1,8 +1,9 @@
 import { parseFormData } from "@remix-run/form-data-parser";
+import { MAX_UPLOAD_BYTES } from "@/constants/upload";
 import { redirect, Form, useActionData, useNavigation } from "react-router";
-import { getDb } from "~/lib/mongodb.server";
-import { uploadToImageKit } from "~/lib/imagekit.server";
-import ThumbnailUpload from "~/components/admin/ThumbnailUpload";
+import { getDb } from "@/services/db.server";
+import { uploadToImageKit } from "@/services/imagekit.server";
+import ThumbnailUpload from "@/components/admin/ThumbnailUpload";
 import type { Route } from "./+types/admin.projects.new";
 
 // Server loader so client navigations still pass through the admin middleware
@@ -11,7 +12,7 @@ export async function loader() {
 }
 
 export async function action({ request }: Route.ActionArgs) {
-  const form = await parseFormData(request, { maxFileSize: 5_000_000 });
+  const form = await parseFormData(request, { maxFileSize: MAX_UPLOAD_BYTES });
 
   const title = (form.get("title") as string)?.trim();
   const category = (form.get("category") as string)?.trim();

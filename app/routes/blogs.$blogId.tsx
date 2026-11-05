@@ -1,8 +1,8 @@
 import { useLoaderData, Link } from "react-router";
-import { PageLayout } from "~/components/layout/PageLayout";
+import { PageLayout } from "@/components/layout/PageLayout";
 import { ArrowLeftIcon } from "lucide-react";
-import { getBlog } from "~/services/blog.server";
-import { pageMeta } from "~/utils/meta";
+import { getBlog } from "@/services/blog.server";
+import { pageMeta } from "@/utils/pageMeta";
 import type { Route } from "./+types/blogs.$blogId";
 
 export const meta = ({ loaderData }: Route.MetaArgs) =>

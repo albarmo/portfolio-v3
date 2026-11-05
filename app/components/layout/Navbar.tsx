@@ -8,7 +8,7 @@ import {
 } from "framer-motion";
 import { ArrowUpRight, Menu, Search, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { useSpotlight } from "~/context/SpotlightContext";
+import { useSpotlight } from "@/context/SpotlightContext";
 import { ThemeSwitcher } from "../ui/ThemeSwitcher";
 
 const navItems = [

@@ -1,10 +1,10 @@
 import { useLoaderData, Link } from "react-router";
-import { PageLayout } from "~/components/layout/PageLayout";
+import { PageLayout } from "@/components/layout/PageLayout";
 import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
-import { getProject } from "~/services/project.server";
-import type { Project } from "~/services/project.server";
-import TechTag from "~/components/ui/TechTag";
-import { pageMeta } from "~/utils/meta";
+import { getProject } from "@/services/project.server";
+import type { Project } from "@/services/project.server";
+import TechTag from "@/components/ui/TechTag";
+import { pageMeta } from "@/utils/pageMeta";
 import type { Route } from "./+types/projects.$projectId";
 
 export const meta = ({ loaderData }: Route.MetaArgs) =>

@@ -1,5 +1,6 @@
 import { Form, useActionData, useSearchParams, redirect } from "react-router";
-import { createAdminSession, getSession } from "~/lib/session.server";
+import { createAdminSession, getSession } from "@/services/session.server";
+import { env } from "@/services/env.server";
 import type { Route } from "./+types/admin_.login";
 
 export async function loader({ request }: Route.LoaderArgs) {
@@ -14,10 +15,7 @@ export async function action({ request }: Route.ActionArgs) {
   const password = form.get("password") as string;
   const from = (form.get("from") as string) || "/admin";
 
-  const validUsername = process.env.ADMIN_USERNAME ?? "admin";
-  const validPassword = process.env.ADMIN_PASSWORD ?? "portfolio2026";
-
-  if (username !== validUsername || password !== validPassword) {
+  if (username !== env.adminUsername || password !== env.adminPassword) {
     return { error: "INVALID CREDENTIALS / ACCESS DENIED" };
   }
 

@@ -1,5 +1,5 @@
 import { redirect, Form, useActionData, useNavigation } from "react-router";
-import { getDb } from "~/lib/mongodb.server";
+import { getDb } from "@/services/db.server";
 import type { Route } from "./+types/admin.reviews.new";
 
 // Server loader so client navigations still pass through the admin middleware

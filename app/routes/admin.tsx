@@ -1,5 +1,5 @@
 import { Link, NavLink, Outlet } from "react-router";
-import { requireAdmin } from "~/lib/session.server";
+import { requireAdmin } from "@/services/session.server";
 import type { Route } from "./+types/admin";
 import {
   LayoutDashboardIcon,

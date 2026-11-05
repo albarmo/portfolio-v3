@@ -1,6 +1,6 @@
 import { useEffect, useCallback, Fragment, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useSpotlight } from "~/context/SpotlightContext";
+import { useSpotlight } from "@/context/SpotlightContext";
 import { ChevronDownIcon, ChevronUpIcon, SearchIcon } from "lucide-react";
 
 export default function SpotlightSearch() {

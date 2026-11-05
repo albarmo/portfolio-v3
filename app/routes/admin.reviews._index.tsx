@@ -6,8 +6,8 @@ import {
   useNavigation,
 } from "react-router";
 import { PencilIcon, PlusIcon, Trash2Icon } from "lucide-react";
-import { getDb } from "~/lib/mongodb.server";
-import type { Review } from "~/services/review.server";
+import { getDb } from "@/services/db.server";
+import type { Review } from "@/services/review.server";
 import type { Route } from "./+types/admin.reviews._index";
 
 export async function loader() {

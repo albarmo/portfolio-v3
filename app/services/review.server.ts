@@ -1,4 +1,4 @@
-import { getDb } from "~/lib/mongodb.server";
+import { getDb } from "@/services/db.server";
 
 type PaginationParams = {
   page?: number;

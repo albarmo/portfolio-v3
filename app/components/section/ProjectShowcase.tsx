@@ -7,7 +7,7 @@ import {
 } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { useRef, useState } from "react";
-import type { Project } from "~/services/project.server";
+import type { Project } from "@/services/project.server";
 import ProjectCard from "../ui/card/ProjectCard";
 
 const pad = (value: number) => String(value).padStart(2, "0");

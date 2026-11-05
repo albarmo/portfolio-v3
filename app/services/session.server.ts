@@ -1,4 +1,6 @@
 import { createCookieSessionStorage, redirect } from "react-router";
+import { ADMIN_SESSION_MAX_AGE_SECONDS } from "@/constants/cookie";
+import { env } from "@/services/env.server";
 
 const sessionStorage = createCookieSessionStorage({
   cookie: {
@@ -6,9 +8,9 @@ const sessionStorage = createCookieSessionStorage({
     httpOnly: true,
     path: "/",
     sameSite: "lax",
-    secrets: [process.env.SESSION_SECRET ?? "dev-secret-changeme"],
-    secure: process.env.NODE_ENV === "production",
-    maxAge: 60 * 60 * 8, // 8 hours
+    secrets: [env.sessionSecret],
+    secure: env.isProduction,
+    maxAge: ADMIN_SESSION_MAX_AGE_SECONDS,
   },
 });
 

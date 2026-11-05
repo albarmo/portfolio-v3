@@ -1,7 +1,8 @@
 import { parseFormData } from "@remix-run/form-data-parser";
+import { MAX_UPLOAD_BYTES } from "@/constants/upload";
 import { redirect, Form, useLoaderData, useNavigation } from "react-router";
 import { CopyIcon, ImageIcon, Trash2Icon, UploadCloudIcon } from "lucide-react";
-import { deleteFile, listFiles, uploadToImageKit } from "~/lib/imagekit.server";
+import { deleteFile, listFiles, uploadToImageKit } from "@/services/imagekit.server";
 import type { Route } from "./+types/admin.media";
 
 type IKFile = {
@@ -27,7 +28,7 @@ export async function loader() {
 }
 
 export async function action({ request }: Route.ActionArgs) {
-  const form = await parseFormData(request, { maxFileSize: 5_000_000 });
+  const form = await parseFormData(request, { maxFileSize: MAX_UPLOAD_BYTES });
   const intent = form.get("intent") as string;
 
   if (intent === "delete") {

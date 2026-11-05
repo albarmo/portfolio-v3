@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { MoonIcon, SunIcon } from "lucide-react";
-import { applyTheme } from "~/utils/theme.client";
+import { applyTheme } from "@/utils/theme.client";
 
 export function ThemeSwitcher() {
   const [theme, setTheme] = useState<"light" | "dark">("light");

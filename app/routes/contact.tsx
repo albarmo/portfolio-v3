@@ -1,8 +1,8 @@
 import { useEffect, type FC } from "react";
 import { Form, Link, useActionData } from "react-router";
 import { Dribbble, Github, Linkedin, MailIcon } from "lucide-react";
-import { PageLayout } from "~/components/layout/PageLayout";
-import { pageMeta } from "~/utils/meta";
+import { PageLayout } from "@/components/layout/PageLayout";
+import { pageMeta } from "@/utils/pageMeta";
 import type { Route } from "./+types/contact";
 
 export const meta = () => pageMeta({ title: "Contact" });

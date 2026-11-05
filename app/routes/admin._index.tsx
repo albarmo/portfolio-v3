@@ -1,6 +1,6 @@
 import { Link, useLoaderData } from "react-router";
 import { FileTextIcon, FolderIcon, PlusIcon, StarIcon } from "lucide-react";
-import { getDb } from "~/lib/mongodb.server";
+import { getDb } from "@/services/db.server";
 
 export async function loader() {
   const db = await getDb();

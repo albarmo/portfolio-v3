@@ -5,8 +5,8 @@ import {
   useLoaderData,
   useNavigation,
 } from "react-router";
-import { getDb } from "~/lib/mongodb.server";
-import type { Review } from "~/services/review.server";
+import { getDb } from "@/services/db.server";
+import type { Review } from "@/services/review.server";
 import { ReviewFormFields } from "./admin.reviews.new";
 import type { Route } from "./+types/admin.reviews.$id.edit";
 

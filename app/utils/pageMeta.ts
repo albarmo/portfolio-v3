@@ -1,8 +1,5 @@
 import type { MetaDescriptor } from "react-router";
-
-const SITE = "Albar Moerhamsa";
-const DEFAULT_DESCRIPTION =
-  "Portfolio of Albar Moerhamsa, a Software Engineer and Frontend Engineer building polished, performant digital products.";
+import { DEFAULT_DESCRIPTION, SITE_NAME } from "@/constants/site";
 
 // A route's meta replaces its parents' entirely, so every page emits the full set.
 export function pageMeta({
@@ -16,7 +13,7 @@ export function pageMeta({
   image?: string;
   type?: "website" | "article";
 } = {}): MetaDescriptor[] {
-  const fullTitle = title ? `${title} - ${SITE}` : `${SITE} - Software Engineer`;
+  const fullTitle = title ? `${title} - ${SITE_NAME}` : `${SITE_NAME} - Software Engineer`;
   return [
     { title: fullTitle },
     { name: "description", content: description },
