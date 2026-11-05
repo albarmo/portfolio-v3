@@ -3,7 +3,7 @@ import { ArrowUpRight } from "lucide-react";
 
 const CAREER_START = 2021;
 
-export default function AboutMe() {
+export function AboutMe() {
   const years = new Date().getFullYear() - CAREER_START;
 
   return (

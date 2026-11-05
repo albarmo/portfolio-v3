@@ -41,7 +41,7 @@ function MarqueeRow({ shots, reverse }: { shots: string[]; reverse?: boolean }) 
   );
 }
 
-export default function ReviewsGrid() {
+export function CollaborationGallery() {
   return (
     <section className="section-pad overflow-hidden">
       <div className="section-shell">

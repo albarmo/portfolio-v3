@@ -102,7 +102,7 @@ function CapabilityCard({
   );
 }
 
-export default function AreaOfExpertise() {
+export function AreaOfExpertise() {
   const reduceMotion = useReducedMotion() ?? false;
   const headerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({

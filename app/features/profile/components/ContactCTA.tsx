@@ -11,7 +11,7 @@ const links = [
   { to: "https://github.com/albarmo", label: "GitHub", icon: Github },
 ];
 
-export default function ContactCTA() {
+export function ContactCTA() {
   return (
     <section className="bg-accent py-20 text-ink sm:py-28">
       <div className="section-shell">

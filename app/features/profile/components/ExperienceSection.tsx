@@ -186,7 +186,7 @@ function ExperienceCard({
   );
 }
 
-export default function ExperienceSection() {
+export function ExperienceSection() {
   const reduceMotion = useReducedMotion() ?? false;
   const headerRef = useRef<HTMLDivElement>(null);
   // heading and intro slide in from opposite sides as the header scrolls up

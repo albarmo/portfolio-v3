@@ -10,7 +10,7 @@ import {
 } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { useCallback, useEffect, useRef, type PointerEvent } from "react";
-import StarField from "../ui/StarField";
+import { StarField } from "./StarField";
 
 const shootingStars = [
   { top: "8%", left: "78%", duration: "9s", delay: "2s" },
@@ -100,7 +100,7 @@ function ShadowCopy({
   );
 }
 
-export default function HeroSection() {
+export function HeroSection() {
   const reduceMotion = useReducedMotion();
 
   const sectionRef = useRef<HTMLElement>(null);

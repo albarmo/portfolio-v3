@@ -72,7 +72,7 @@ const drawStar = (
 };
 
 /** Canvas star field: static faint stars drawn once, brighter stars scintillating at ~30fps while visible at night. */
-export default function StarField({ reduceMotion }: { reduceMotion: boolean }) {
+export function StarField({ reduceMotion }: { reduceMotion: boolean }) {
   const staticRef = useRef<HTMLCanvasElement>(null);
   const twinkleRef = useRef<HTMLCanvasElement>(null);
 
