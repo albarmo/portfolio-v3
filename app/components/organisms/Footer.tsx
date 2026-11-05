@@ -1,13 +1,6 @@
 import { Link } from "react-router";
 import { ArrowUp } from "lucide-react";
-
-const footerLinks = [
-  { to: "/#about", label: "About" },
-  { to: "/#work", label: "Work" },
-  { to: "/#experience", label: "Experience" },
-  { to: "/#notes", label: "Notes" },
-  { to: "/contact", label: "Let's talk" },
-];
+import { NAV_LINKS } from "@/constants/navigation";
 
 export function Footer() {
   return (
@@ -26,7 +19,7 @@ export function Footer() {
             </p>
           </div>
           <nav className="flex flex-wrap gap-x-6 gap-y-3" aria-label="Footer navigation">
-            {footerLinks.map((item) => (
+            {NAV_LINKS.map((item) => (
               <Link
                 key={item.to}
                 to={item.to}
