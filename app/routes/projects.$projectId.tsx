@@ -1,11 +1,9 @@
 import { useLoaderData, Link } from "react-router";
-import type { LoaderFunctionArgs } from "react-router";
 import { PageLayout } from "~/components/layout/PageLayout";
 import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
 import { getProject } from "~/services/project.server";
 import type { Project } from "~/services/project.server";
 import TechTag from "~/components/ui/TechTag";
-import invariant from "tiny-invariant";
 import { pageMeta } from "~/utils/meta";
 import type { Route } from "./+types/projects.$projectId";
 
@@ -13,15 +11,17 @@ export const meta = ({ loaderData }: Route.MetaArgs) =>
   pageMeta({
     title: loaderData?.project?.title ?? "Project",
     description: loaderData?.project?.description,
-    image: loaderData?.project?.thumbnail,
+    image: loaderData?.ogImage,
     type: "article",
   });
 
-export const loader = async ({ params }: LoaderFunctionArgs) => {
-  invariant(params.projectId, "Missing projectId param");
+export const loader = async ({ params, url }: Route.LoaderArgs) => {
   const project: Project = await getProject(params.projectId);
 
-  return { project: project };
+  // og:image must be absolute; ImageKit URLs already are, local /images paths are not
+  const ogImage = project?.thumbnail ? new URL(project.thumbnail, url).href : undefined;
+
+  return { project, ogImage };
 };
 
 export default function ProjectDetail() {

@@ -1,14 +1,14 @@
 import { Form, useActionData, useSearchParams, redirect } from "react-router";
-import type { ActionFunctionArgs, LoaderFunctionArgs } from "react-router";
 import { createAdminSession, getSession } from "~/lib/session.server";
+import type { Route } from "./+types/admin_.login";
 
-export async function loader({ request }: LoaderFunctionArgs) {
+export async function loader({ request }: Route.LoaderArgs) {
   const session = await getSession(request);
   if (session.get("admin")) throw redirect("/admin");
   return null;
 }
 
-export async function action({ request }: ActionFunctionArgs) {
+export async function action({ request }: Route.ActionArgs) {
   const form = await request.formData();
   const username = form.get("username") as string;
   const password = form.get("password") as string;

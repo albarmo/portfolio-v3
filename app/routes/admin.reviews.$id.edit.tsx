@@ -1,4 +1,3 @@
-import type { ActionFunctionArgs, LoaderFunctionArgs } from "react-router";
 import {
   redirect,
   Form,
@@ -6,13 +5,12 @@ import {
   useLoaderData,
   useNavigation,
 } from "react-router";
-import invariant from "tiny-invariant";
 import { getDb } from "~/lib/mongodb.server";
 import type { Review } from "~/services/review.server";
 import { ReviewFormFields } from "./admin.reviews.new";
+import type { Route } from "./+types/admin.reviews.$id.edit";
 
-export async function loader({ params }: LoaderFunctionArgs) {
-  invariant(params.id, "Missing review id");
+export async function loader({ params }: Route.LoaderArgs) {
   const db = await getDb();
   const review = await db
     .collection<Review>("reviews")
@@ -21,8 +19,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
   return { review };
 }
 
-export async function action({ request, params }: ActionFunctionArgs) {
-  invariant(params.id, "Missing review id");
+export async function action({ request, params }: Route.ActionArgs) {
   const form = await request.formData();
 
   const name = (form.get("name") as string)?.trim();

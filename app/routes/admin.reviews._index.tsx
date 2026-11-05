@@ -1,4 +1,3 @@
-import type { ActionFunctionArgs } from "react-router";
 import {
   redirect,
   Form,
@@ -9,6 +8,7 @@ import {
 import { PencilIcon, PlusIcon, Trash2Icon } from "lucide-react";
 import { getDb } from "~/lib/mongodb.server";
 import type { Review } from "~/services/review.server";
+import type { Route } from "./+types/admin.reviews._index";
 
 export async function loader() {
   const db = await getDb();
@@ -20,7 +20,7 @@ export async function loader() {
   return { reviews };
 }
 
-export async function action({ request }: ActionFunctionArgs) {
+export async function action({ request }: Route.ActionArgs) {
   const form = await request.formData();
   const intent = form.get("intent");
   const id = form.get("id") as string;

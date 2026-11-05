@@ -1,8 +1,6 @@
 import { useLoaderData, Link } from "react-router";
-import type { LoaderFunctionArgs } from "react-router";
 import { PageLayout } from "~/components/layout/PageLayout";
 import { ArrowLeftIcon } from "lucide-react";
-import invariant from "tiny-invariant";
 import { getBlog } from "~/services/blog.server";
 import { pageMeta } from "~/utils/meta";
 import type { Route } from "./+types/blogs.$blogId";
@@ -11,15 +9,17 @@ export const meta = ({ loaderData }: Route.MetaArgs) =>
   pageMeta({
     title: loaderData?.blog?.title ?? "Blog",
     description: loaderData?.blog?.summary,
-    image: loaderData?.blog?.thumbnail,
+    image: loaderData?.ogImage,
     type: "article",
   });
 
-export const loader = async ({ params }: LoaderFunctionArgs) => {
-  invariant(params.blogId, "Missing blogId param");
+export const loader = async ({ params, url }: Route.LoaderArgs) => {
   const blog = await getBlog(params.blogId);
 
-  return { blog: blog?.data };
+  const thumbnail = blog?.data?.thumbnail;
+  const ogImage = thumbnail ? new URL(thumbnail, url).href : undefined;
+
+  return { blog: blog?.data, ogImage };
 };
 
 export default function BlogDetail() {

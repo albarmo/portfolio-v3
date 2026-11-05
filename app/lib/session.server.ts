@@ -26,7 +26,10 @@ export async function requireAdmin(request: Request, url: URL) {
 export async function createAdminSession(redirectTo: string) {
   const session = await sessionStorage.getSession();
   session.set("admin", true);
-  return redirect(redirectTo, {
+  // Same-site paths only: "//host", "/\host" and "/<tab>/host" all resolve off-site in browsers
+  // eslint-disable-next-line no-control-regex
+  const safeTo = /^\/(?![/\\])[^\\\x00-\x20]*$/.test(redirectTo) ? redirectTo : "/admin";
+  return redirect(safeTo, {
     headers: { "Set-Cookie": await sessionStorage.commitSession(session) },
   });
 }

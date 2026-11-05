@@ -1,4 +1,3 @@
-import type { ActionFunctionArgs, LoaderFunctionArgs } from "react-router";
 import { parseFormData } from "@remix-run/form-data-parser";
 import {
   redirect,
@@ -7,14 +6,13 @@ import {
   useLoaderData,
   useNavigation,
 } from "react-router";
-import invariant from "tiny-invariant";
 import { getDb } from "~/lib/mongodb.server";
 import { uploadToImageKit } from "~/lib/imagekit.server";
 import type { Project } from "~/services/project.server";
 import { ProjectFormFields } from "./admin.projects.new";
+import type { Route } from "./+types/admin.projects.$id.edit";
 
-export async function loader({ params }: LoaderFunctionArgs) {
-  invariant(params.id, "Missing project id");
+export async function loader({ params }: Route.LoaderArgs) {
   const db = await getDb();
   const project = await db
     .collection<Project>("projects")
@@ -23,9 +21,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
   return { project };
 }
 
-export async function action({ request, params }: ActionFunctionArgs) {
-  invariant(params.id, "Missing project id");
-
+export async function action({ request, params }: Route.ActionArgs) {
   const form = await parseFormData(request, { maxFileSize: 5_000_000 });
 
   const title = (form.get("title") as string)?.trim();

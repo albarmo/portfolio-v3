@@ -1,13 +1,13 @@
-import type { ActionFunctionArgs } from "react-router";
 import { redirect, Form, useActionData, useNavigation } from "react-router";
 import { getDb } from "~/lib/mongodb.server";
+import type { Route } from "./+types/admin.reviews.new";
 
 // Server loader so client navigations still pass through the admin middleware
 export async function loader() {
   return null;
 }
 
-export async function action({ request }: ActionFunctionArgs) {
+export async function action({ request }: Route.ActionArgs) {
   const form = await request.formData();
 
   const name = (form.get("name") as string)?.trim();

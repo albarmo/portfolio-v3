@@ -1,13 +1,13 @@
 import { useEffect, type FC } from "react";
-import { type ActionFunctionArgs } from "react-router";
 import { Form, Link, useActionData } from "react-router";
 import { Dribbble, Github, Linkedin, MailIcon } from "lucide-react";
 import { PageLayout } from "~/components/layout/PageLayout";
 import { pageMeta } from "~/utils/meta";
+import type { Route } from "./+types/contact";
 
 export const meta = () => pageMeta({ title: "Contact" });
 
-export async function action({ request }: ActionFunctionArgs) {
+export async function action({ request }: Route.ActionArgs) {
   const formData = await request.formData();
 
   const fullName = formData.get("fullName");

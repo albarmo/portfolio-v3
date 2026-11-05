@@ -1,4 +1,3 @@
-import type { LinksFunction, LoaderFunctionArgs } from "react-router";
 import {
   Links,
   Meta,
@@ -27,16 +26,17 @@ import "@fontsource/manrope/latin-400";
 import "@fontsource/manrope/latin-500";
 import "@fontsource/manrope/latin-600";
 import "@fontsource/manrope/latin-700";
+import type { Route } from "./+types/root";
 
 export const meta = () => pageMeta();
 
-export const links: LinksFunction = () => [
+export const links: Route.LinksFunction = () => [
   { rel: "icon", href: favicon, type: "image/x-icon" },
   { rel: "stylesheet", href: tailwindStylesHref },
   { rel: "stylesheet", href: appStylesHref },
 ];
 
-export const loader = async ({ request }: LoaderFunctionArgs) => {
+export const loader = async ({ request }: Route.LoaderArgs) => {
   const cookieHeader = request.headers.get("Cookie");
   const theme = (await themeCookie.parse(cookieHeader)) || "light";
 

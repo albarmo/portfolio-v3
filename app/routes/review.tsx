@@ -1,12 +1,12 @@
-import type { ActionFunctionArgs } from "react-router";
 import { data, Form, useActionData } from "react-router";
 import type { FC } from "react";
 import { PageLayout } from "~/components/layout/PageLayout";
 import { pageMeta } from "~/utils/meta";
+import type { Route } from "./+types/review";
 
 export const meta = () => pageMeta({ title: "Leave a Review" });
 
-export async function action({ request }: ActionFunctionArgs) {
+export async function action({ request }: Route.ActionArgs) {
   const formData = await request.formData();
   const review = {
     fullName: formData.get("fullName"),

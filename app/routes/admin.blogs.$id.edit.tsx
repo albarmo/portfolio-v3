@@ -1,4 +1,3 @@
-import type { ActionFunctionArgs, LoaderFunctionArgs } from "react-router";
 import { parseFormData } from "@remix-run/form-data-parser";
 import {
   redirect,
@@ -7,14 +6,13 @@ import {
   useLoaderData,
   useNavigation,
 } from "react-router";
-import invariant from "tiny-invariant";
 import { getDb } from "~/lib/mongodb.server";
 import { uploadToImageKit } from "~/lib/imagekit.server";
 import type { BlogPost } from "~/services/blog.server";
 import { BlogFormFields } from "./admin.blogs.new";
+import type { Route } from "./+types/admin.blogs.$id.edit";
 
-export async function loader({ params }: LoaderFunctionArgs) {
-  invariant(params.id, "Missing blog id");
+export async function loader({ params }: Route.LoaderArgs) {
   const db = await getDb();
   const blog = await db
     .collection<BlogPost>("blogs")
@@ -23,9 +21,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
   return { blog };
 }
 
-export async function action({ request, params }: ActionFunctionArgs) {
-  invariant(params.id, "Missing blog id");
-
+export async function action({ request, params }: Route.ActionArgs) {
   const form = await parseFormData(request, { maxFileSize: 5_000_000 });
 
   const title = (form.get("title") as string)?.trim();
