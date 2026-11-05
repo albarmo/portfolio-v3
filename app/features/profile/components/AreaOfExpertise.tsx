@@ -71,7 +71,7 @@ function CapabilityCard({
   return (
     <motion.div
       ref={ref}
-      style={reduceMotion ? undefined : { x, rotate, scale, opacity }}
+      style={reduceMotion ? {} : { x, rotate, scale, opacity }}
       className={capability.span}
     >
       <article
@@ -90,7 +90,7 @@ function CapabilityCard({
         </div>
         <motion.span
           aria-hidden="true"
-          style={reduceMotion ? undefined : { y: numberY }}
+          style={reduceMotion ? {} : { y: numberY }}
           className="absolute -right-10 -top-12"
         >
           <span className="block font-display text-[13rem] font-black leading-none opacity-[0.08] transition-transform duration-500 group-hover:-translate-x-3 group-hover:translate-y-3">
@@ -118,13 +118,13 @@ export function AreaOfExpertise() {
       <div className="section-shell">
         <div ref={headerRef}>
           <motion.h2
-            style={reduceMotion ? undefined : { x: headingX }}
+            style={reduceMotion ? {} : { x: headingX }}
             className="max-w-[11ch] font-display text-6xl font-black uppercase leading-[0.84] tracking-[-0.035em] sm:text-7xl lg:text-8xl"
           >
             Turning ideas into digital experiences.
           </motion.h2>
           <motion.p
-            style={reduceMotion ? undefined : { y: introY, opacity: introOpacity }}
+            style={reduceMotion ? {} : { y: introY, opacity: introOpacity }}
             className="mt-6 max-w-[58ch] text-base leading-7 text-[var(--muted)]"
           >
             From early product thinking to production delivery, I work across the

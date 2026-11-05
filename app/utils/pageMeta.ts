@@ -8,9 +8,9 @@ export function pageMeta({
   image,
   type = "website",
 }: {
-  title?: string;
-  description?: string;
-  image?: string;
+  title?: string | undefined;
+  description?: string | undefined;
+  image?: string | undefined;
   type?: "website" | "article";
 } = {}): MetaDescriptor[] {
   const fullTitle = title ? `${title} - ${SITE_NAME}` : `${SITE_NAME} - Software Engineer`;

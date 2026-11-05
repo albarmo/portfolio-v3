@@ -25,7 +25,7 @@ export function AdminForm({
   return (
     <Form
       method="post"
-      encType={hasFileUpload ? "multipart/form-data" : undefined}
+      {...(hasFileUpload ? { encType: "multipart/form-data" as const } : {})}
       className="max-w-3xl border border-[var(--line)]"
     >
       {fields.map((field) => (

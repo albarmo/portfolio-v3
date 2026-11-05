@@ -125,7 +125,7 @@ export function StarField({ reduceMotion }: { reduceMotion: boolean }) {
     resize();
     window.addEventListener("resize", resize);
     const observer = new IntersectionObserver(([entry]) => {
-      visible = entry.isIntersecting;
+      visible = entry?.isIntersecting ?? false;
     });
     observer.observe(staticCanvas);
     if (!reduceMotion) frame = requestAnimationFrame(loop);

@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 import { UploadCloudIcon, XIcon, ImageIcon } from "lucide-react";
 
 interface ThumbnailUploadProps {
-  currentUrl?: string;
+  currentUrl?: string | undefined;
   fieldName?: string;
   urlFieldName?: string;
 }
@@ -38,9 +38,8 @@ export function ThumbnailUpload({
   };
 
   return (
-    <div className="border-b border-[var(--line)]">
-      {/* Label */}
-      <div className="border-b border-[var(--line)] bg-[var(--surface)] px-3 py-1.5 font-mono text-[0.6rem] font-bold uppercase tracking-widest text-[var(--muted)]">
+    <div role="group" aria-labelledby="thumbnail-label" className="border-b border-[var(--line)]">
+      <div id="thumbnail-label" className="border-b border-[var(--line)] bg-[var(--surface)] px-3 py-1.5 font-mono text-[0.6rem] font-bold uppercase tracking-widest text-[var(--muted)]">
         THUMBNAIL
       </div>
 
@@ -57,39 +56,42 @@ export function ThumbnailUpload({
             <button
               type="button"
               onClick={clearSelection}
+              aria-label="Remove thumbnail"
               className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center bg-[var(--accent)] text-white"
             >
-              <XIcon className="h-3 w-3" />
+              <XIcon className="h-3 w-3" aria-hidden="true" />
             </button>
           </div>
         )}
 
-        {/* Drop zone */}
-        <div
+        {/* Native button so the drop zone is reachable and operable by keyboard */}
+        <button
+          type="button"
           onDragOver={(e) => { e.preventDefault(); setIsDragging(true); }}
           onDragLeave={() => setIsDragging(false)}
           onDrop={handleDrop}
           onClick={() => fileRef.current?.click()}
-          className={`flex cursor-pointer flex-col items-center justify-center gap-2 border border-dashed py-6 transition-colors ${
+          className={`flex w-full cursor-pointer flex-col items-center justify-center gap-2 border border-dashed py-6 transition-colors ${
             isDragging
               ? "border-[var(--accent)] bg-[var(--surface-muted)]"
               : "border-[var(--line)] hover:border-[var(--muted)]"
           }`}
         >
-          <UploadCloudIcon className="h-6 w-6 text-[var(--muted)]" />
+          <UploadCloudIcon className="h-6 w-6 text-[var(--muted)]" aria-hidden="true" />
           <samp className="font-mono text-[0.65rem] text-[var(--muted)]">
             DRAG & DROP OR CLICK TO UPLOAD
           </samp>
           <samp className="font-mono text-[0.6rem] text-[var(--muted)] opacity-60">
             PNG, JPG, WEBP — MAX 5MB
           </samp>
-        </div>
+        </button>
 
         <input
           ref={fileRef}
           type="file"
           name={fieldName}
           accept="image/*"
+          tabIndex={-1}
           className="hidden"
           onChange={(e) => {
             const file = e.target.files?.[0];
@@ -99,10 +101,11 @@ export function ThumbnailUpload({
 
         {/* Manual URL input */}
         <div className="flex items-center gap-2">
-          <ImageIcon className="h-3.5 w-3.5 shrink-0 text-[var(--muted)]" />
+          <ImageIcon className="h-3.5 w-3.5 shrink-0 text-[var(--muted)]" aria-hidden="true" />
           <input
             type="text"
             name={urlFieldName}
+            aria-label="Thumbnail image URL"
             value={urlInput}
             onChange={(e) => {
               setUrlInput(e.target.value);

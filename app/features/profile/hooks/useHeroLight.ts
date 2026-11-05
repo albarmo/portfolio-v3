@@ -53,32 +53,32 @@ export function useHeroLight() {
   // + p * 100 cancels the hero scrolling up, so the light sinks on screen and finally sets behind the next section
   const skyY = useTransform(
     [baseY, dusk],
-    ([y, p]: number[]) => y + (HORIZON - y) * p + p * 100
+    ([y = 0, p = 0]: number[]) => y + (HORIZON - y) * p + p * 100
   );
 
   // 2+3. sun and moon share the sky; the one not in season sits SET% lower and rises/sets on theme change
   const sunDrop = useMotionValue(SET);
   const moonDrop = useMotionValue(SET);
-  const sunY = useTransform([skyY, sunDrop], ([y, d]: number[]) => y + d);
-  const moonY = useTransform([skyY, moonDrop], ([y, d]: number[]) => y + d);
+  const sunY = useTransform([skyY, sunDrop], ([y = 0, d = 0]: number[]) => y + d);
+  const moonY = useTransform([skyY, moonDrop], ([y = 0, d = 0]: number[]) => y + d);
   // shadows follow whichever body is higher in the sky
   const lightY = useTransform(
     [skyY, sunDrop, moonDrop],
-    ([y, s, m]: number[]) => y + Math.min(s, m)
+    ([y = 0, s = 0, m = 0]: number[]) => y + Math.min(s, m)
   );
 
   // positions as transforms (px), never left/top, so moving them doesn't trigger layout
   const pxX = useTransform(
     [baseX, layoutTick],
-    ([x]: number[]) => (x / 100) * layout.current.w
+    ([x = 0]: number[]) => (x / 100) * layout.current.w
   );
   const sunPxY = useTransform(
     [sunY, layoutTick],
-    ([y]: number[]) => (y / 100) * layout.current.h
+    ([y = 0]: number[]) => (y / 100) * layout.current.h
   );
   const moonPxY = useTransform(
     [moonY, layoutTick],
-    ([y]: number[]) => (y / 100) * layout.current.h
+    ([y = 0]: number[]) => (y / 100) * layout.current.h
   );
 
   // unit vector from a light at (x, y)% to the heading, in px
@@ -97,14 +97,14 @@ export function useHeroLight() {
 
   const raysRotate = useTransform(
     [baseX, sunY, layoutTick],
-    ([x, y]: number[]) => {
+    ([x = 0, y = 0]: number[]) => {
       const { ux, uy } = lightRay(x, y);
       return (Math.atan2(ux, -uy) * 180) / Math.PI - RAY_FAN_CENTER;
     }
   );
 
   // shadow falls away from the light; longer when it is far or low (dusk), near-zero right above the text
-  const shadowOffset = ([x, y, p]: number[]) => {
+  const shadowOffset = ([x = 0, y = 0, p = 0]: number[]) => {
     // a light at or below the heading (sunset) casts long sideways shadows, never upward ones
     const { ux, uy, length, diagonal } = lightRay(
       x,

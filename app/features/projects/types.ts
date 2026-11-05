@@ -14,7 +14,7 @@ export interface ProjectDocument {
   techStack: string;
   responsibility: string;
   /** one-line outcome shown on the home page card */
-  highlight?: string;
+  highlight?: string | undefined;
   createdAt: Date | string;
   updatedAt: Date | string;
 }

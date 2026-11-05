@@ -57,13 +57,13 @@ export function SpotlightSearch() {
           if (!matches) return;
           const parts = textNode.textContent.split(regex);
           for (let i = 0; i < parts.length; i++) {
-            if (parts[i])
-              parent.insertBefore(document.createTextNode(parts[i]), textNode);
+            const part = parts[i];
+            if (part) parent.insertBefore(document.createTextNode(part), textNode);
             if (i < matches.length) {
               const mark = document.createElement("mark");
               mark.className =
                 "spotlight-highlight bg-yellow-400 text-black px-0.5 rounded-sm";
-              mark.textContent = matches[i];
+              mark.textContent = matches[i] ?? "";
               parent.insertBefore(mark, textNode);
               newResults.push(mark);
             }

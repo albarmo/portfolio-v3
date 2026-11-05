@@ -26,13 +26,13 @@ export function ExperienceSection() {
           className="grid gap-7 lg:grid-cols-[1.3fr_0.7fr] lg:items-end"
         >
           <motion.h2
-            style={reduceMotion ? undefined : { x: headingX }}
+            style={reduceMotion ? {} : { x: headingX }}
             className="max-w-[11ch] font-display text-6xl font-black uppercase leading-[0.84] tracking-[-0.035em] sm:text-7xl lg:text-8xl"
           >
             The journey behind the work.
           </motion.h2>
           <motion.p
-            style={reduceMotion ? undefined : { x: introX, opacity: introOpacity }}
+            style={reduceMotion ? {} : { x: introX, opacity: introOpacity }}
             className="max-w-[44ch] text-base font-medium leading-7 text-ink/75 lg:justify-self-end"
           >
             More than five years building digital products, growing frontend
