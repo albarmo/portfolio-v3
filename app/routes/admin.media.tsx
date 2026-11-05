@@ -1,9 +1,8 @@
-import type { ActionFunctionArgs, LoaderFunctionArgs } from "react-router";
+import type { ActionFunctionArgs } from "react-router";
 import { parseFormData } from "@remix-run/form-data-parser";
 import { redirect, Form, useLoaderData, useNavigation } from "react-router";
 import { CopyIcon, ImageIcon, Trash2Icon, UploadCloudIcon } from "lucide-react";
 import { deleteFile, listFiles, uploadToImageKit } from "~/lib/imagekit.server";
-import { requireAdmin } from "~/lib/session.server";
 
 type IKFile = {
   fileId: string;
@@ -15,8 +14,7 @@ type IKFile = {
   thumbnail?: string;
 };
 
-export async function loader({ request }: LoaderFunctionArgs) {
-  await requireAdmin(request);
+export async function loader() {
   try {
     const files = (await listFiles("/portfolio")) as IKFile[];
     return { files, error: null };
@@ -29,8 +27,6 @@ export async function loader({ request }: LoaderFunctionArgs) {
 }
 
 export async function action({ request }: ActionFunctionArgs) {
-  await requireAdmin(request);
-
   const form = await parseFormData(request, { maxFileSize: 5_000_000 });
   const intent = form.get("intent") as string;
 

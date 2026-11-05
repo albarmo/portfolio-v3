@@ -8,12 +8,10 @@ import {
 } from "react-router";
 import invariant from "tiny-invariant";
 import { getDb } from "~/lib/mongodb.server";
-import { requireAdmin } from "~/lib/session.server";
 import type { Review } from "~/services/review.server";
 import { ReviewFormFields } from "./admin.reviews.new";
 
-export async function loader({ request, params }: LoaderFunctionArgs) {
-  await requireAdmin(request);
+export async function loader({ params }: LoaderFunctionArgs) {
   invariant(params.id, "Missing review id");
   const db = await getDb();
   const review = await db
@@ -24,7 +22,6 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
 }
 
 export async function action({ request, params }: ActionFunctionArgs) {
-  await requireAdmin(request);
   invariant(params.id, "Missing review id");
   const form = await request.formData();
 

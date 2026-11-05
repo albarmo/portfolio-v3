@@ -10,12 +10,10 @@ import {
 import invariant from "tiny-invariant";
 import { getDb } from "~/lib/mongodb.server";
 import { uploadToImageKit } from "~/lib/imagekit.server";
-import { requireAdmin } from "~/lib/session.server";
 import type { BlogPost } from "~/services/blog.server";
 import { BlogFormFields } from "./admin.blogs.new";
 
-export async function loader({ request, params }: LoaderFunctionArgs) {
-  await requireAdmin(request);
+export async function loader({ params }: LoaderFunctionArgs) {
   invariant(params.id, "Missing blog id");
   const db = await getDb();
   const blog = await db
@@ -26,7 +24,6 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
 }
 
 export async function action({ request, params }: ActionFunctionArgs) {
-  await requireAdmin(request);
   invariant(params.id, "Missing blog id");
 
   const form = await parseFormData(request, { maxFileSize: 5_000_000 });

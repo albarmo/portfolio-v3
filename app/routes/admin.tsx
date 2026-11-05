@@ -1,6 +1,6 @@
-import { Link, NavLink, Outlet, useLoaderData } from "react-router";
-import type { LoaderFunctionArgs } from "react-router";
-import { getSession } from "~/lib/session.server";
+import { Link, NavLink, Outlet } from "react-router";
+import { requireAdmin } from "~/lib/session.server";
+import type { Route } from "./+types/admin";
 import {
   LayoutDashboardIcon,
   FileTextIcon,
@@ -11,10 +11,10 @@ import {
   ExternalLinkIcon,
 } from "lucide-react";
 
-export async function loader({ request }: LoaderFunctionArgs) {
-  const session = await getSession(request);
-  return { isAdmin: Boolean(session.get("admin")) };
-}
+// Guards every route nested under /admin (login/logout live outside as admin_.*)
+export const middleware: Route.MiddlewareFunction[] = [
+  async ({ request, url }) => requireAdmin(request, url),
+];
 
 const navItems = [
   { to: "/admin", label: "DASHBOARD", icon: LayoutDashboardIcon, end: true },
@@ -25,12 +25,6 @@ const navItems = [
 ];
 
 export default function AdminLayout() {
-  const { isAdmin } = useLoaderData<typeof loader>();
-
-  if (!isAdmin) {
-    return <Outlet />;
-  }
-
   return (
     <div className="flex min-h-screen bg-[var(--bg)] text-[var(--text)]">
       {/* Sidebar */}

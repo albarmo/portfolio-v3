@@ -1,11 +1,8 @@
-import type { LoaderFunctionArgs } from "react-router";
 import { Link, useLoaderData } from "react-router";
 import { FileTextIcon, FolderIcon, PlusIcon, StarIcon } from "lucide-react";
 import { getDb } from "~/lib/mongodb.server";
-import { requireAdmin } from "~/lib/session.server";
 
-export async function loader({ request }: LoaderFunctionArgs) {
-  await requireAdmin(request);
+export async function loader() {
   const db = await getDb();
 
   const [blogCount, projectCount, reviewCount] = await Promise.all([

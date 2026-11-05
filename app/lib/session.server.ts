@@ -16,12 +16,10 @@ export async function getSession(request: Request) {
   return sessionStorage.getSession(request.headers.get("Cookie"));
 }
 
-export async function requireAdmin(request: Request) {
+export async function requireAdmin(request: Request, url: URL) {
   const session = await getSession(request);
   if (!session.get("admin")) {
-    // v8 passes the raw request, so client navigations arrive as `/path.data`
-    const pathname = new URL(request.url).pathname.replace(/\.data$/, "");
-    throw redirect(`/admin/login?from=${encodeURIComponent(pathname)}`);
+    throw redirect(`/admin/login?from=${encodeURIComponent(url.pathname)}`);
   }
 }
 

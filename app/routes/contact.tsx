@@ -3,6 +3,9 @@ import { type ActionFunctionArgs } from "react-router";
 import { Form, Link, useActionData } from "react-router";
 import { Dribbble, Github, Linkedin, MailIcon } from "lucide-react";
 import { PageLayout } from "~/components/layout/PageLayout";
+import { pageMeta } from "~/utils/meta";
+
+export const meta = () => pageMeta({ title: "Contact" });
 
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();

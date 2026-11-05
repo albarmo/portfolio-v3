@@ -6,6 +6,16 @@ import { getProject } from "~/services/project.server";
 import type { Project } from "~/services/project.server";
 import TechTag from "~/components/ui/TechTag";
 import invariant from "tiny-invariant";
+import { pageMeta } from "~/utils/meta";
+import type { Route } from "./+types/projects.$projectId";
+
+export const meta = ({ loaderData }: Route.MetaArgs) =>
+  pageMeta({
+    title: loaderData?.project?.title ?? "Project",
+    description: loaderData?.project?.description,
+    image: loaderData?.project?.thumbnail,
+    type: "article",
+  });
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
   invariant(params.projectId, "Missing projectId param");

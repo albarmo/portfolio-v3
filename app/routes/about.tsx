@@ -1,6 +1,9 @@
 import type { FC } from "react";
 import { PageLayout } from "~/components/layout/PageLayout";
 import AreaOfExpertise from "~/components/section/AreaOfExpertise";
+import { pageMeta } from "~/utils/meta";
+
+export const meta = () => pageMeta({ title: "About" });
 
 interface SkillCardProps {
   title: string;

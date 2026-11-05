@@ -1,4 +1,4 @@
-import type { ActionFunctionArgs, LoaderFunctionArgs } from "react-router";
+import type { ActionFunctionArgs } from "react-router";
 import {
   redirect,
   Form,
@@ -8,11 +8,9 @@ import {
 } from "react-router";
 import { PencilIcon, PlusIcon, Trash2Icon } from "lucide-react";
 import { getDb } from "~/lib/mongodb.server";
-import { requireAdmin } from "~/lib/session.server";
 import type { BlogPost } from "~/services/blog.server";
 
-export async function loader({ request }: LoaderFunctionArgs) {
-  await requireAdmin(request);
+export async function loader() {
   const db = await getDb();
   const blogs = await db
     .collection<BlogPost>("blogs")
@@ -23,7 +21,6 @@ export async function loader({ request }: LoaderFunctionArgs) {
 }
 
 export async function action({ request }: ActionFunctionArgs) {
-  await requireAdmin(request);
   const form = await request.formData();
   const intent = form.get("intent");
   const id = form.get("id") as string;

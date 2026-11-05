@@ -14,6 +14,7 @@ import tailwindStylesHref from "./tailwind.css?url";
 import favicon from "~/../public/favicon.ico";
 import Navbar from "./components/layout/Navbar";
 import { themeCookie } from "./utils/cookie";
+import { pageMeta } from "./utils/meta";
 import { ReactNode, useEffect } from "react";
 import { applyTheme } from "./utils/theme.client";
 import PageProgressBar from "./components/ui/PageProgressBar";
@@ -26,6 +27,8 @@ import "@fontsource/manrope/latin-400";
 import "@fontsource/manrope/latin-500";
 import "@fontsource/manrope/latin-600";
 import "@fontsource/manrope/latin-700";
+
+export const meta = () => pageMeta();
 
 export const links: LinksFunction = () => [
   { rel: "icon", href: favicon, type: "image/x-icon" },
@@ -78,17 +81,7 @@ export default function App() {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta
-          name="description"
-          content="Portfolio of Albar Moerhamsa, a Software Engineer and Frontend Engineer building polished, performant digital products."
-        />
-        <meta property="og:title" content="Albar Moerhamsa Portfolio" />
-        <meta
-          property="og:description"
-          content="Selected work, writing, expertise, and reviews from Albar Moerhamsa."
-        />
         <Meta />
-        <title>Albar Moerhamsa - Software Engineer</title>
         <Links />
       </head>
       <body>

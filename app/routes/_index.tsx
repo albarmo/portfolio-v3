@@ -13,8 +13,10 @@ import { getBlogs } from "~/services/blog.server";
 import { getProjects } from "~/services/project.server";
 
 export const loader = async () => {
-  const projects = await getProjects({ limit: 10, page: 1 });
-  const blogs = await getBlogs({ limit: 10, page: 1 });
+  const [projects, blogs] = await Promise.all([
+    getProjects({ limit: 10, page: 1 }),
+    getBlogs({ limit: 10, page: 1 }),
+  ]);
 
   return {
     blogs: blogs || [],

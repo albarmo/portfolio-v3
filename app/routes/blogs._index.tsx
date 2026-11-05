@@ -4,6 +4,9 @@ import { ArrowUpRightIcon } from "lucide-react";
 import { PageLayout } from "~/components/layout/PageLayout";
 import { getBlogs } from "~/services/blog.server";
 import type { BlogPost } from "~/services/blog.server";
+import { pageMeta } from "~/utils/meta";
+
+export const meta = () => pageMeta({ title: "Blogs" });
 
 export const loader = async () => {
   const blogs = await getBlogs({ limit: 10, page: 1 });
