@@ -38,8 +38,8 @@ export function ThumbnailUpload({
   };
 
   return (
-    <div role="group" aria-labelledby="thumbnail-label" className="border-b border-[var(--line)]">
-      <div id="thumbnail-label" className="border-b border-[var(--line)] bg-[var(--surface)] px-3 py-1.5 font-mono text-[0.6rem] font-bold uppercase tracking-widest text-[var(--muted)]">
+    <div role="group" aria-labelledby="thumbnail-label" className="border-b border-border">
+      <div id="thumbnail-label" className="border-b border-border bg-surface px-3 py-1.5 font-mono text-[0.6rem] font-bold uppercase tracking-widest text-muted">
         THUMBNAIL
       </div>
 
@@ -50,14 +50,14 @@ export function ThumbnailUpload({
             <img
               src={preview}
               alt="Thumbnail preview"
-              className="h-28 w-auto border border-[var(--line)] object-cover"
+              className="h-28 w-auto border border-border object-cover"
               onError={() => setPreview("")}
             />
             <button
               type="button"
               onClick={clearSelection}
               aria-label="Remove thumbnail"
-              className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center bg-[var(--accent)] text-white"
+              className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center bg-accent text-white"
             >
               <XIcon className="h-3 w-3" aria-hidden="true" />
             </button>
@@ -73,15 +73,15 @@ export function ThumbnailUpload({
           onClick={() => fileRef.current?.click()}
           className={`flex w-full cursor-pointer flex-col items-center justify-center gap-2 border border-dashed py-6 transition-colors ${
             isDragging
-              ? "border-[var(--accent)] bg-[var(--surface-muted)]"
-              : "border-[var(--line)] hover:border-[var(--muted)]"
+              ? "border-accent bg-surface-muted"
+              : "border-border hover:border-muted"
           }`}
         >
-          <UploadCloudIcon className="h-6 w-6 text-[var(--muted)]" aria-hidden="true" />
-          <samp className="font-mono text-[0.65rem] text-[var(--muted)]">
+          <UploadCloudIcon className="h-6 w-6 text-muted" aria-hidden="true" />
+          <samp className="font-mono text-[0.65rem] text-muted">
             DRAG & DROP OR CLICK TO UPLOAD
           </samp>
-          <samp className="font-mono text-[0.6rem] text-[var(--muted)] opacity-60">
+          <samp className="font-mono text-[0.6rem] text-muted opacity-60">
             PNG, JPG, WEBP — MAX 5MB
           </samp>
         </button>
@@ -101,7 +101,7 @@ export function ThumbnailUpload({
 
         {/* Manual URL input */}
         <div className="flex items-center gap-2">
-          <ImageIcon className="h-3.5 w-3.5 shrink-0 text-[var(--muted)]" aria-hidden="true" />
+          <ImageIcon className="h-3.5 w-3.5 shrink-0 text-muted" aria-hidden="true" />
           <input
             type="text"
             name={urlFieldName}
@@ -113,7 +113,7 @@ export function ThumbnailUpload({
               if (fileRef.current) fileRef.current.value = ""; // clear file if URL typed
             }}
             placeholder="or paste image URL"
-            className="flex-1 border border-[var(--line)] bg-[var(--bg)] px-2 py-1.5 font-mono text-xs text-[var(--text)] outline-none placeholder:text-[var(--muted)] focus:border-[var(--muted)]"
+            className="flex-1 border border-border bg-background px-2 py-1.5 font-mono text-xs text-foreground outline-none placeholder:text-muted focus:border-muted"
           />
         </div>
       </div>

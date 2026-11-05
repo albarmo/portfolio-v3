@@ -17,12 +17,12 @@ export function AboutContent() {
       <AreaOfExpertise />
 
       <section className="section-shell">
-        <h1 className="max-w-4xl font-display text-5xl font-black uppercase leading-tight text-[var(--text)] sm:text-6xl">
+        <h1 className="max-w-4xl font-display text-5xl font-black uppercase leading-tight text-foreground sm:text-6xl">
           A FRONTEND ENGINEER WHO CARES ABOUT THE PRODUCT BEHIND THE PIXELS.
         </h1>
       </section>
 
-      <div className="section-shell mt-10 space-y-6 font-mono text-sm leading-7 text-[var(--muted)]">
+      <div className="section-shell mt-10 space-y-6 font-mono text-sm leading-7 text-muted">
         <p>
           My journey into web development began with a simple curiosity about
           how an idea could be transformed into something interactive on a
@@ -42,7 +42,7 @@ export function AboutContent() {
       </div>
 
       <section className="section-shell section-pad">
-        <h2 className="font-display text-4xl font-black uppercase text-[var(--text)]">
+        <h2 className="font-display text-4xl font-black uppercase text-foreground">
           TECHNOLOGY STACK
         </h2>
         <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">

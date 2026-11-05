@@ -79,8 +79,8 @@ export function ExperienceCard({
             <p className="flex items-center gap-2 font-mono text-[0.68rem] font-medium uppercase tracking-[0.08em]">
               {role.period.endsWith("Present") && (
                 <span className="relative flex h-2 w-2" aria-hidden="true">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#22C55E] opacity-75 motion-reduce:animate-none" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-[#22C55E]" />
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-terminal-green opacity-75 motion-reduce:animate-none" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-terminal-green" />
                 </span>
               )}
               <span className="opacity-60">{role.period}</span>

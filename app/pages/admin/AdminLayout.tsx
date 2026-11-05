@@ -8,7 +8,7 @@ export const middleware: Route.MiddlewareFunction[] = [async ({ request, url }) 
 
 export default function AdminLayout() {
   return (
-    <div className="flex min-h-screen bg-[var(--bg)] text-[var(--text)]">
+    <div className="flex min-h-screen bg-background text-foreground">
       <AdminSidebar />
       <main id="main-content" className="ml-56 flex-1">
         <Outlet />

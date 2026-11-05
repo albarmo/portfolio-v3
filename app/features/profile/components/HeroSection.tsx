@@ -11,7 +11,7 @@ export function HeroSection() {
       ref={light.sectionRef}
       onPointerMove={light.followMouse}
       onPointerLeave={light.sendLightHome}
-      className="relative overflow-hidden bg-[linear-gradient(180deg,#0088E4_0%,#0099FF_38%,#D7F0FF_74%,#FDFDFE_100%)] text-cloud"
+      className="relative overflow-hidden bg-[linear-gradient(180deg,#0088E4_0%,var(--sky)_38%,#D7F0FF_74%,var(--cloud)_100%)] text-cloud"
     >
       <HeroSky
         reduceMotion={light.reduceMotion}

@@ -19,10 +19,10 @@ export function ContactForm({ mailDraft }: ContactFormProps) {
 
   return (
     <div className="section-shell">
-        <samp className="font-mono text-[0.65rem] font-bold uppercase tracking-widest text-[var(--muted)]">
+        <samp className="font-mono text-[0.65rem] font-bold uppercase tracking-widest text-muted">
           [ CONTACT / INIT.MSG ]
         </samp>
-        <h1 className="mt-4 max-w-3xl font-display text-5xl font-black uppercase leading-tight text-[var(--text)] sm:text-6xl">
+        <h1 className="mt-4 max-w-3xl font-display text-5xl font-black uppercase leading-tight text-foreground sm:text-6xl">
           LET&apos;S START A PROJECT TOGETHER
         </h1>
 
@@ -72,17 +72,17 @@ export function ContactForm({ mailDraft }: ContactFormProps) {
                 alt="Albar Moerhamsa profile illustration"
                 className="my-2 h-28 w-28 object-cover"
               />
-              <p className="mt-6 leading-8 text-[var(--muted)]">
+              <p className="mt-6 leading-8 text-muted">
                 My inbox is always open. Whether you have a project or just want
                 to say Hi. I would love to hear from you. Feel free to contact
                 me and I&apos;ll get back to you.
               </p>
-              <div className="mt-6 flex gap-4 text-[var(--muted)]">
+              <div className="mt-6 flex gap-4 text-muted">
                 <Link
                   to="https://www.linkedin.com/in/albarms/"
                   target="_blank"
                   rel="noreferrer"
-                  className="transition-colors hover:text-[var(--accent)]"
+                  className="transition-colors hover:text-accent"
                  aria-label="LinkedIn">
                   <Linkedin aria-hidden="true" />
                 </Link>
@@ -90,7 +90,7 @@ export function ContactForm({ mailDraft }: ContactFormProps) {
                   to="https://github.com/albarmo"
                   target="_blank"
                   rel="noreferrer"
-                  className="transition-colors hover:text-[var(--accent)]"
+                  className="transition-colors hover:text-accent"
                  aria-label="GitHub">
                   <Github aria-hidden="true" />
                 </Link>
@@ -98,7 +98,7 @@ export function ContactForm({ mailDraft }: ContactFormProps) {
                   to={`mailto:${CONTACT_EMAIL}`}
                   target="_blank"
                   rel="noreferrer"
-                  className="transition-colors hover:text-[var(--accent)]"
+                  className="transition-colors hover:text-accent"
                  aria-label="Email">
                   <MailIcon aria-hidden="true" />
                 </Link>
@@ -106,7 +106,7 @@ export function ContactForm({ mailDraft }: ContactFormProps) {
                   to="https://dribbble.com/albarms"
                   target="_blank"
                   rel="noreferrer"
-                  className="transition-colors hover:text-[var(--accent)]"
+                  className="transition-colors hover:text-accent"
                  aria-label="Dribbble">
                   <Dribbble aria-hidden="true" />
                 </Link>

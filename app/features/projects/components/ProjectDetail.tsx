@@ -11,7 +11,7 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
   const { techStack, responsibilities } = project;
 
   return (
-    <div className="bg-[var(--bg)] text-[var(--text)]">
+    <div className="bg-background text-foreground">
       <div className="section-shell py-32 sm:py-40">
         <header>
           <div>
@@ -23,20 +23,20 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
                 <ArrowLeftIcon className="h-4 w-4" />
                 <span className="text-sm">Back to Projects</span>
               </Link>
-              <samp className="border border-[var(--line)] px-3 py-1.5 font-mono text-xs font-bold uppercase tracking-widest text-[var(--muted)]">
+              <samp className="border border-border px-3 py-1.5 font-mono text-xs font-bold uppercase tracking-widest text-muted">
                 {project.year}
               </samp>
             </div>
 
             <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
               <div className="md:col-span-2">
-                <samp className="font-mono text-[0.65rem] font-bold uppercase tracking-widest text-[var(--muted)]">
+                <samp className="font-mono text-[0.65rem] font-bold uppercase tracking-widest text-muted">
                   {project.category}
                 </samp>
-                <h1 className="mt-4 font-display text-5xl font-black uppercase leading-tight text-[var(--text)] sm:text-6xl">
+                <h1 className="mt-4 font-display text-5xl font-black uppercase leading-tight text-foreground sm:text-6xl">
                   {project.title}
                 </h1>
-                <p className="mt-6 max-w-2xl font-mono text-sm leading-7 text-[var(--muted)]">
+                <p className="mt-6 max-w-2xl font-mono text-sm leading-7 text-muted">
                   {project.description}
                 </p>
               </div>
@@ -62,7 +62,7 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
           </div>
         </header>
 
-        <div className="mt-12 aspect-video w-full overflow-hidden border border-[var(--line)] bg-[var(--surface-muted)]">
+        <div className="mt-12 aspect-video w-full overflow-hidden border border-border bg-surface-muted">
           <img
             src={project.thumbnail}
             alt={project.title}
@@ -75,19 +75,19 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
             <nav className="soft-panel space-y-2 p-3">
               <a
                 href="#brief"
-                className="block border-l-2 border-transparent py-2 pl-3 font-mono text-xs font-bold uppercase tracking-widest text-[var(--muted)] transition-colors hover:border-[var(--accent)] hover:text-[var(--text)]"
+                className="block border-l-2 border-transparent py-2 pl-3 font-mono text-xs font-bold uppercase tracking-widest text-muted transition-colors hover:border-accent hover:text-foreground"
               >
                 Brief
               </a>
               <a
                 href="#responsibility"
-                className="block border-l-2 border-transparent py-2 pl-3 font-mono text-xs font-bold uppercase tracking-widest text-[var(--muted)] transition-colors hover:border-[var(--accent)] hover:text-[var(--text)]"
+                className="block border-l-2 border-transparent py-2 pl-3 font-mono text-xs font-bold uppercase tracking-widest text-muted transition-colors hover:border-accent hover:text-foreground"
               >
                 Responsibility
               </a>
               <a
                 href="#result"
-                className="block border-l-2 border-transparent py-2 pl-3 font-mono text-xs font-bold uppercase tracking-widest text-[var(--muted)] transition-colors hover:border-[var(--accent)] hover:text-[var(--text)]"
+                className="block border-l-2 border-transparent py-2 pl-3 font-mono text-xs font-bold uppercase tracking-widest text-muted transition-colors hover:border-accent hover:text-foreground"
               >
                 Result
               </a>
@@ -96,23 +96,23 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
 
           <div className="space-y-6 lg:col-span-3">
             <section id="brief" className="soft-panel p-6 sm:p-8">
-              <h2 className="font-display text-2xl font-black uppercase text-[var(--text)]">
+              <h2 className="font-display text-2xl font-black uppercase text-foreground">
                 Brief
               </h2>
-              <p className="mt-4 font-mono text-xs leading-7 text-[var(--muted)]">
+              <p className="mt-4 font-mono text-xs leading-7 text-muted">
                 {project.brief}
               </p>
             </section>
 
             <section id="responsibility" className="soft-panel p-6 sm:p-8">
-              <h2 className="font-display text-2xl font-black uppercase text-[var(--text)]">
+              <h2 className="font-display text-2xl font-black uppercase text-foreground">
                 Responsibility
               </h2>
-              <ul className="mt-5 grid gap-3 text-base leading-7 text-[var(--muted)]">
+              <ul className="mt-5 grid gap-3 text-base leading-7 text-muted">
                 {responsibilities.map((item, index) => (
                   <li
                     key={index}
-                    className="border border-[var(--line)] bg-[var(--surface)] p-4 font-mono text-xs text-[var(--muted)]"
+                    className="border border-border bg-surface p-4 font-mono text-xs text-muted"
                   >
                     {item}
                   </li>
@@ -121,10 +121,10 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
             </section>
 
             <section id="result" className="soft-panel p-6 sm:p-8">
-              <h2 className="font-display text-2xl font-black uppercase text-[var(--text)]">
+              <h2 className="font-display text-2xl font-black uppercase text-foreground">
                 Result
               </h2>
-              <p className="mt-4 font-mono text-xs leading-7 text-[var(--muted)]">
+              <p className="mt-4 font-mono text-xs leading-7 text-muted">
                 {project.result}
               </p>
             </section>

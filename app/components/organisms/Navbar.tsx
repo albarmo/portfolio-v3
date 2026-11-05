@@ -33,7 +33,7 @@ export function Navbar() {
       : NAV_LINKS.find((item) => item.to === pathname)?.to ?? null;
   const tone = overHero
     ? "text-cloud [--nav-line:rgba(253,253,254,0.4)] [--nav-hover:rgba(253,253,254,0.1)]"
-    : "text-[var(--text)] [--nav-line:var(--line)] [--nav-hover:var(--surface-muted)]";
+    : "text-foreground [--nav-line:var(--line)] [--nav-hover:var(--surface-muted)]";
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setScrolled(latest > 24);
@@ -75,7 +75,7 @@ export function Navbar() {
         className={`fixed inset-x-0 top-0 z-50 border-b transition-[background-color,border-color,box-shadow,backdrop-filter] duration-300 ${tone} ${
           overHero
             ? "border-transparent bg-transparent"
-            : "border-[var(--line)] bg-[color-mix(in_srgb,var(--bg)_62%,transparent)] shadow-[0_10px_30px_-18px_rgba(17,24,39,0.35)] backdrop-blur-xl backdrop-saturate-150"
+            : "border-border bg-[color-mix(in_srgb,var(--bg)_62%,transparent)] shadow-[0_10px_30px_-18px_rgba(17,24,39,0.35)] backdrop-blur-xl backdrop-saturate-150"
         }`}
       >
         <div className="section-shell relative flex h-[4.5rem] items-center justify-between gap-5">
@@ -98,27 +98,27 @@ export function Navbar() {
           <NavLinks current={current} reduceMotion={reduceMotion ?? false} />
 
           <div className="flex items-center gap-2">
-            <div className="[&_button]:!border-[var(--nav-line)] [&_button]:!text-current [&_button:hover]:!border-current">
+            <div className="[&_button]:!border-nav-line [&_button]:!text-current [&_button:hover]:!border-current">
               <ThemeSwitcher />
             </div>
             <button
               type="button"
               onClick={() => setIsOpen(true)}
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-[var(--nav-line)] transition-colors hover:border-current hover:bg-[var(--nav-hover)]"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-nav-line transition-colors hover:border-current hover:bg-nav-hover"
             >
               <span className="sr-only">Search</span>
               <Search className="h-4 w-4" aria-hidden="true" />
             </button>
             <Link
               to="/contact"
-              className="premium-link hidden border-current bg-transparent text-current hover:bg-[var(--nav-hover)] sm:inline-flex"
+              className="premium-link hidden border-current bg-transparent text-current hover:bg-nav-hover sm:inline-flex"
             >
               Let&apos;s talk <ArrowUpRight className="h-4 w-4" />
             </Link>
             <button
               onClick={() => setIsMenuOpen((value) => !value)}
               type="button"
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-[var(--nav-line)] transition-colors hover:border-current hover:bg-[var(--nav-hover)] xl:hidden"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-nav-line transition-colors hover:border-current hover:bg-nav-hover xl:hidden"
               aria-controls={MOBILE_MENU_ID}
               aria-expanded={isMenuOpen}
             >

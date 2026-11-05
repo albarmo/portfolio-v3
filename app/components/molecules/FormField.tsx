@@ -12,7 +12,7 @@ interface FormFieldProps extends FormFieldConfig {
 }
 
 const INPUT_CLASS =
-  "w-full bg-[var(--bg)] px-3 py-3 font-mono text-xs text-[var(--text)] outline-none placeholder:text-[var(--muted)]";
+  "w-full bg-background px-3 py-3 font-mono text-xs text-foreground outline-none placeholder:text-muted";
 
 export function FormField({
   name,
@@ -24,14 +24,14 @@ export function FormField({
   defaultValue,
 }: FormFieldProps) {
   return (
-    <div className="border-b border-[var(--line)]">
+    <div className="border-b border-border">
       <label
         htmlFor={name}
-        className="block border-b border-[var(--line)] bg-[var(--surface)] px-3 py-1.5 font-mono text-[0.6rem] font-bold uppercase tracking-widest text-[var(--muted)]"
+        className="block border-b border-border bg-surface px-3 py-1.5 font-mono text-[0.6rem] font-bold uppercase tracking-widest text-muted"
       >
         {label}
         {required ? (
-          <span className="ml-1 text-[var(--accent)]" aria-hidden="true">
+          <span className="ml-1 text-accent" aria-hidden="true">
             *
           </span>
         ) : null}

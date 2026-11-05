@@ -138,21 +138,21 @@ export function SpotlightSearch() {
               onClick={(e) => e.stopPropagation()}
               className="surface-card relative mx-4 mt-[15vh] max-w-xl overflow-hidden sm:mx-auto"
             >
-              <div className="flex items-center border-b border-[var(--line)] p-4">
-                <SearchIcon className="h-4 w-4 text-[var(--muted)]" />
+              <div className="flex items-center border-b border-border p-4">
+                <SearchIcon className="h-4 w-4 text-muted" />
                 <input
                   type="text"
                   placeholder="Search this page"
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
-                  className="ml-4 w-full bg-transparent text-sm text-[var(--text)] placeholder:text-[var(--muted)] focus:outline-none"
+                  className="ml-4 w-full bg-transparent text-sm text-foreground placeholder:text-muted focus:outline-none"
                   // eslint-disable-next-line jsx-a11y/no-autofocus
                   autoFocus
                 />
               </div>
               {query.length > 1 && (
-                <div className="flex items-center justify-end border-t border-[var(--line)] p-2">
-                  <samp className="font-mono text-xs text-[var(--muted)]">
+                <div className="flex items-center justify-end border-t border-border p-2">
+                  <samp className="font-mono text-xs text-muted">
                     {results.length > 0 ? `${currentIndex + 1} / ` : ""}
                     {results.length} results
                   </samp>
@@ -160,14 +160,14 @@ export function SpotlightSearch() {
                     <button
                       onClick={goToPrevious}
                       disabled={results.length === 0}
-                      className="flex h-8 w-8 items-center justify-center rounded-full border border-[var(--line)] text-[var(--muted)] hover:border-[var(--accent)] hover:text-[var(--accent)] disabled:opacity-40"
+                      className="flex h-8 w-8 items-center justify-center rounded-full border border-border text-muted hover:border-accent hover:text-accent disabled:opacity-40"
                     >
                       <ChevronUpIcon className="h-3 w-3" />
                     </button>
                     <button
                       onClick={goToNext}
                       disabled={results.length === 0}
-                      className="flex h-8 w-8 items-center justify-center rounded-full border border-[var(--line)] text-[var(--muted)] hover:border-[var(--accent)] hover:text-[var(--accent)] disabled:opacity-40"
+                      className="flex h-8 w-8 items-center justify-center rounded-full border border-border text-muted hover:border-accent hover:text-accent disabled:opacity-40"
                     >
                       <ChevronDownIcon className="h-3 w-3" />
                     </button>

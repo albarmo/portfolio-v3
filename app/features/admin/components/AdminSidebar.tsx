@@ -19,13 +19,13 @@ const NAV_ITEMS = [
 
 export function AdminSidebar() {
   return (
-    <aside className="fixed inset-y-0 left-0 z-50 flex w-56 flex-col border-r border-[var(--line)] bg-[var(--surface)]">
+    <aside className="fixed inset-y-0 left-0 z-50 flex w-56 flex-col border-r border-border bg-surface">
       {/* Logo */}
-      <div className="flex h-14 items-center gap-2 border-b border-[var(--line)] px-4">
-        <span className="font-mono text-[0.65rem] font-bold uppercase tracking-widest text-[var(--accent)]">
+      <div className="flex h-14 items-center gap-2 border-b border-border px-4">
+        <span className="font-mono text-[0.65rem] font-bold uppercase tracking-widest text-accent">
           [ CMS ]
         </span>
-        <span className="font-mono text-[0.65rem] font-bold uppercase tracking-widest text-[var(--text)]">
+        <span className="font-mono text-[0.65rem] font-bold uppercase tracking-widest text-foreground">
           albarmox_
         </span>
       </div>
@@ -40,8 +40,8 @@ export function AdminSidebar() {
             className={({ isActive }) =>
               `flex items-center gap-3 border-l-2 px-4 py-2.5 font-mono text-[0.65rem] font-bold uppercase tracking-widest transition-colors ${
                 isActive
-                  ? "border-[var(--accent)] text-[var(--accent)]"
-                  : "border-transparent text-[var(--muted)] hover:border-[var(--line)] hover:text-[var(--text)]"
+                  ? "border-accent text-accent"
+                  : "border-transparent text-muted hover:border-border hover:text-foreground"
               }`
             }
           >
@@ -52,11 +52,11 @@ export function AdminSidebar() {
       </nav>
 
       {/* Bottom actions */}
-      <div className="border-t border-[var(--line)]">
+      <div className="border-t border-border">
         <Link
           to="/"
           target="_blank"
-          className="flex items-center gap-3 px-4 py-3 font-mono text-[0.65rem] font-bold uppercase tracking-widest text-[var(--muted)] transition-colors hover:text-[var(--text)]"
+          className="flex items-center gap-3 px-4 py-3 font-mono text-[0.65rem] font-bold uppercase tracking-widest text-muted transition-colors hover:text-foreground"
         >
           <ExternalLinkIcon className="h-3.5 w-3.5" aria-hidden="true" />
           VIEW SITE
@@ -64,7 +64,7 @@ export function AdminSidebar() {
         <form action="/admin/logout" method="post">
           <button
             type="submit"
-            className="flex w-full items-center gap-3 border-t border-[var(--line)] px-4 py-3 font-mono text-[0.65rem] font-bold uppercase tracking-widest text-[var(--muted)] transition-colors hover:text-[var(--accent)]"
+            className="flex w-full items-center gap-3 border-t border-border px-4 py-3 font-mono text-[0.65rem] font-bold uppercase tracking-widest text-muted transition-colors hover:text-accent"
           >
             <LogOutIcon className="h-3.5 w-3.5" aria-hidden="true" />
             LOGOUT

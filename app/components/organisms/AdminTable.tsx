@@ -18,21 +18,21 @@ interface AdminTableProps {
   deleteConfirmMessage: string;
 }
 
-const GRID = "grid grid-cols-[1fr_auto_auto_auto] gap-px bg-[var(--line)]";
-const CELL = "flex items-center bg-[var(--bg)] px-4 py-3";
+const GRID = "grid grid-cols-[1fr_auto_auto_auto] gap-px bg-border";
+const CELL = "flex items-center bg-background px-4 py-3";
 const ICON_BUTTON =
-  "flex h-8 w-8 items-center justify-center text-[var(--muted)] transition-colors hover:text-[var(--accent)] disabled:opacity-50";
+  "flex h-8 w-8 items-center justify-center text-muted transition-colors hover:text-accent disabled:opacity-50";
 
 export function AdminTable({ headers, rows, emptyLabel, deleteConfirmMessage }: AdminTableProps) {
   const isBusy = useNavigation().state !== "idle";
 
   return (
-    <div className="border border-[var(--line)]">
-      <div className={`${GRID} border-b border-[var(--line)]`}>
+    <div className="border border-border">
+      <div className={`${GRID} border-b border-border`}>
         {[...headers, "ACTIONS"].map((header) => (
           <div
             key={header}
-            className="bg-[var(--surface)] px-4 py-2 font-mono text-[0.6rem] font-bold uppercase tracking-widest text-[var(--muted)]"
+            className="bg-surface px-4 py-2 font-mono text-[0.6rem] font-bold uppercase tracking-widest text-muted"
           >
             {header}
           </div>
@@ -40,20 +40,20 @@ export function AdminTable({ headers, rows, emptyLabel, deleteConfirmMessage }: 
       </div>
 
       {rows.length === 0 ? (
-        <div className="px-4 py-12 text-center font-mono text-xs text-[var(--muted)]">{emptyLabel}</div>
+        <div className="px-4 py-12 text-center font-mono text-xs text-muted">{emptyLabel}</div>
       ) : (
         rows.map((row) => (
-          <div key={row.id} className={`${GRID} border-b border-[var(--line)] last:border-b-0`}>
-            <div className="bg-[var(--bg)] px-4 py-3">
-              <p className="line-clamp-1 font-mono text-xs font-bold text-[var(--text)]">{row.title}</p>
-              <p className="mt-0.5 line-clamp-1 font-mono text-[0.6rem] text-[var(--muted)]">{row.subtitle}</p>
+          <div key={row.id} className={`${GRID} border-b border-border last:border-b-0`}>
+            <div className="bg-background px-4 py-3">
+              <p className="line-clamp-1 font-mono text-xs font-bold text-foreground">{row.title}</p>
+              <p className="mt-0.5 line-clamp-1 font-mono text-[0.6rem] text-muted">{row.subtitle}</p>
             </div>
             {row.details.map((detail, index) => (
               <div key={headers[index + 1]} className={CELL}>
-                <span className="whitespace-nowrap font-mono text-xs text-[var(--muted)]">{detail}</span>
+                <span className="whitespace-nowrap font-mono text-xs text-muted">{detail}</span>
               </div>
             ))}
-            <div className="flex items-center bg-[var(--bg)] px-2 py-3">
+            <div className="flex items-center bg-background px-2 py-3">
               <Link to={row.editHref} aria-label={`Edit ${row.title}`} className={ICON_BUTTON}>
                 <PencilIcon className="h-3.5 w-3.5" aria-hidden="true" />
               </Link>

@@ -14,13 +14,13 @@ export function TextField({ label, as = "input", ...props }: TextFieldProps) {
     <div className="w-full">
       <label
         htmlFor={props.name}
-        className="mb-2 block font-mono text-[0.65rem] font-bold uppercase tracking-widest text-[var(--muted)]"
+        className="mb-2 block font-mono text-[0.65rem] font-bold uppercase tracking-widest text-muted"
       >
         {label}
       </label>
       <Element
         id={props.name}
-        className="w-full border border-[var(--line)] bg-[var(--surface)] px-4 py-3 font-mono text-sm text-[var(--text)] placeholder:text-[var(--muted)] transition-colors focus:border-[var(--accent)] focus:outline-none"
+        className="w-full border border-border bg-surface px-4 py-3 font-mono text-sm text-foreground placeholder:text-muted transition-colors focus:border-accent focus:outline-none"
         {...props}
       />
     </div>

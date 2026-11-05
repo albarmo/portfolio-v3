@@ -114,7 +114,7 @@ export function AreaOfExpertise() {
   const introOpacity = useTransform(scrollYProgress, [0.3, 1], [0, 1]);
 
   return (
-    <section className="section-pad overflow-hidden bg-[var(--bg)]">
+    <section className="section-pad overflow-hidden bg-background">
       <div className="section-shell">
         <div ref={headerRef}>
           <motion.h2
@@ -125,7 +125,7 @@ export function AreaOfExpertise() {
           </motion.h2>
           <motion.p
             style={reduceMotion ? {} : { y: introY, opacity: introOpacity }}
-            className="mt-6 max-w-[58ch] text-base leading-7 text-[var(--muted)]"
+            className="mt-6 max-w-[58ch] text-base leading-7 text-muted"
           >
             From early product thinking to production delivery, I work across the
             parts that make an interface useful and durable.

@@ -24,7 +24,7 @@ function MarqueeRow({ shots, reverse }: { shots: string[]; reverse?: boolean }) 
           <figure
             key={`${src}-${index}`}
             aria-hidden={index >= shots.length}
-            className="mr-4 aspect-video w-[18rem] shrink-0 overflow-hidden rounded-2xl bg-[var(--surface-muted)] ring-1 ring-[var(--line)] sm:mr-5 sm:w-[26rem] lg:w-[30rem]"
+            className="mr-4 aspect-video w-[18rem] shrink-0 overflow-hidden rounded-2xl bg-surface-muted ring-1 ring-border sm:mr-5 sm:w-[26rem] lg:w-[30rem]"
           >
             <img
               src={src}

@@ -13,23 +13,23 @@ interface AdminPageHeaderProps {
 
 export function AdminPageHeader({ breadcrumb, title, subtitle, createLink, children }: AdminPageHeaderProps) {
   return (
-    <div className="mb-8 flex items-center justify-between border-b border-[var(--line)] pb-6">
+    <div className="mb-8 flex items-center justify-between border-b border-border pb-6">
       <div>
-        <samp className="font-mono text-[0.65rem] font-bold uppercase tracking-widest text-[var(--muted)]">
+        <samp className="font-mono text-[0.65rem] font-bold uppercase tracking-widest text-muted">
           {breadcrumb}
         </samp>
-        <h1 className="mt-1 line-clamp-1 font-display text-3xl font-black uppercase text-[var(--text)]">
+        <h1 className="mt-1 line-clamp-1 font-display text-3xl font-black uppercase text-foreground">
           {title}
         </h1>
         {subtitle ? (
-          <samp className="mt-1 block font-mono text-[0.6rem] text-[var(--muted)]">{subtitle}</samp>
+          <samp className="mt-1 block font-mono text-[0.6rem] text-muted">{subtitle}</samp>
         ) : null}
       </div>
       {children}
       {createLink ? (
         <Link
           to={createLink.href}
-          className="flex items-center gap-2 border border-[var(--accent)] bg-[var(--accent)] px-4 py-2 font-mono text-xs font-bold uppercase tracking-widest text-white transition-opacity hover:opacity-90"
+          className="flex items-center gap-2 border border-accent bg-accent px-4 py-2 font-mono text-xs font-bold uppercase tracking-widest text-white transition-opacity hover:opacity-90"
         >
           <PlusIcon className="h-3.5 w-3.5" aria-hidden="true" />
           {createLink.label}

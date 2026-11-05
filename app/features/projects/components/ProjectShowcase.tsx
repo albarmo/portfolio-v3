@@ -50,10 +50,10 @@ export function ProjectShowcase({ projects: allProjects }: ProjectShowcaseProps)
     >
       <div className="section-shell relative grid gap-12 lg:grid-cols-[minmax(17rem,1fr)_minmax(0,2fr)] lg:gap-12 xl:gap-16">
         <header className="lg:sticky lg:top-28 lg:self-start">
-          <h2 className="max-w-[9ch] text-balance font-display text-6xl font-black uppercase leading-[0.84] tracking-[-0.035em] text-[var(--text)] sm:text-7xl lg:text-8xl">
+          <h2 className="max-w-[9ch] text-balance font-display text-6xl font-black uppercase leading-[0.84] tracking-[-0.035em] text-foreground sm:text-7xl lg:text-8xl">
             Selected work.
           </h2>
-          <p className="mt-7 max-w-[36ch] text-base leading-7 text-[var(--muted)]">
+          <p className="mt-7 max-w-[36ch] text-base leading-7 text-muted">
             Digital products built for finance, public services, marketplaces,
             and data-heavy workflows.
           </p>
@@ -66,8 +66,8 @@ export function ProjectShowcase({ projects: allProjects }: ProjectShowcaseProps)
 
           {projects.length > 1 && (
             <nav aria-label="Selected projects" className="mt-12 hidden lg:block">
-              <p className="font-mono text-xs font-medium tabular-nums tracking-[0.08em] text-[var(--muted)]">
-                <span className="text-[var(--text)]">{pad(active + 1)}</span> / {pad(projects.length)}
+              <p className="font-mono text-xs font-medium tabular-nums tracking-[0.08em] text-muted">
+                <span className="text-foreground">{pad(active + 1)}</span> / {pad(projects.length)}
               </p>
               <ol className="mt-4 grid gap-1">
                 {projects.map((project, index) => (
@@ -89,8 +89,8 @@ export function ProjectShowcase({ projects: allProjects }: ProjectShowcaseProps)
                       aria-current={active === index ? "true" : undefined}
                       className={`flex w-full items-baseline gap-4 py-2 text-left transition-colors duration-300 ${
                         active === index
-                          ? "text-[var(--text)]"
-                          : "text-[var(--muted)] hover:text-[var(--text)]"
+                          ? "text-foreground"
+                          : "text-muted hover:text-foreground"
                       }`}
                     >
                       <span className="font-mono text-xs tabular-nums">{pad(index + 1)}</span>
@@ -109,7 +109,7 @@ export function ProjectShowcase({ projects: allProjects }: ProjectShowcaseProps)
           // one viewport-high slot per project; the browser window stays pinned while the active tab follows scroll
           <div ref={stackRef} className="relative" style={{ height: `${projects.length * 100}svh` }}>
             <div className="sticky top-0 flex h-svh items-center pt-[4.5rem]">
-              <div ref={windowRef} className="w-full border border-[var(--line)] bg-[var(--surface-muted)]">
+              <div ref={windowRef} className="w-full border border-border bg-surface-muted">
                 <div className="flex">
                   {projects.map((project, index) => (
                     <button
@@ -117,10 +117,10 @@ export function ProjectShowcase({ projects: allProjects }: ProjectShowcaseProps)
                       type="button"
                       onClick={() => goTo(index)}
                       aria-current={active === index ? "true" : undefined}
-                      className={`relative flex min-w-0 flex-1 items-center gap-2 border-r border-[var(--line)] px-3 py-2.5 text-left transition-colors duration-300 sm:px-4 ${
+                      className={`relative flex min-w-0 flex-1 items-center gap-2 border-r border-border px-3 py-2.5 text-left transition-colors duration-300 sm:px-4 ${
                         active === index
-                          ? "bg-[var(--surface-solid)] text-[var(--text)]"
-                          : "text-[var(--muted)] hover:text-[var(--text)]"
+                          ? "bg-surface-solid text-foreground"
+                          : "text-muted hover:text-foreground"
                       }`}
                     >
                       {active === index && (
@@ -136,13 +136,13 @@ export function ProjectShowcase({ projects: allProjects }: ProjectShowcaseProps)
                   ))}
                 </div>
 
-                <div aria-hidden="true" className="flex items-center gap-3 border-y border-[var(--line)] bg-[var(--surface-solid)] px-4 py-2.5">
+                <div aria-hidden="true" className="flex items-center gap-3 border-y border-border bg-surface-solid px-4 py-2.5">
                   <span className="flex gap-1.5">
                     <span className="h-2.5 w-2.5 bg-accent" />
-                    <span className="h-2.5 w-2.5 bg-[var(--line)]" />
-                    <span className="h-2.5 w-2.5 bg-[var(--line)]" />
+                    <span className="h-2.5 w-2.5 bg-border" />
+                    <span className="h-2.5 w-2.5 bg-border" />
                   </span>
-                  <span className="min-w-0 flex-1 truncate bg-[var(--surface-muted)] px-3 py-1 font-mono text-[0.65rem] text-[var(--muted)]">
+                  <span className="min-w-0 flex-1 truncate bg-surface-muted px-3 py-1 font-mono text-[0.65rem] text-muted">
                     {projects[active]?.url || `/projects/${projects[active]?.title.toLowerCase().replace(/\W+/g, "-")}`}
                   </span>
                 </div>
@@ -173,9 +173,9 @@ export function ProjectShowcase({ projects: allProjects }: ProjectShowcaseProps)
             </div>
           </div>
         ) : (
-          <div className="rounded-[2rem] bg-[var(--surface-muted)] p-8 text-[var(--muted)]">
+          <div className="rounded-[2rem] bg-surface-muted p-8 text-muted">
             Project data is currently unavailable.{" "}
-            <Link to="/projects" className="text-[var(--text)] underline underline-offset-4">
+            <Link to="/projects" className="text-foreground underline underline-offset-4">
               Browse the project archive
             </Link>{" "}
             to try again.

@@ -61,7 +61,7 @@ export function HeroSky({ reduceMotion, pxX, sunPxY, moonPxY, raysRotate, duskGl
       />
 
       {/* fade the sky into the page background so the next section continues it */}
-      <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-b from-transparent via-[color-mix(in_srgb,var(--bg)_55%,transparent)] to-[var(--bg)]" />
+      <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-b from-transparent via-[color-mix(in_srgb,var(--bg)_55%,transparent)] to-background" />
 
       {/* 1. dusk: sits above the fade so the sinking sun shows against a warm sky, then melts into the page */}
       <div className={`absolute inset-0 ${horizonMask} ${dayOnly}`}>

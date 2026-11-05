@@ -58,7 +58,7 @@ export function Layout({ children }: { children: ReactNode }) {
       <body>
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[80] focus:border focus:border-[var(--accent)] focus:bg-[var(--bg)] focus:px-4 focus:py-2 focus:font-mono focus:text-xs focus:font-bold focus:uppercase focus:tracking-widest focus:text-[var(--accent)]"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[80] focus:border focus:border-accent focus:bg-background focus:px-4 focus:py-2 focus:font-mono focus:text-xs focus:font-bold focus:uppercase focus:tracking-widest focus:text-accent"
         >
           Skip to content
         </a>
@@ -114,14 +114,14 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   return (
     <main id="main-content" className="section-shell flex min-h-[100dvh] flex-col justify-center py-32">
       <div role="alert">
-        <samp className="font-mono text-[0.65rem] font-bold uppercase tracking-widest text-[var(--muted)]">
+        <samp className="font-mono text-[0.65rem] font-bold uppercase tracking-widest text-muted">
           [ {isNotFound ? "404" : "ERROR"} ]
         </samp>
-        <h1 className="mt-4 font-display text-5xl font-black uppercase leading-tight text-[var(--text)] sm:text-6xl">
+        <h1 className="mt-4 font-display text-5xl font-black uppercase leading-tight text-foreground sm:text-6xl">
           {title}
         </h1>
-        <p className="mt-5 max-w-xl font-mono text-xs leading-6 text-[var(--muted)]">{message}</p>
-        {detail ? <pre className="mt-6 overflow-x-auto font-mono text-xs text-[var(--accent)]">{detail}</pre> : null}
+        <p className="mt-5 max-w-xl font-mono text-xs leading-6 text-muted">{message}</p>
+        {detail ? <pre className="mt-6 overflow-x-auto font-mono text-xs text-accent">{detail}</pre> : null}
       </div>
       <Link to="/" className="premium-link premium-link-secondary mt-8 w-fit">
         Back to home

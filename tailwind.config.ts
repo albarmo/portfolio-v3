@@ -10,7 +10,20 @@ export default {
         mono: ['"Manrope"', "sans-serif"],
       },
       colors: {
-        // fixed palette, mirrors :root in app/app.css (theme-switching colors stay as var(--...))
+        // semantic tokens: CSS variables from app/app.css that switch with the light/dark theme
+        background: "var(--bg)",
+        foreground: "var(--text)",
+        muted: "var(--muted)",
+        border: "var(--line)",
+        surface: {
+          DEFAULT: "var(--surface)",
+          muted: "var(--surface-muted)",
+          solid: "var(--surface-solid)",
+        },
+        "nav-line": "var(--nav-line)",
+        "nav-hover": "var(--nav-hover)",
+        "terminal-green": "var(--terminal-green)",
+        // fixed brand palette, mirrors :root in app/app.css
         accent: "#F04A2D",
         ink: "#111827",
         cloud: "#FDFDFE",

@@ -4,7 +4,7 @@ import type { MediaFile } from "@/features/media/types";
 import { formatBytes } from "@/utils/formatBytes";
 
 const ACTION_BUTTON =
-  "flex h-8 w-8 items-center justify-center bg-[var(--bg)] transition-colors hover:text-[var(--accent)] disabled:opacity-50";
+  "flex h-8 w-8 items-center justify-center bg-background transition-colors hover:text-accent disabled:opacity-50";
 
 interface MediaGridProps {
   files: MediaFile[];
@@ -15,24 +15,24 @@ export function MediaGrid({ files }: MediaGridProps) {
 
   if (files.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center gap-3 border border-dashed border-[var(--line)] py-20">
-        <ImageIcon className="h-8 w-8 text-[var(--muted)]" aria-hidden="true" />
-        <samp className="font-mono text-xs text-[var(--muted)]">NO FILES UPLOADED YET</samp>
+      <div className="flex flex-col items-center justify-center gap-3 border border-dashed border-border py-20">
+        <ImageIcon className="h-8 w-8 text-muted" aria-hidden="true" />
+        <samp className="font-mono text-xs text-muted">NO FILES UPLOADED YET</samp>
       </div>
     );
   }
 
   return (
-    <div className="grid grid-cols-2 gap-px border border-[var(--line)] bg-[var(--line)] sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+    <div className="grid grid-cols-2 gap-px border border-border bg-border sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
       {files.map((file) => (
-        <div key={file.fileId} className="group relative flex flex-col bg-[var(--bg)]">
-          <div className="aspect-square overflow-hidden bg-[var(--surface-muted)]">
+        <div key={file.fileId} className="group relative flex flex-col bg-background">
+          <div className="aspect-square overflow-hidden bg-surface-muted">
             <img src={file.url} alt={file.name} className="h-full w-full object-cover" loading="lazy" />
           </div>
 
-          <div className="border-t border-[var(--line)] p-2">
-            <p className="truncate font-mono text-[0.6rem] text-[var(--text)]">{file.name}</p>
-            <samp className="font-mono text-[0.55rem] text-[var(--muted)]">{formatBytes(file.size)}</samp>
+          <div className="border-t border-border p-2">
+            <p className="truncate font-mono text-[0.6rem] text-foreground">{file.name}</p>
+            <samp className="font-mono text-[0.55rem] text-muted">{formatBytes(file.size)}</samp>
           </div>
 
           {/* Revealed on hover and on keyboard focus */}
@@ -42,7 +42,7 @@ export function MediaGrid({ files }: MediaGridProps) {
               onClick={() => void navigator.clipboard.writeText(file.url)}
               aria-label={`Copy URL of ${file.name}`}
               title="Copy URL"
-              className={`${ACTION_BUTTON} text-[var(--text)]`}
+              className={`${ACTION_BUTTON} text-foreground`}
             >
               <CopyIcon className="h-3.5 w-3.5" aria-hidden="true" />
             </button>
@@ -57,7 +57,7 @@ export function MediaGrid({ files }: MediaGridProps) {
                 }}
                 aria-label={`Delete ${file.name}`}
                 title="Delete"
-                className={`${ACTION_BUTTON} text-[var(--muted)]`}
+                className={`${ACTION_BUTTON} text-muted`}
               >
                 <Trash2Icon className="h-3.5 w-3.5" aria-hidden="true" />
               </button>

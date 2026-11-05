@@ -39,20 +39,20 @@ export function DashboardOverview({ counts }: DashboardOverviewProps) {
   return (
     <>
       {/* Stats */}
-      <div className="grid gap-px bg-[var(--line)] border border-[var(--line)] grid-cols-3 mb-8">
+      <div className="grid gap-px bg-border border border-border grid-cols-3 mb-8">
         {stats.map(({ label, value, to, icon: Icon }) => (
           <Link
             key={to}
             to={to}
-            className="group flex flex-col gap-3 bg-[var(--bg)] p-6 transition-colors hover:bg-[var(--surface)]"
+            className="group flex flex-col gap-3 bg-background p-6 transition-colors hover:bg-surface"
           >
             <div className="flex items-center justify-between">
-              <samp className="font-mono text-[0.6rem] font-bold uppercase tracking-widest text-[var(--muted)]">
+              <samp className="font-mono text-[0.6rem] font-bold uppercase tracking-widest text-muted">
                 {label}
               </samp>
-              <Icon className="h-4 w-4 text-[var(--muted)] group-hover:text-[var(--accent)] transition-colors" aria-hidden="true" />
+              <Icon className="h-4 w-4 text-muted group-hover:text-accent transition-colors" aria-hidden="true" />
             </div>
-            <span className="font-display text-4xl font-black text-[var(--text)]">
+            <span className="font-display text-4xl font-black text-foreground">
               {value}
             </span>
           </Link>
@@ -61,16 +61,16 @@ export function DashboardOverview({ counts }: DashboardOverviewProps) {
 
       {/* Quick actions */}
       <div className="mb-2">
-        <samp className="font-mono text-[0.6rem] font-bold uppercase tracking-widest text-[var(--muted)]">
+        <samp className="font-mono text-[0.6rem] font-bold uppercase tracking-widest text-muted">
           QUICK ACTIONS
         </samp>
       </div>
-      <div className="grid gap-px bg-[var(--line)] border border-[var(--line)] grid-cols-3">
+      <div className="grid gap-px bg-border border border-border grid-cols-3">
         {QUICK_ACTIONS.map(({ to, label }) => (
           <Link
             key={to}
             to={to}
-            className="flex items-center gap-3 bg-[var(--bg)] p-4 font-mono text-xs font-bold uppercase tracking-widest text-[var(--muted)] transition-colors hover:bg-[var(--surface)] hover:text-[var(--accent)]"
+            className="flex items-center gap-3 bg-background p-4 font-mono text-xs font-bold uppercase tracking-widest text-muted transition-colors hover:bg-surface hover:text-accent"
           >
             <PlusIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
             {label}

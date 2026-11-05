@@ -32,25 +32,25 @@ export function BlogsSection({ blogs: data }: BlogsSectionProps) {
                     loading="lazy"
                   />
                 </div>
-                <p className="mt-5 font-mono text-[0.65rem] font-medium uppercase tracking-[0.08em] text-[var(--muted)]">
+                <p className="mt-5 font-mono text-[0.65rem] font-medium uppercase tracking-[0.08em] text-muted">
                   {featured.date}
                 </p>
                 <h3 className="mt-3 max-w-[18ch] font-display text-4xl font-black uppercase leading-[0.92] sm:text-5xl">
                   {featured.title}
                 </h3>
-                <p className="mt-4 max-w-[58ch] text-sm leading-6 text-[var(--muted)]">
+                <p className="mt-4 max-w-[58ch] text-sm leading-6 text-muted">
                   {featured.summary.replace(/[—–]/g, "-")}
                 </p>
               </article>
             </Link>
 
-            <div className="lg:col-span-5 lg:border-l lg:border-[var(--line)] lg:pl-8">
+            <div className="lg:col-span-5 lg:border-l lg:border-border lg:pl-8">
               {more.map((article, index) => (
                 <Link
                   key={article.id}
                   to={`/blogs/${article.id}`}
                   className={`group grid grid-cols-[7rem_1fr] gap-5 py-6 ${
-                    index > 0 ? "border-t border-[var(--line)]" : "pt-0"
+                    index > 0 ? "border-t border-border" : "pt-0"
                   }`}
                 >
                   <img
@@ -60,7 +60,7 @@ export function BlogsSection({ blogs: data }: BlogsSectionProps) {
                     loading="lazy"
                   />
                   <div>
-                    <p className="font-mono text-[0.6rem] font-medium uppercase tracking-[0.08em] text-[var(--muted)]">
+                    <p className="font-mono text-[0.6rem] font-medium uppercase tracking-[0.08em] text-muted">
                       {article.date}
                     </p>
                     <h3 className="mt-2 font-display text-3xl font-black uppercase leading-[0.94] transition-colors group-hover:text-primary">
@@ -73,7 +73,7 @@ export function BlogsSection({ blogs: data }: BlogsSectionProps) {
             </div>
           </div>
         ) : (
-          <p className="mt-10 text-[var(--muted)]">
+          <p className="mt-10 text-muted">
             Articles are currently unavailable. Please try again later.
           </p>
         )}

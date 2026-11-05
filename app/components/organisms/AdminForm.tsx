@@ -26,23 +26,23 @@ export function AdminForm({
     <Form
       method="post"
       {...(hasFileUpload ? { encType: "multipart/form-data" as const } : {})}
-      className="max-w-3xl border border-[var(--line)]"
+      className="max-w-3xl border border-border"
     >
       {fields.map((field) => (
         <FormField key={field.name} {...field} defaultValue={defaultValues?.[field.name]} />
       ))}
       {children}
-      <div className="flex items-center justify-between border-t border-[var(--line)] bg-[var(--surface)] px-4 py-3">
+      <div className="flex items-center justify-between border-t border-border bg-surface px-4 py-3">
         <Link
           to={cancelHref}
-          className="font-mono text-xs font-bold uppercase tracking-widest text-[var(--muted)] hover:text-[var(--text)]"
+          className="font-mono text-xs font-bold uppercase tracking-widest text-muted hover:text-foreground"
         >
           ← CANCEL
         </Link>
         <button
           type="submit"
           disabled={isSubmitting}
-          className="border border-[var(--accent)] bg-[var(--accent)] px-5 py-2 font-mono text-xs font-bold uppercase tracking-widest text-white transition-opacity hover:opacity-90 disabled:opacity-50"
+          className="border border-accent bg-accent px-5 py-2 font-mono text-xs font-bold uppercase tracking-widest text-white transition-opacity hover:opacity-90 disabled:opacity-50"
         >
           {isSubmitting ? "SAVING..." : submitLabel}
         </button>

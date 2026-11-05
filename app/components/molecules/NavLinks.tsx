@@ -34,7 +34,7 @@ export function NavLinks({ current, reduceMotion }: NavLinksProps) {
             <motion.span
               layoutId="nav-pill"
               transition={reduceMotion ? { duration: 0 } : { type: "spring", stiffness: 420, damping: 32 }}
-              className="absolute inset-0 -z-10 rounded-full bg-[var(--nav-hover)] ring-1 ring-[var(--nav-line)]"
+              className="absolute inset-0 -z-10 rounded-full bg-nav-hover ring-1 ring-nav-line"
             />
           ) : null}
           {item.label}

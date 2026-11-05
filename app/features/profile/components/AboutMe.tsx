@@ -21,30 +21,30 @@ export function AboutMe() {
         </figure>
 
         <div>
-          <h2 className="max-w-[11ch] font-display text-6xl font-black uppercase leading-[0.86] tracking-[-0.035em] text-[var(--text)] sm:text-7xl lg:text-8xl">
+          <h2 className="max-w-[11ch] font-display text-6xl font-black uppercase leading-[0.86] tracking-[-0.035em] text-foreground sm:text-7xl lg:text-8xl">
             Design sense. Engineering depth. Product thinking.
           </h2>
-          <p className="mt-7 max-w-[60ch] text-base leading-8 text-[var(--muted)]">
+          <p className="mt-7 max-w-[60ch] text-base leading-8 text-muted">
             I&apos;m a Software Engineer who turns complex requirements into
             intuitive, scalable, and reliable digital products. My work sits
             between frontend engineering, product thinking, and careful visual
             execution.
           </p>
 
-          <div className="mt-10 grid grid-cols-2 gap-x-6 gap-y-8 border-t border-[var(--line)] pt-8 sm:grid-cols-3">
+          <div className="mt-10 grid grid-cols-2 gap-x-6 gap-y-8 border-t border-border pt-8 sm:grid-cols-3">
             <div>
               <strong className="font-display text-5xl font-black uppercase leading-none text-primary">
                 {years}+
               </strong>
-              <span className="mt-2 block text-xs font-bold uppercase tracking-[0.08em] text-[var(--muted)]">
+              <span className="mt-2 block text-xs font-bold uppercase tracking-[0.08em] text-muted">
                 Years of experience
               </span>
             </div>
             <div>
-              <strong className="font-display text-5xl font-black uppercase leading-none text-[var(--text)]">
+              <strong className="font-display text-5xl font-black uppercase leading-none text-foreground">
                 Product
               </strong>
-              <span className="mt-2 block text-xs font-bold uppercase tracking-[0.08em] text-[var(--muted)]">
+              <span className="mt-2 block text-xs font-bold uppercase tracking-[0.08em] text-muted">
                 Focused engineering
               </span>
             </div>
@@ -52,7 +52,7 @@ export function AboutMe() {
               <strong className="font-display text-5xl font-black uppercase leading-none text-accent">
                 Fintech
               </strong>
-              <span className="mt-2 block text-xs font-bold uppercase tracking-[0.08em] text-[var(--muted)]">
+              <span className="mt-2 block text-xs font-bold uppercase tracking-[0.08em] text-muted">
                 Government and digital products
               </span>
             </div>

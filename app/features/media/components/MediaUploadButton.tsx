@@ -5,7 +5,7 @@ export function MediaUploadButton() {
   return (
     <Form method="post" encType="multipart/form-data" className="flex items-center gap-2">
       <input type="hidden" name="intent" value="upload" />
-      <label className="flex cursor-pointer items-center gap-2 border border-[var(--line)] bg-[var(--surface)] px-3 py-2 font-mono text-xs font-bold uppercase tracking-widest text-[var(--muted)] transition-colors focus-within:border-[var(--accent)] focus-within:text-[var(--accent)] hover:border-[var(--accent)] hover:text-[var(--accent)]">
+      <label className="flex cursor-pointer items-center gap-2 border border-border bg-surface px-3 py-2 font-mono text-xs font-bold uppercase tracking-widest text-muted transition-colors focus-within:border-accent focus-within:text-accent hover:border-accent hover:text-accent">
         <UploadCloudIcon className="h-3.5 w-3.5" aria-hidden="true" />
         CHOOSE FILE
         {/* sr-only (not display:none) keeps the input reachable by keyboard */}
