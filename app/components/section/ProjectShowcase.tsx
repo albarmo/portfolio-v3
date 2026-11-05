@@ -1,11 +1,9 @@
 import { Link } from "@remix-run/react";
 import {
   motion,
-  type MotionValue,
   useMotionValueEvent,
   useReducedMotion,
   useScroll,
-  useTransform,
 } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { useRef, useState } from "react";
@@ -14,66 +12,14 @@ import ProjectCard from "../ui/card/ProjectCard";
 
 const pad = (value: number) => String(value).padStart(2, "0");
 
-// each card pins in its own viewport-high slot; earlier cards shrink and dim as later ones stack on top
-function StackedCard({
-  project,
-  index,
-  total,
-  progress,
-  reduceMotion,
-  onFocusCard,
-}: {
-  project: Project;
-  index: number;
-  total: number;
-  progress: MotionValue<number>;
-  reduceMotion: boolean;
-  onFocusCard: (index: number) => void;
-}) {
-  // progress hits index/(total-1) when this card pins; it then recedes until the last card lands
-  const start = Math.min(index / Math.max(total - 1, 1), 0.999);
-  const depth = total - 1 - index; // how many cards will land on top of this one
-  const scale = useTransform(progress, [start, 1], [1, 1 - depth * 0.05]);
-  const dim = useTransform(progress, [start, 1], [0, depth * 0.12]);
-
-  return (
-    // keyboard focus on a card buried under later cards would be invisible, so bring its slot into view
-    <div
-      className="sticky top-0 flex h-svh items-center"
-      onFocus={(event) => event.target.matches(":focus-visible") && onFocusCard(index)}
-    >
-      <motion.div
-        style={reduceMotion ? { top: index * 22 } : { scale, top: index * 22 }}
-        className="relative w-full origin-top"
-      >
-        <ProjectCard
-          title={project.title}
-          category={project.category}
-          year={project.year}
-          imageUrl={project.thumbnail}
-          href={`/projects/${project.id}`}
-          techStack={project.techStack}
-          highlight={project.highlight}
-        />
-        {!reduceMotion && (
-          <motion.div
-            aria-hidden="true"
-            style={{ opacity: dim }}
-            className="pointer-events-none absolute inset-0 rounded-[2rem] bg-ink lg:rounded-[2.5rem]"
-          />
-        )}
-      </motion.div>
-    </div>
-  );
-}
-
 export default function ProjectShowcase({ data = [] }: { data?: Project[] }) {
   const projects = data.slice(0, 4);
   const reduceMotion = useReducedMotion() ?? false;
   const stackRef = useRef<HTMLDivElement>(null);
+  const windowRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
 
-  // 0 when the stack's top reaches the viewport top, 1 when its last card has pinned
+  // 0 when the stack's top reaches the viewport top, 1 when the last project's slot is reached
   const { scrollYProgress } = useScroll({
     target: stackRef,
     offset: ["start start", "end end"],
@@ -83,7 +29,7 @@ export default function ProjectShowcase({ data = [] }: { data?: Project[] }) {
     setActive(Math.round(progress * Math.max(projects.length - 1, 0)));
   });
 
-  // every card owns one viewport-high slot, so card i is pinned at stackTop + i * viewport
+  // every project owns one viewport-high scroll slot, so project i is shown at stackTop + i * viewport
   const goTo = (index: number) => {
     const stack = stackRef.current;
     if (!stack) return;
@@ -96,7 +42,7 @@ export default function ProjectShowcase({ data = [] }: { data?: Project[] }) {
       id="work"
       className="relative scroll-mt-20 pb-[clamp(4.5rem,9vw,9rem)] pt-10 md:pt-14"
     >
-      <div className="section-shell relative grid gap-12 lg:grid-cols-[minmax(17rem,0.72fr)_minmax(0,1.28fr)] lg:gap-20 xl:gap-28">
+      <div className="section-shell relative grid gap-12 lg:grid-cols-[minmax(17rem,1fr)_minmax(0,2fr)] lg:gap-12 xl:gap-16">
         <header className="lg:sticky lg:top-28 lg:self-start">
           <h2 className="max-w-[9ch] text-balance font-display text-6xl font-black uppercase leading-[0.84] tracking-[-0.035em] text-[var(--text)] sm:text-7xl lg:text-8xl">
             Selected work.
@@ -132,7 +78,7 @@ export default function ProjectShowcase({ data = [] }: { data?: Project[] }) {
                       onClick={() => {
                         goTo(index);
                         // move focus with the scroll so keyboard and screen-reader users land on the card
-                        stackRef.current?.children[index]?.querySelector("a")?.focus({ preventScroll: true });
+                        windowRef.current?.querySelectorAll<HTMLAnchorElement>("[data-tab-panel] > a")[index]?.focus({ preventScroll: true });
                       }}
                       aria-current={active === index ? "true" : undefined}
                       className={`flex w-full items-baseline gap-4 py-2 text-left transition-colors duration-300 ${
@@ -154,18 +100,71 @@ export default function ProjectShowcase({ data = [] }: { data?: Project[] }) {
         </header>
 
         {projects.length > 0 ? (
-          <div ref={stackRef} className="relative">
-            {projects.map((project, index) => (
-              <StackedCard
-                key={project.id}
-                project={project}
-                index={index}
-                total={projects.length}
-                progress={scrollYProgress}
-                reduceMotion={reduceMotion}
-                onFocusCard={goTo}
-              />
-            ))}
+          // one viewport-high slot per project; the browser window stays pinned while the active tab follows scroll
+          <div ref={stackRef} className="relative" style={{ height: `${projects.length * 100}svh` }}>
+            <div className="sticky top-0 flex h-svh items-center pt-[4.5rem]">
+              <div ref={windowRef} className="w-full border border-[var(--line)] bg-[var(--surface-muted)]">
+                <div className="flex">
+                  {projects.map((project, index) => (
+                    <button
+                      key={project.id}
+                      type="button"
+                      onClick={() => goTo(index)}
+                      aria-current={active === index ? "true" : undefined}
+                      className={`relative flex min-w-0 flex-1 items-center gap-2 border-r border-[var(--line)] px-3 py-2.5 text-left transition-colors duration-300 sm:px-4 ${
+                        active === index
+                          ? "bg-[var(--surface-solid)] text-[var(--text)]"
+                          : "text-[var(--muted)] hover:text-[var(--text)]"
+                      }`}
+                    >
+                      {active === index && (
+                        <motion.span
+                          layoutId="work-tab-marker"
+                          transition={reduceMotion ? { duration: 0 } : { type: "spring", stiffness: 420, damping: 34 }}
+                          className="absolute inset-x-0 top-0 h-0.5 bg-accent"
+                        />
+                      )}
+                      <span className="font-mono text-[0.62rem] tabular-nums">{pad(index + 1)}</span>
+                      <span className="truncate text-xs font-semibold">{project.title}</span>
+                    </button>
+                  ))}
+                </div>
+
+                <div aria-hidden="true" className="flex items-center gap-3 border-y border-[var(--line)] bg-[var(--surface-solid)] px-4 py-2.5">
+                  <span className="flex gap-1.5">
+                    <span className="h-2.5 w-2.5 bg-accent" />
+                    <span className="h-2.5 w-2.5 bg-[var(--line)]" />
+                    <span className="h-2.5 w-2.5 bg-[var(--line)]" />
+                  </span>
+                  <span className="min-w-0 flex-1 truncate bg-[var(--surface-muted)] px-3 py-1 font-mono text-[0.65rem] text-[var(--muted)]">
+                    {projects[active]?.url || `/projects/${projects[active]?.title.toLowerCase().replace(/\W+/g, "-")}`}
+                  </span>
+                </div>
+
+                {/* all panels stay mounted and stacked so focus survives tab switches; visibility hides inactive ones from tab order and screen readers */}
+                <div className="grid">
+                  {projects.map((project, index) => (
+                    <div
+                      key={project.id}
+                      data-tab-panel
+                      className={`[grid-area:1/1] transition-[opacity,visibility,transform] duration-500 ease-out motion-reduce:transition-none ${
+                        active === index ? "visible opacity-100" : "invisible opacity-0 motion-safe:scale-[0.985]"
+                      }`}
+                    >
+                      <ProjectCard
+                        title={project.title}
+                        category={project.category}
+                        year={project.year}
+                        imageUrl={project.thumbnail}
+                        href={`/projects/${project.id}`}
+                        techStack={project.techStack}
+                        highlight={project.highlight}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         ) : (
           <div className="rounded-[2rem] bg-[var(--surface-muted)] p-8 text-[var(--muted)]">
