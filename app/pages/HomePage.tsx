@@ -1,7 +1,7 @@
 import { ScrollReveal } from "@/components/atoms/ScrollReveal";
 import { PageLayout } from "@/components/templates/PageLayout";
-import { BlogsSection } from "@/features/blogs/components";
 import { getBlogs } from "@/features/blogs/api/blogs.server";
+import { BlogsSection } from "@/features/blogs/components";
 import {
   AboutMe,
   AreaOfExpertise,
@@ -10,8 +10,8 @@ import {
   ExperienceSection,
   HeroSection,
 } from "@/features/profile/components";
-import { ProjectShowcase } from "@/features/projects/components";
 import { getProjects } from "@/features/projects/api/projects.server";
+import { ProjectShowcase } from "@/features/projects/components";
 import type { Route } from "./+types/HomePage";
 
 export async function loader() {
