@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import { motion } from "framer-motion";
 import { ArrowUpRightIcon } from "lucide-react";
+import { Squiggle } from "@/components/atoms/Squiggle";
 import type { Project } from "@/features/projects/types";
 
 const MAX_VISIBLE_TAGS = 4;
@@ -39,6 +40,7 @@ export function ProjectList({ projects: projectList }: ProjectListProps) {
               <h1 className="mt-4 font-display text-5xl font-black uppercase leading-tight text-foreground sm:text-6xl">
                 SELECTED WORK ACROSS PRODUCT TEAMS.
               </h1>
+              <Squiggle />
               <p className="mt-5 max-w-2xl font-mono text-xs leading-6 text-muted">
                 A focused set of frontend and full-stack work across fintech,
                 government systems, marketplaces, and data-heavy tools.

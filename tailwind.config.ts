@@ -37,6 +37,11 @@ export default {
         "gradient-start": "#0099FF",
         "gradient-end": "#66C2FF",
       },
+      boxShadow: {
+        // flat offset "sticker" shadow; follows the theme text color
+        hard: "6px 6px 0 var(--text)",
+        "hard-sm": "3px 3px 0 var(--ink)",
+      },
       keyframes: {
         shine: {
           "0%": { "background-position": "100%" },

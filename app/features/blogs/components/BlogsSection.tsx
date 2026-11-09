@@ -1,5 +1,6 @@
 import { Link } from "react-router";
 import { ArrowUpRight } from "lucide-react";
+import { Squiggle } from "@/components/atoms/Squiggle";
 import type { BlogPost } from "@/features/blogs/types";
 
 interface BlogsSectionProps {
@@ -16,6 +17,7 @@ export function BlogsSection({ blogs: data }: BlogsSectionProps) {
         <h2 className="max-w-[11ch] font-display text-6xl font-black uppercase leading-[0.84] tracking-[-0.035em] sm:text-7xl lg:text-8xl">
           Thoughts, ideas, and things I&apos;ve learned.
         </h2>
+        <Squiggle />
 
         {featured ? (
           <div className="mt-14 grid gap-10 lg:grid-cols-12">

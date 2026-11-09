@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Form, Link } from "react-router";
 import { Dribbble, Github, Linkedin, MailIcon } from "lucide-react";
+import { Squiggle } from "@/components/atoms/Squiggle";
 import { TextField } from "@/components/molecules/TextField";
 import { CONTACT_EMAIL } from "@/constants/site";
 import type { ContactMailDraft } from "@/features/contact/types";
@@ -25,6 +26,7 @@ export function ContactForm({ mailDraft }: ContactFormProps) {
         <h1 className="mt-4 max-w-3xl font-display text-5xl font-black uppercase leading-tight text-foreground sm:text-6xl">
           LET&apos;S START A PROJECT TOGETHER
         </h1>
+        <Squiggle />
 
         <div className="mt-14 grid grid-cols-1 gap-8 lg:grid-cols-[1.1fr_0.9fr]">
           <Form method="post" className="surface-card space-y-6 p-5 sm:p-8">

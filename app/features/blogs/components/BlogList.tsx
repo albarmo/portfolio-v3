@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import { motion } from "framer-motion";
 import { ArrowUpRightIcon } from "lucide-react";
+import { Squiggle } from "@/components/atoms/Squiggle";
 import type { BlogPost } from "@/features/blogs/types";
 
 const rowVariants = {
@@ -41,6 +42,7 @@ export function BlogList({ blogs: blogList }: BlogListProps) {
               <h1 className="mt-4 font-display text-5xl font-black uppercase leading-tight text-foreground sm:text-6xl">
                 WRITING ABOUT FRONTEND CRAFT.
               </h1>
+              <Squiggle />
               <p className="mt-5 max-w-2xl font-mono text-xs leading-6 text-muted">
                 Notes on architecture, tooling, and the decisions behind
                 building fast and maintainable frontend systems.

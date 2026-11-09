@@ -1,4 +1,6 @@
 import { Link } from "react-router";
+import { Squiggle } from "@/components/atoms/Squiggle";
+import { FrameOverlay } from "@/components/molecules/FrameOverlay";
 import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
 import { TechTag } from "@/components/atoms/TechTag";
 import type { Project } from "@/features/projects/types";
@@ -36,6 +38,7 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
                 <h1 className="mt-4 font-display text-5xl font-black uppercase leading-tight text-foreground sm:text-6xl">
                   {project.title}
                 </h1>
+                <Squiggle />
                 <p className="mt-6 max-w-2xl font-mono text-sm leading-7 text-muted">
                   {project.description}
                 </p>
@@ -62,12 +65,15 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
           </div>
         </header>
 
-        <div className="mt-12 aspect-video w-full overflow-hidden border border-border bg-surface-muted">
-          <img
-            src={project.thumbnail}
-            alt={project.title}
-            className="h-full w-full object-cover"
-          />
+        <div className="relative mt-12">
+          <div className="aspect-video w-full overflow-hidden border border-border bg-surface-muted">
+            <img
+              src={project.thumbnail}
+              alt={project.title}
+              className="h-full w-full object-cover"
+            />
+          </div>
+          <FrameOverlay label={project.title} selected className="-inset-2" />
         </div>
 
         <div className="mt-16 grid grid-cols-1 gap-10 lg:grid-cols-4">

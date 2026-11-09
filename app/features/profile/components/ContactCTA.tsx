@@ -1,5 +1,6 @@
 import { Link } from "react-router";
 import { ArrowUpRight, Github, Linkedin, Mail } from "lucide-react";
+import { RainbowArc } from "@/components/organisms/RainbowArc";
 
 const links = [
   { to: "mailto:moerhamsa@gmail.com", label: "Email", icon: Mail },
@@ -13,7 +14,8 @@ const links = [
 
 export function ContactCTA() {
   return (
-    <section className="bg-accent py-20 text-ink sm:py-28">
+    <section className="relative isolate overflow-hidden bg-accent py-20 text-ink sm:py-28">
+      <RainbowArc side="left" />
       <div className="section-shell">
         <h2 className="max-w-[13ch] font-display text-6xl font-black uppercase leading-[0.82] tracking-[-0.035em] sm:text-8xl lg:text-9xl">
           Have a product in mind? Let&apos;s build something great.

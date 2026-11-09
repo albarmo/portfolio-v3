@@ -1,3 +1,4 @@
+import { RainbowArc } from "@/components/organisms/RainbowArc";
 import { PageLayout } from "@/components/templates/PageLayout";
 import { ContactForm } from "@/features/contact/components";
 import { buildContactMailDraft } from "@/features/contact/api/contact.server";
@@ -12,7 +13,8 @@ export async function action({ request }: Route.ActionArgs) {
 
 export default function ContactPage({ actionData }: Route.ComponentProps) {
   return (
-    <PageLayout className="section-pad pt-32 sm:pt-40">
+    <PageLayout className="section-pad relative isolate overflow-hidden pt-32 sm:pt-40">
+      <RainbowArc side="right" />
       <ContactForm mailDraft={actionData?.mailDraft} />
     </PageLayout>
   );

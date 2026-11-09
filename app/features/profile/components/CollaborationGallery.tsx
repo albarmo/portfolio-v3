@@ -1,3 +1,5 @@
+import { Squiggle } from "@/components/atoms/Squiggle";
+
 // Drop the screenshots into public/images/meet/ with these names (16:9 works best).
 const meetShots = [
   "/images/meet/meet-1.webp",
@@ -48,6 +50,7 @@ export function CollaborationGallery() {
         <h2 className="max-w-[12ch] font-display text-6xl font-black uppercase leading-[0.84] tracking-[-0.035em] sm:text-7xl lg:text-8xl">
           Good work is built together.
         </h2>
+        <Squiggle />
       </div>
 
       <div className="mt-14 flex flex-col gap-4 [mask-image:linear-gradient(90deg,transparent,#000_8%,#000_92%,transparent)] sm:gap-5">

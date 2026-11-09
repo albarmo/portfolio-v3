@@ -1,4 +1,6 @@
 import { Link } from "react-router";
+import { Squiggle } from "@/components/atoms/Squiggle";
+import { FrameOverlay } from "@/components/molecules/FrameOverlay";
 import { ArrowLeftIcon } from "lucide-react";
 import type { BlogPost } from "@/features/blogs/types";
 
@@ -30,6 +32,7 @@ export function BlogDetail({ blog }: BlogDetailProps) {
                 <h1 className="font-display text-5xl font-black uppercase leading-tight text-foreground sm:text-6xl">
                   {blog.title}
                 </h1>
+                <Squiggle />
                 <p className="mt-6 max-w-3xl font-mono text-sm leading-7 text-muted">
                   {blog.summary}
                 </p>
@@ -37,12 +40,15 @@ export function BlogDetail({ blog }: BlogDetailProps) {
           </div>
         </header>
 
-        <div className="mt-12 aspect-video w-full overflow-hidden border border-border bg-surface-muted">
-          <img
-            src={blog.thumbnail}
-            alt={blog.title}
-            className="h-full w-full object-cover"
-          />
+        <div className="relative mt-12">
+          <div className="aspect-video w-full overflow-hidden border border-border bg-surface-muted">
+            <img
+              src={blog.thumbnail}
+              alt={blog.title}
+              className="h-full w-full object-cover"
+            />
+          </div>
+          <FrameOverlay label={blog.title} selected className="-inset-2" />
         </div>
 
         <div className="mt-10 border border-border bg-surface p-6 sm:p-8">

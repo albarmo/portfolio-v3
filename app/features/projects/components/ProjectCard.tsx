@@ -1,5 +1,6 @@
 import { Link } from "react-router";
 import { ArrowUpRight } from "lucide-react";
+import { FrameOverlay } from "@/components/molecules/FrameOverlay";
 
 const MAX_VISIBLE_TECHNOLOGIES = 3;
 
@@ -30,6 +31,8 @@ export function ProjectCard({ title, category, year, imageUrl, href, techStack, 
           aria-hidden="true"
           className="absolute inset-0 -z-10 bg-gradient-to-t from-ink via-ink/80 via-50% to-ink/0 transition-opacity duration-500 group-hover:opacity-95"
         />
+
+        <FrameOverlay label={title} className="inset-3 sm:inset-4" />
 
         <div className="flex items-start justify-between gap-4 p-5 sm:p-6">
           <span className="rounded-full bg-ink/60 px-3.5 py-1.5 font-mono text-[0.65rem] font-medium uppercase tracking-[0.08em] backdrop-blur-md">

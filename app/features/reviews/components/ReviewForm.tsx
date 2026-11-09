@@ -1,4 +1,5 @@
 import { Form } from "react-router";
+import { Squiggle } from "@/components/atoms/Squiggle";
 import { TextField } from "@/components/molecules/TextField";
 import type { ReviewSubmissionResult } from "@/features/reviews/types";
 
@@ -18,6 +19,7 @@ export function ReviewForm({ result: actionData }: ReviewFormProps) {
           <h1 className="text-center font-display text-5xl font-black uppercase leading-tight text-foreground sm:text-6xl">
             TULIS ULASAN ANDA
           </h1>
+          <Squiggle className="mx-auto mt-6 block" />
           <p className="mx-auto mt-5 max-w-2xl text-center font-mono text-xs leading-6 text-muted">
             Bagikan pengalaman Anda dan bantu orang lain membuat keputusan yang
             lebih baik.
